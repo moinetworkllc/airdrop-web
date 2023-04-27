@@ -1,13 +1,8 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import React from "react";
 
 export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
+    <div className="pt-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         <p>Website</p>
       </div>
@@ -19,6 +14,6 @@ export default function Home() {
       <div className="mb-32 grid lg:mb-0 lg:grid-cols-4 lg:text-left">
        
       </div>
-    </main>
+    </div>
   );
 }
