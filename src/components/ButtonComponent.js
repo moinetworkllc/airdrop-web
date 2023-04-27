@@ -8,7 +8,7 @@ const classes = {
     primary:
       "font-semibold rounded-full leading-normal text-zee-white bg-zee-primary hover:bg-zee-primary-hover",
     secondary:
-      "relative p-0.5 flex font-semibold items-center leading-normal justify-center overflow-hidden text-sm xl:text-xl font-medium rounded-full text-zee-white group bg-gradient-to-r from-zee-primary to-zee-primary-v1 hover:from-zee-primary-v1 hover:to-zee-primary",
+      "relative p-0.5 flex font-semibold items-center leading-normal justify-center overflow-hidden text-sm xl:text-xl font-medium rounded-full text-white group bg-gradient-to-r from-blue-400 to-blue-200 hover:from-blue-200 hover:to-blue-400",
   },
 };
 
