@@ -7,6 +7,13 @@ import { CheckMark } from '../components/SvgComponent';
 
 export default function Eligibility() {
   const [expand, setExpand] = useState(false);
+  const [moiId, setMoiId] = useState("");
+  const getEligibility = async () => {
+    let id = "0x9755aa020dB3784B15F286820CF4b6FC0075a712"
+    let response = await fetch(`/api/moi?id=${id}`)
+    let data = await response.json();
+    console.log(data)
+  }
   return (
     <>
       <div className="absolute">
@@ -40,7 +47,16 @@ export default function Eligibility() {
             >
               Explore projects on MOI
             </ButtonComponent>
+            <div className="md:flex md:items-center">
+              <button className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" 
+                onClick={getEligibility}>
+                    Check
+              </button>    
+            </div>
           </div>
+
+          
+
           <div className="w-[60%] p-6 lg:p-10">
             {ELIGIBILITY_CRITERIA.map((item, index) => {
               return (
