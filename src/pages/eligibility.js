@@ -13,6 +13,12 @@ export default function Eligibility() {
     let response = await fetch(`/api/moi?id=${id}`)
     let data = await response.json();
     console.log(data)
+    //save these
+    console.log(data.validator_nodes.length) 
+    console.log(data.twitter.data.level)
+    console.log(data.telegram.data.level)
+    console.log(data.discord.data.level)
+
   }
   return (
     <>
