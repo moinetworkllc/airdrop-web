@@ -1,25 +1,28 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonComponent from "../components/ButtonComponent";
 import { ELIGIBILITY_CRITERIA } from "../utils/constants";
-import { CheckMark } from '../components/SvgComponent';
-
+import { CheckMark } from "../components/SvgComponent";
 
 export default function Eligibility() {
   const [expand, setExpand] = useState(false);
   const [moiId, setMoiId] = useState("");
   const getEligibility = async () => {
-    let id = "0x9755aa020dB3784B15F286820CF4b6FC0075a712"
-    let response = await fetch(`/api/moi?id=${id}`)
+    // let id = "0x9755aa020dB3784B15F286820CF4b6FC0075a712"
+    let response = await fetch(`/api/moi?id=${moiId}`);
     let data = await response.json();
-    console.log(data)
+    console.log(data);
     //save these
-    console.log(data.validator_nodes.length) 
-    console.log(data.twitter.data.level)
-    console.log(data.telegram.data.level)
-    console.log(data.discord.data.level)
+    console.log(data.validator_nodes.length);
+    console.log(data.twitter.data.level);
+    console.log(data.telegram.data.level);
+    console.log(data.discord.data.level);
+  };
 
-  }
+  useEffect(() => {
+    moiId && getEligibility();
+  }, [moiId]);
+
   return (
     <>
       <div className="absolute">
@@ -54,28 +57,30 @@ export default function Eligibility() {
               Explore projects on MOI
             </ButtonComponent>
             <div className="md:flex md:items-center">
-              <button className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" 
-                onClick={getEligibility}>
-                    Check
-              </button>    
+              <button
+                className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                onClick={() =>
+                  setMoiId("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
+                }
+              >
+                Log In
+              </button>
             </div>
           </div>
-
-          
 
           <div className="w-[60%] p-6 lg:p-10">
             {ELIGIBILITY_CRITERIA.map((item, index) => {
               return (
-                <>
+                <div key={index}>
                   <div
                     key={index}
                     className="flex justify-between items-center transition-all duration-500 cursor-pointer"
                   >
                     <div>
-                      <p className="py-4"> 
-                      <span className="text-green-300 pr-3">&#10003;</span> 
-                      <span>{item.criteria}</span>
-                    </p>
+                      <p className="py-4">
+                        <span className="text-green-300 pr-3">&#10003;</span>
+                        <span>{item.criteria}</span>
+                      </p>
                     </div>
                     <div>
                       <button
@@ -87,7 +92,7 @@ export default function Eligibility() {
                     </div>
                   </div>
                   <div>{expand && <p className="px-4">expanded data </p>}</div>
-                </>
+                </div>
               );
             })}
           </div>
