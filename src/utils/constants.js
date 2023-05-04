@@ -39,3 +39,27 @@ export const ELIGIBILITY_CRITERIA = [
         criteria: "Your Avatar has been scanned at least once"
     },
 ]
+
+
+export const HeaderTabs = [
+    {
+        name: "Smart Contracts",
+        href: "/",
+    },
+    {
+        name: "Services",
+        href: "/",
+    },
+    {
+        name: "Solutions",
+        href: "/",
+    },
+    {
+        name: "Roadmap",
+        href: "/",
+    },
+    {
+        name: "Whitepaper",
+        href: "/",
+    },
+]
