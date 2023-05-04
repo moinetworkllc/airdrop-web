@@ -70,7 +70,7 @@ const LandingPage = () => {
               className="w-[676px] h-[584px]"
             />
           </div>
-          <div>
+          <div className="flex justify-center">
             <h1>Card Component</h1>
           </div>
         </div>
