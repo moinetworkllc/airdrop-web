@@ -1,10 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import ToggleComponent from './Toogle'
 
 export default function Header() {
   return (
@@ -67,6 +64,9 @@ export default function Header() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button>LogIn MoiID</button>
+              </div>
+              <div>
+                <ToggleComponent/>
               </div>
             </div>
           </div>
