@@ -70,6 +70,9 @@ const LandingPage = () => {
               className="w-[676px] h-[584px]"
             />
           </div>
+          <div>
+            <h1>Card Component</h1>
+          </div>
         </div>
       </div>
     </>
