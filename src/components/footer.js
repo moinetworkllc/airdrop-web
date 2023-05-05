@@ -45,7 +45,7 @@ const footer = () => {
 
         <ul class="mb-0  list-none">
           <li>
-            <a href="#!" class="text-white">
+            <a href="#!" className="text-white ">
               Home
             </a>
           </li>
