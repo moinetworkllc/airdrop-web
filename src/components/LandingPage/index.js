@@ -39,9 +39,9 @@ const LandingPage = () => {
                 <p className="mb-2 text-2xl font-semibold">We must decentralize</p>
               </a>
               <p className="mb-6 font-light text-[22.64px] leading-[145%]">
-                {' '}
-                The Arbitrum DAO is a massive leap forward, making Arbitrum the first EVM rollup tech to reach Stage 1
-                decentralization.
+                Human Interactions are primarily Personalized Value Transfers. Today's digital networks treat value
+                transfers as information transfers and a employ a programmatic way of value discovery resulting in a
+                systemic and unsustainable model for the Internet of Value.{' '}
               </p>
               <a
                 href="#"
