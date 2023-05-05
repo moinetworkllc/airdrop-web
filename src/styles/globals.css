@@ -25,3 +25,139 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.position_wallet {
+position: absolute;
+left: 1074px;
+top: 20px;
+width: 143px;
+height: 39px;
+}
+
+.logo_position{
+position: absolute;
+top: 22px;
+left: 0px;
+width: 90px;
+height: 100px;
+
+
+}
+.selector {
+
+  width: 300.73px;
+  height: 43px;
+  top: 449px;
+  left: 496px;
+  border-radius: 4.91px;
+  padding: 1px 35px;
+  margin-bottom: 10.14px;
+  /* additional styles */
+}
+
+
+.selector2 {
+  position: absolute;
+left: 360.73px;
+top: 4px;
+width: 112.41px;
+height: 43px;
+ padding: 14px 20px;
+  gap: 6.14px;
+  border-radius: 4.91px;    
+  font-family: 'popins';
+font-weight: 500;
+font-size: 15.29px;
+line-height: 18.43px;
+text-align: center;
+}
+
+.footer_typo{
+  font-family: Poppins;
+font-weight: 400;
+font-size: 14px;
+line-height: 20.49px;
+letter-spacing: 0.64px;
+}
+.facebook_pos{
+ width: 21px;
+height: 20.87px;
+top: 10.56px;
+left: 1.5px;
+
+}
+
+.twitter_pos{
+  height: 30px;
+width: 21.000032424926758px;
+left: 1.5px;
+top: 1.5px;
+border-radius: 0px;
+
+}
+
+
+.email_position{
+  
+  height: 39px;
+  width: 265px;
+  left: 320px;
+  top: 0px;
+  border-radius: 10px;
+  padding: 10px, 23px, 10px, 23px;
+}
+
+  
+.footer_button{
+  width: 130px ;
+  height: 43px;
+  border-radius: 10px;
+  position: absolute;
+  left: 1060px;
+  /* right: 800px;  */
+  top: 2226px;
+  gap: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#9120C7;
+
+}
+
+.Footer_selector {
+  position: absolute;
+  left: 660px;
+  top:2400px;
+  flex:none;
+  flex-grow: 10px;
+  padding: 100px 200px 0px 1px;
+  
+}
+.footer_style_font {
+
+font-family: 'Inter';
+font-weight: 100;
+font-size: 40px;
+line-height: 100.36px;
+
+
+}
+.style_content{
+width: 583px;
+height: 39px;
+font-family: 'Inter';
+font-style: medium;
+font-weight: 200;
+font-size: 32px;  
+padding: 75px;
+line-height: 39px;
+line-height: 100%;
+white-space: nowrap;
+
+/* identical to box height */
+
+
+color: #FFFFFF;
+flex: none;
+order: 0;
+flex-grow: 0;
+}

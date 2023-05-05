@@ -1,9 +1,10 @@
 import '../styles/globals.css';
-import React, { ReactNode, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
-import Layout from '../components/Layout'
-import Header from '../components/Header'
+import React, { ReactNode, useRef, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Layout from '../components/Layout';
+import Header from '../components/Header';
 import { ThemeProvider } from '../context/ThemeContext';
+import Footer from '../components/footer';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }) {
           <Component {...pageProps} key={router.route} />
         </ThemeProvider>
       </Layout>
+      <Footer />
     </>
-  )
+  );
 }
