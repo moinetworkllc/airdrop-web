@@ -24,10 +24,12 @@ const LandingPage = () => {
             their identity, storage and digital assets based on their unique needs.
           </p>
         </div>
-        <div className="flex  space-x-6 pt-4 px-64  items-center justify-between position ">
-          <button className="rounded text-sm  selector 	 text-center button_color  px-10 py-3 font-normal font-sans text-white transition focus:outline-none">
-            Get Started
-          </button>
+        <div className="flex  space-x-6 pt-4 px-64  items-center  justify-between position ">
+          <div className="items-center px-52">
+            <button className="rounded text-sm  selector text-center button_color  px-10 py-3 font-normal font-sans text-white transition focus:outline-none">
+              Get Started
+            </button>
+          </div>
           <button className=" flex  button_color2  selector2  rounded-md font-semibold text-black  focus:outline-none">
             Ecosystems
           </button>
