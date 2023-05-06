@@ -24,6 +24,15 @@ const LandingPage = () => {
             their identity, storage and digital assets based on their unique needs.
           </p>
         </div>
+        <div className="flex  space-x-6 pt-4 px-64  items-center justify-between position ">
+          <button className="rounded text-sm  selector 	 text-center button_color  px-10 py-3 font-normal font-sans text-white transition focus:outline-none">
+            Get Started
+          </button>
+          <button className=" flex  button_color2  selector2  rounded-md font-semibold text-black  focus:outline-none">
+            Ecosystems
+          </button>
+        </div>
+
         <img className="mx-auto pb-[130px]" src={'/images/moiBg.svg'} />
         <div className="p-auto flex flex-col justify-start gap-y-[130px]">
           <div className="flex justify-around">
