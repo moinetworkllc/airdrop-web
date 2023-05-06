@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { classNames } from '../../utils/helpers';
 import { ThemeContext } from '../../context/ThemeContext';
+import { redirect } from 'next/dist/server/api-utils';
 
 const LandingPage = () => {
   const { isDarkMode } = useContext(ThemeContext);
@@ -26,7 +27,11 @@ const LandingPage = () => {
         </div>
         <div className="flex  space-x-6 pt-4 px-64  items-center  justify-between position ">
           <div className="items-center px-52">
-            <button className="rounded text-sm  selector text-center button_color  px-10 py-3 font-normal font-sans text-white transition focus:outline-none">
+            {' '}
+            <button
+              onClick={redirect}
+              className="rounded text-sm  selector text-center button_color  px-10 py-3 font-normal font-sans text-white transition focus:outline-none"
+            >
               Get Started
             </button>
           </div>

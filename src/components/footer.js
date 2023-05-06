@@ -1,9 +1,10 @@
-import link from 'next/link';
+import Link from 'next/link';
 import Image from 'next/image';
 import twitterlogo from '../../public/images/twitter-logo.svg';
 import LinkedInlogo from '../../public/images/LinkedInlogo.svg';
 import InstagramIcon from '../../public/images/instagramIcon.svg';
 import facebookIcon from '../../public/images/logo-facebook.svg';
+
 // import ButtonComponent from './ButtonComponent';
 const footer = () => {
   return (
@@ -45,17 +46,21 @@ const footer = () => {
 
         <ul class="mb-0  list-none">
           <li>
-            <a href="#!" className="text-white ">
-              Home
-            </a>
+            <Link href="/">
+              <a href="#!" className="text-white ">
+                Home
+              </a>
+            </Link>
           </li>
           <li>
-            <a href="#!" class="text-white">
-              About
-            </a>
+            <Link>
+              <a href="#!" class="text-white">
+                About
+              </a>
+            </Link>
           </li>
           <li>
-            <a href="#!" class="text-white">
+            <a href="https://papers.moi.technology/docs/lite-paper.pdf" class="text-white">
               Whitepaper
             </a>
           </li>
