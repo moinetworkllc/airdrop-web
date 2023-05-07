@@ -1,3 +1,6 @@
+import ApplicationIcon from '../../public/images/application.svg'
+import ProjectIcon from '../../public/images/project-icon.svg'
+import DiscoverIcon from '../../public/images/discover.svg'
 
 export const ELIGIBILITY_CRITERIA = [
   {
@@ -68,19 +71,19 @@ export const CardContent = [
     {
       header: "VISIT THE FORM",
       text: "View or submit delegate applications",
-      image: "",
+      image: ApplicationIcon,
       href: "/",
     },
     {
       header: "EXPLORE THE ECOSYSTEM",
-      text: "See projects in the Arbitrum Universe",
-      image: "",
+      text: "Get a hold of your dictionaries and history books for this one, its quite a doozy",
+      image: ProjectIcon,
       href: "/",
     },
     {
       header: "READ THE DOCS",
       text: "Discover the future we believe in",
-      image: "",
+      image: DiscoverIcon,
       href: "/",
     },
   ];

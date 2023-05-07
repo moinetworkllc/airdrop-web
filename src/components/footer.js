@@ -44,7 +44,7 @@ const Footer = () => {
             </div>
           </form>
         </div>
-        <div className={`xl:grid xl:grid-cols-3 xl:gap-8 justify-items-end ${isDarkMode? 'text-white' : 'text-black'}`}>
+        <div className={`lg:grid lg:grid-cols-3 lg:gap-8 justify-items-end ${isDarkMode? 'text-white' : 'text-black'}`}>
           <div className="flex flex-col gap-y-5">
             <div>
               <img
@@ -95,6 +95,31 @@ const Footer = () => {
 
           {Object.keys(FooterTabs).map((item, index) => {
             return (
+              <div className="mt-10 md:mt-0 hidden lg:block" key={item}>
+                <h3 className="text-sm font-semibold leading-6">
+                  {item}
+                </h3>
+                <ul role="list" className="mt-6 space-y-4">
+                  {Object.values(FooterTabs)[index].map((data) => {
+                    return (
+                      <li>
+                        <a
+                          href="#"
+                          className="text-sm leading-6"
+                        >
+                          {data.label}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
+
+          <div className="flex justify-between lg:hidden">
+            {Object.keys(FooterTabs).map((item, index) => {
+            return (
               <div className="mt-10 md:mt-0" key={item}>
                 <h3 className="text-sm font-semibold leading-6">
                   {item}
@@ -116,6 +141,7 @@ const Footer = () => {
               </div>
             );
           })}
+          </div>
         </div>
       </div>
       <div className="mt-8 bg-moi-purple-900 py-2">
