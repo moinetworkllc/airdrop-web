@@ -6,9 +6,9 @@ const classes = {
   disabled: "opacity-50 cursor-not-allowed",
   variant: {
     primary:
-      "font-semibold rounded-full leading-normal text-zee-white bg-zee-primary hover:bg-zee-primary-hover",
+      "font-semibold rounded-full leading-normal text-zee-white bg-button-gradient hover:bg-button-gradient",
     secondary:
-      "relative p-0.5 flex font-semibold items-center leading-normal justify-center overflow-hidden text-sm xl:text-xl font-medium rounded-full text-white group bg-gradient-to-r from-blue-400 to-blue-200 hover:from-blue-200 hover:to-blue-400",
+      "relative p-0.5 flex font-semibold items-center leading-normal justify-center overflow-hidden text-sm xl:text-xl font-medium rounded-full text-white group bg-moi-button-secondary hover:from-blue-200 hover:to-blue-400",
   },
 };
 

@@ -5,6 +5,7 @@ import ToggleComponent from './Toogle';
 import { classNames } from '../utils/helpers';
 import { ThemeContext } from '../context/ThemeContext';
 import { HeaderTabs } from '../utils/constants';
+import ButtonComponent from '../components/ButtonComponent';
 
 export default function Header() {
   const { isDarkMode } = useContext(ThemeContext);
@@ -46,9 +47,9 @@ export default function Header() {
                   );
                 })}
               </div>
-              <div className="flex items-center ">
-                <button className="text-moi-indigo">LogIn MoiID</button>
-                <ToggleComponent />
+              <div className="flex items-center">
+                <ButtonComponent variant='primary' className="px-4 py-3 mx-4">LogIn MOI ID</ButtonComponent>
+                <ToggleComponent/>
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden">
                   <span className="sr-only">Open main menu</span>

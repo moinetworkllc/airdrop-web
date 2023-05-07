@@ -13,7 +13,8 @@ module.exports = {
         "moi-purple-grad": "linear-gradient(270deg, #9d1fca, #4d2bb9);",
         "moi-gradient": "linear-gradient(91.06deg, #FF1CF7 2.26%, #00F0FF 100%);",
         "card-gradient": "linear-gradient(180deg, rgba(145, 32, 199, 0.4) 0%, rgba(93, 40, 188, 0.4) 100%)",
-        "button-gradient":"linear-gradient(180deg, #A105EE 0%, #E604DE 100%)"
+        "button-gradient": "linear-gradient(180deg, #A105EE 0%, #E604DE 100%)",
+        "moi-button-secondary": "linear-gradient(180deg, #D1D3E2 0%, #75629D 100%)"
       },
       colors: {
         "header-bg": "hsla(0,0%,100%,.2)",
@@ -24,6 +25,7 @@ module.exports = {
         "moi-purple": {
           400: "#9d1fca",
           500: "#4d2bb9",
+          900: "#9120C7"
         },
       }
     },
