@@ -48,7 +48,7 @@ export default function Header() {
                 })}
               </div>
               <div className="flex items-center">
-                <ButtonComponent variant='primary' className="px-4 py-3 mx-4">LogIn MOI ID</ButtonComponent>
+                <ButtonComponent variant='primary' className="mx-4 px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg">LogIn MOI ID</ButtonComponent>
                 <ToggleComponent/>
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden">
