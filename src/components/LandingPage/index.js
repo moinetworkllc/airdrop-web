@@ -8,7 +8,7 @@ const LandingPage = () => {
   return (
     <>
       <div className="p-auto">
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col just  ify-center items-center">
           <p className="bg-moi-gradient inline-block text-transparent text-[71px] bg-clip-text text-center">
             Personalized Internet
           </p>
