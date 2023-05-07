@@ -31,7 +31,7 @@ const Footer = () => {
               id="email-address"
               autocomplete="email"
               required
-              className="w-full min-w-0 appearance-none rounded-md border-0 bg-white/5 px-3 py-1.5 text-base text-white shadow-sm ring-1 ring-inset ring-white/10 placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:w-56 sm:text-sm sm:leading-6"
+              className={`w-full min-w-0 appearance-none rounded-md border-0 bg-white/5 px-3 py-1.5 text-base text-white shadow-sm ring-1 ring-inset ${isDarkMode ? 'ring-white/10 ' : 'ring-black'} placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:w-56 sm:text-sm sm:leading-6`}
               placeholder="Enter your email"
             />
             <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
