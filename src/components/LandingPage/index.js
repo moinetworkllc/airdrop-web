@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import { CardContent } from "../../utils/constants";
 import { classNames } from "../../utils/helpers";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext, LoginContext } from "../../context/ThemeContext";
 import ButtonComponent from "../ButtonComponent";
 
 const LandingPage = () => {
   const { isDarkMode } = useContext(ThemeContext);
+  //const { isLogin } = useContext(LoginContext);
   return (
     <>
       <div className="p-4 lg:p-auto">
