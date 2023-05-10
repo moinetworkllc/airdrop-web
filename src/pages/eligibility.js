@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import ButtonComponent from "../components/ButtonComponent";
-
 import { CheckMark } from "../components/SvgComponent";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -8,14 +7,23 @@ import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 
 export default function Eligibility() {
-  const [moiId, setMoiId] = useState("");
-  const { isDarkMode } = useContext(ThemeContext);
+  const { isDarkMode, loginId, handleLogin, setMoiState } =
+    useContext(ThemeContext);
+
   const getEligibility = async () => {
     // let id = "0x9755aa020dB3784B15F286820CF4b6FC0075a712"
-    let response = await fetch(`/api/moi?id=${moiId}`);
+    let response = await fetch(`/api/moi?id=${loginId}`);
     let data = await response.json();
     console.log(data);
     //save these
+
+    setMoiState((prevData) => ({
+      ...prevData,
+      validator_nodes: data.validator_nodes.length,
+      twitter: data.twitter.data.level,
+      telegram: data.telegram.data.level,
+      discord: data.discord.data.level,
+    }));
     console.log(data.validator_nodes.length);
     console.log(data.twitter.data.level);
     console.log(data.telegram.data.level);
@@ -23,8 +31,8 @@ export default function Eligibility() {
   };
 
   useEffect(() => {
-    moiId && getEligibility();
-  }, [moiId]);
+    loginId && getEligibility();
+  }, [loginId]);
 
   return (
     <>
@@ -77,14 +85,18 @@ export default function Eligibility() {
               Explore projects on MOI
             </ButtonComponent>
             <div className="md:flex md:items-center">
-              <button
-                className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                onClick={() =>
-                  setMoiId("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
-                }
-              >
-                Log In
-              </button>
+              {!loginId ? (
+                <button
+                  className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  onClick={() =>
+                    handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
+                  }
+                >
+                  Log In
+                </button>
+              ) : (
+                <p>{"0x975...5a712"}</p>
+              )}
             </div>
           </div>
 

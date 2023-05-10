@@ -9,29 +9,37 @@ import { FooterTabs } from "../utils/constants";
 import { ThemeContext } from "../context/ThemeContext";
 
 const Footer = () => {
-
   const { isDarkMode } = useContext(ThemeContext);
-  
+
   return (
-    <footer className={`${isDarkMode? 'bg-black' : 'bg-white'}`} aria-labelledby="footer-heading">
+    <footer
+      className={`${isDarkMode ? "bg-black" : "bg-white"}`}
+      aria-labelledby="footer-heading"
+    >
       <div className="mx-auto max-w-7xl px-6 pb-8 lg:px-8">
         <div className="lg:flex lg:items-center lg:justify-between mb-[70px]">
           <div>
-            <h3 className={`text-3xl font-semibold leading-6 ${isDarkMode? 'text-white' : 'text-black'}`}>
+            <h3
+              className={`text-3xl font-semibold leading-6 ${
+                isDarkMode ? "text-white" : "text-black"
+              }`}
+            >
               Join our newsletter to follow our news
             </h3>
           </div>
           <form className="mt-6 sm:flex sm:max-w-md lg:mt-0">
-            <label for="email-address" className="sr-only">
+            <label htmlFor="email-address" className="sr-only">
               Email address
             </label>
             <input
               type="email"
               name="email-address"
               id="email-address"
-              autocomplete="email"
+              autoComplete="email"
               required
-              className={`w-full min-w-0 appearance-none rounded-md border-0 bg-white/5 px-3 py-1.5 text-base text-white shadow-sm ring-1 ring-inset ${isDarkMode ? 'ring-white/10 ' : 'ring-black'} placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:w-56 sm:text-sm sm:leading-6`}
+              className={`w-full min-w-0 appearance-none rounded-md border-0 bg-white/5 px-3 py-1.5 text-base text-white shadow-sm ring-1 ring-inset ${
+                isDarkMode ? "ring-white/10 " : "ring-black"
+              } placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:w-56 sm:text-sm sm:leading-6`}
               placeholder="Enter your email"
             />
             <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
@@ -44,7 +52,11 @@ const Footer = () => {
             </div>
           </form>
         </div>
-        <div className={`lg:grid lg:grid-cols-3 lg:gap-8 justify-items-end ${isDarkMode? 'text-white' : 'text-black'}`}>
+        <div
+          className={`lg:grid lg:grid-cols-3 lg:gap-8 justify-items-end ${
+            isDarkMode ? "text-white" : "text-black"
+          }`}
+        >
           <div className="flex flex-col gap-y-5">
             <div>
               <img
@@ -95,18 +107,13 @@ const Footer = () => {
 
           {Object.keys(FooterTabs).map((item, index) => {
             return (
-              <div className="mt-10 md:mt-0 hidden lg:block" key={item}>
-                <h3 className="text-sm font-semibold leading-6">
-                  {item}
-                </h3>
+              <div className="mt-10 md:mt-0 hidden lg:block" key={index}>
+                <h3 className="text-sm font-semibold leading-6">{item}</h3>
                 <ul role="list" className="mt-6 space-y-4">
-                  {Object.values(FooterTabs)[index].map((data) => {
+                  {Object.values(FooterTabs)[index].map((data, index) => {
                     return (
-                      <li>
-                        <a
-                          href="#"
-                          className="text-sm leading-6"
-                        >
+                      <li key={index}>
+                        <a href="#" className="text-sm leading-6">
                           {data.label}
                         </a>
                       </li>
@@ -119,28 +126,23 @@ const Footer = () => {
 
           <div className="flex justify-between lg:hidden">
             {Object.keys(FooterTabs).map((item, index) => {
-            return (
-              <div className="mt-10 md:mt-0" key={item}>
-                <h3 className="text-sm font-semibold leading-6">
-                  {item}
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {Object.values(FooterTabs)[index].map((data) => {
-                    return (
-                      <li>
-                        <a
-                          href="#"
-                          className="text-sm leading-6"
-                        >
-                          {data.label}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            );
-          })}
+              return (
+                <div className="mt-10 md:mt-0" key={index}>
+                  <h3 className="text-sm font-semibold leading-6">{item}</h3>
+                  <ul role="list" className="mt-6 space-y-4">
+                    {Object.values(FooterTabs)[index].map((data, index) => {
+                      return (
+                        <li key={index}>
+                          <a href="#" className="text-sm leading-6">
+                            {data.label}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

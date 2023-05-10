@@ -1,16 +1,45 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [loginId, setLoginId] = useState("");
+  const [moiState, setMoiState] = useState({
+    isMoid: "",
+    phNumber: "",
+    emailAddress: "",
+    kyc: "",
+    validator_nodes: "",
+    twitter: "",
+    telegram: "",
+    discord: "",
+    indusTestnet: "",
+    createdApp: "",
+    partApp: "",
+    createdAvatar: "",
+    scannedAvatar: "",
+  });
+
+  const handleLogin = (id) => {
+    setLoginId(id);
+  };
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
 
   return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+    <ThemeContext.Provider
+      value={{
+        isDarkMode,
+        toggleTheme,
+        loginId,
+        handleLogin,
+        moiState,
+        setMoiState,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

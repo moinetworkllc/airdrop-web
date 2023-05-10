@@ -1,17 +1,20 @@
-import { Fragment, useContext } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import ToggleComponent from './Toogle';
-import { classNames } from '../utils/helpers';
-import { ThemeContext } from '../context/ThemeContext';
-import { HeaderTabs } from '../utils/constants';
-import ButtonComponent from '../components/ButtonComponent';
+import { Fragment, useContext } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import ToggleComponent from "./Toogle";
+import { classNames } from "../utils/helpers";
+import { ThemeContext } from "../context/ThemeContext";
+import { HeaderTabs } from "../utils/constants";
+import ButtonComponent from "../components/ButtonComponent";
 
 export default function Header() {
-  const { isDarkMode } = useContext(ThemeContext);
+  const { isDarkMode, loginId, handleLogin } = useContext(ThemeContext);
 
   return (
-    <Disclosure as="nav" className={classNames(isDarkMode ? 'bg-black' : 'bg-moi-white', 'shadow')}>
+    <Disclosure
+      as="nav"
+      className={classNames(isDarkMode ? "bg-black" : "bg-moi-white", "shadow")}
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -38,8 +41,10 @@ export default function Header() {
                       href={item.href}
                       key={index}
                       className={classNames(
-                        isDarkMode ? 'text-moi-snowfall' : 'text-moi-purple-400',
-                        'inline-flex items-center px-1 pt-1 font-semibold text-md',
+                        isDarkMode
+                          ? "text-moi-snowfall"
+                          : "text-moi-purple-400",
+                        "inline-flex items-center px-1 pt-1 font-semibold text-md"
                       )}
                     >
                       {item.name}
@@ -48,8 +53,20 @@ export default function Header() {
                 })}
               </div>
               <div className="flex items-center">
-                <ButtonComponent variant='primary' className="mx-4 px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg">LogIn MOI ID</ButtonComponent>
-                <ToggleComponent/>
+                {!loginId ? (
+                  <ButtonComponent
+                    variant="primary"
+                    className="mx-4 px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
+                    onClick={() =>
+                      handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
+                    }
+                  >
+                    LogIn MOI ID
+                  </ButtonComponent>
+                ) : (
+                  <p>{"0x975...5a712"}</p>
+                )}
+                <ToggleComponent />
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden">
                   <span className="sr-only">Open main menu</span>
