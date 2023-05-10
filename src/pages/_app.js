@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import React, { ReactNode, useRef, useEffect } from 'react';
+import React, { ReactNode, useRef, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
@@ -11,11 +11,11 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Layout className="transition-all duration-300" ref={AppMainBody}>
-        <ThemeProvider>
+      <ThemeProvider>
+        <Layout className="transition-all duration-300" ref={AppMainBody}>
           <Component {...pageProps} key={router.route} />
-        </ThemeProvider>
-      </Layout>
+        </Layout>
+      </ThemeProvider>
     </>
   );
 }

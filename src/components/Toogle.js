@@ -7,7 +7,7 @@ const ToggleComponent = () => {
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div>
+    <div className="flex items-center">
       <Switch
         checked={isDarkMode}
         onChange={toggleTheme}

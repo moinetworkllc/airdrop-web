@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { CardContent } from "../../utils/constants";
 import { classNames } from "../../utils/helpers";
 import { ThemeContext, LoginContext } from "../../context/ThemeContext";
 import ButtonComponent from "../ButtonComponent";
 
 const LandingPage = () => {
-  const { isDarkMode } = useContext(ThemeContext);
-  //const { isLogin } = useContext(LoginContext);
+  const { isDarkMode, loginId, handleLogin } = useContext(ThemeContext);
+
   return (
     <>
       <div className="p-4 lg:p-auto">
@@ -35,28 +36,41 @@ const LandingPage = () => {
           </p>
         </div>
         <div className="flex justify-center py-5">
-          <ButtonComponent variant="primary" className="px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg">
-            LogIn MOI ID
-          </ButtonComponent>
-          <div
-            className={classNames(
-              isDarkMode ? "bg-moi-button-secondary" : "bg-button-gradient",
-              "rounded-[40px] p-[2px] mx-4"
-            )}
-          >
-            <a
-              href="/eligibility"
+          {!loginId ? (
+            <ButtonComponent
+              variant="primary"
+              className="px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
+              onClick={() =>
+                handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
+              }
+            >
+              LogIn MOI ID
+            </ButtonComponent>
+          ) : (
+            <div
               className={classNames(
-                isDarkMode ? "bg-black text-white" : "bg-white text-black",
-                "flex h-full items-center justify-center rounded-[40px] px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
+                isDarkMode ? "bg-black" : "bg-button-gradient",
+                "rounded-[40px] p-[2px] mx-4"
               )}
             >
-              Check your eligilbilty
-            </a>
-          </div>
+              <Link
+                href="/eligibility"
+                className={classNames(
+                  isDarkMode ? "bg-moi-purple-grad text-white" : "bg-white text-black",
+                  "flex h-full items-center justify-center rounded-[40px] px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
+                )}
+              >
+                {" "}
+                Check your eligilbilty
+              </Link>
+            </div>
+          )}
         </div>
 
-        <img className="mx-auto pb-[80px] lg:pb-[130px]" src={"/images/moiBg.svg"} />
+        <img
+          className="mx-auto pb-[80px] lg:pb-[130px]"
+          src={"/images/moiBg.svg"}
+        />
         <div className="p-auto flex flex-col justify-start gap-y-[80px] lg:gap-y-[130px]">
           <div className="flex flex-col justify-center bg-moi-ball-bg">
             <p
@@ -69,9 +83,17 @@ const LandingPage = () => {
             </p>
             <div className="flex flex-col lg:flex-row items-center lg:justify-around">
               {isDarkMode ? (
-                <img src="images/dark-lock.svg" alt="lock" className="w-[200px] lg:w-[315px] pb-10 lg:pb-0"/>
+                <img
+                  src="images/dark-lock.svg"
+                  alt="lock"
+                  className="w-[200px] lg:w-[315px] pb-10 lg:pb-0"
+                />
               ) : (
-                <img src="images/light-lock.svg" alt="lock" className="w-[200px] lg:w-[315px] pb-10 lg:pb-0" />
+                <img
+                  src="images/light-lock.svg"
+                  alt="lock"
+                  className="w-[200px] lg:w-[315px] pb-10 lg:pb-0"
+                />
               )}
               <div
                 className={classNames(
@@ -110,17 +132,9 @@ const LandingPage = () => {
               Distribution
             </p>
             {isDarkMode ? (
-              <img
-                src="images/distribution.svg"
-                alt="Distribution"
-
-              />
+              <img src="images/distribution.svg" alt="Distribution" />
             ) : (
-              <img
-                src="images/light-distribution.svg"
-                alt="Distribution"
- 
-              />
+              <img src="images/light-distribution.svg" alt="Distribution" />
             )}
           </div>
           <div className="flex flex-col justify-center items-center pb-[80px] lg:pb-[130px]">
@@ -152,7 +166,7 @@ const LandingPage = () => {
                     </p>
                     <p className="text-2xl font-bold py-10">{item.text}</p>
                     <div className="flex justify-center items-center">
-                      <Image src={item.image} />
+                      <Image src={item.image} alt="" />
                     </div>
                   </div>
                 );
@@ -166,3 +180,10 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
+export async function getStaticPaths() {
+  return {
+    paths: ["/", "/eligibility"],
+    fallback: false,
+  };
+}

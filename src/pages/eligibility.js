@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import ButtonComponent from "../components/ButtonComponent";
 import { CheckMark } from "../components/SvgComponent";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 
@@ -10,33 +8,8 @@ export default function Eligibility() {
   const { isDarkMode, loginId, handleLogin, setMoiState } =
     useContext(ThemeContext);
 
-  const getEligibility = async () => {
-    // let id = "0x9755aa020dB3784B15F286820CF4b6FC0075a712"
-    let response = await fetch(`/api/moi?id=${loginId}`);
-    let data = await response.json();
-    console.log(data);
-    //save these
-
-    setMoiState((prevData) => ({
-      ...prevData,
-      validator_nodes: data.validator_nodes.length,
-      twitter: data.twitter.data.level,
-      telegram: data.telegram.data.level,
-      discord: data.discord.data.level,
-    }));
-    console.log(data.validator_nodes.length);
-    console.log(data.twitter.data.level);
-    console.log(data.telegram.data.level);
-    console.log(data.discord.data.level);
-  };
-
-  useEffect(() => {
-    loginId && getEligibility();
-  }, [loginId]);
-
   return (
     <>
-      <Header />
       <div className="absolute">
         {/* <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player
@@ -105,7 +78,6 @@ export default function Eligibility() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

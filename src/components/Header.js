@@ -56,7 +56,7 @@ export default function Header() {
                 {!loginId ? (
                   <ButtonComponent
                     variant="primary"
-                    className="mx-4 px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
+                    className="mx-4 px-2 py-2 lg:px-3 lg:py-1 text-sm lg:text-md"
                     onClick={() =>
                       handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
                     }
@@ -64,7 +64,25 @@ export default function Header() {
                     LogIn MOI ID
                   </ButtonComponent>
                 ) : (
-                  <p>{"0x975...5a712"}</p>
+                  <div
+                    className={classNames(
+                      isDarkMode
+                        ? "bg-moi-button-secondary"
+                        : "bg-button-gradient",
+                      "rounded-[40px] p-[2px] mx-4"
+                    )}
+                  >
+                    <p
+                      className={classNames(
+                        isDarkMode
+                          ? "bg-black text-white"
+                          : "bg-white text-black",
+                        "flex h-full items-center justify-center rounded-[40px] px-2 py-2 lg:px-3 lg:py-1 text-sm lg:text-md"
+                      )}
+                    >
+                      {"0x975...5a712"}
+                    </p>
+                  </div>
                 )}
                 <ToggleComponent />
                 {/* Mobile menu button */}
