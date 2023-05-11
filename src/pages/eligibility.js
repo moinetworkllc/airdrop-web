@@ -5,8 +5,37 @@ import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 
 export default function Eligibility() {
-  const { isDarkMode, loginId, handleLogin, setMoiState } =
+  const { isDarkMode, loginId, handleLogin, setMoiState, moiState } =
     useContext(ThemeContext);
+    console.log("eligibility ",moiState)
+    let points_ = 0
+    if (moiState["isMoid"])
+      points_ = points_ + 1
+
+    if (moiState["emailAddress"])
+      points_ = points_ + 2
+
+    if (moiState["phNumber"])
+      points_ = points_ + 2
+
+    if(moiState["kyc"])
+    points_ = points_ + 5
+
+    if (moiState["validator_nodes"])
+      points_ = points_ + 10
+
+    if (moiState["createdAvatar"])
+      points_ = points_ + 10
+
+    if (moiState["createdApp"])
+      points_ = points_ + 50
+    
+    if (moiState["scannedAvatar"])
+      points_ = points_ + 5
+
+
+    points_ = moiState["telegram"]*10 + moiState["discord"]*10 + moiState["twitter"]*10 + points_
+
 
   return (
     <>
@@ -46,8 +75,11 @@ export default function Eligibility() {
               } rounded-2xl`}
             >
               <p className="p-4">
-                A minimum of 3 points total are required to be eligible. If you
-                scored less than 3 points, all criteria will be crossed out.
+                `A minimum of 3 points total are required to be eligible. If you
+                scored less than 3 points, all criteria will be crossed out. 
+              </p>
+              <p className="p-4">
+                Your points: {points_}`
               </p>
             </div>
             <ButtonComponent
