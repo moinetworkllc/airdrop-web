@@ -50,12 +50,12 @@ export default function Eligibility() {
         {/*  background="transparent"  speed="1"  style="width: 300px; height: 300px;" */}
       </div>
       <div
-        className={`flex justify-center py-20 ${
+        className={`flex justify-center bg-moi-blur py-20 ${
           isDarkMode ? "bg-black" : "bg-moi-white"
         }`}
       >
         <div
-          className={`flex flex-col lg:flex-row max-w-5xl bg-card-bg border ${
+          className={`flex flex-col lg:flex-row max-w-5xl bg-eligibility-gradient border ${
             isDarkMode ? "border-white text-white" : "border-black text-black"
           } rounded-xl`}
         >
@@ -75,11 +75,11 @@ export default function Eligibility() {
               } rounded-2xl`}
             >
               <p className="p-4">
-                `A minimum of 3 points total are required to be eligible. If you
+                A minimum of 3 points total are required to be eligible. If you
                 scored less than 3 points, all criteria will be crossed out. 
               </p>
               <p className="p-4">
-                Your points: {points_}`
+                {`Your points: ${points_}`}
               </p>
             </div>
             <ButtonComponent
@@ -100,7 +100,7 @@ export default function Eligibility() {
                   Log In
                 </button>
               ) : (
-                <p>{"0x975...5a712"}</p>
+                <></>
               )}
             </div>
           </div>
