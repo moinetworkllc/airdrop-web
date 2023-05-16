@@ -5,12 +5,14 @@ import { CardContent } from "../../utils/constants";
 import { classNames } from "../../utils/helpers";
 import { ThemeContext, LoginContext } from "../../context/ThemeContext";
 import ButtonComponent from "../ButtonComponent";
+import {IOMe, Login} from 'iome-widget'
 
 const LandingPage = () => {
   const { isDarkMode, loginId, handleLogin } = useContext(ThemeContext);
 
   return (
     <>
+    
       <div className="p-4 lg:p-auto">
         <div className="flex flex-col justify-center items-center">
           <p className="bg-moi-gradient inline-block text-transparent text-4xl lg:text-[71px] bg-clip-text text-center py-2">
@@ -41,7 +43,8 @@ const LandingPage = () => {
               variant="primary"
               className="px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
               onClick={() =>
-                handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
+                //handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
+                handleLogin("0zAND1z")
               }
             >
               LogIn MOI ID
