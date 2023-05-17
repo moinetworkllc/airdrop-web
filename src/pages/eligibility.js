@@ -100,7 +100,7 @@ export default function Eligibility() {
                   Log In
                 </button>
               ) : (
-                <></>
+                <p>{"0zAND1z"}</p>
               )}
             </div>
           </div>
