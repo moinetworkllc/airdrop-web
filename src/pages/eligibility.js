@@ -14,7 +14,7 @@ export default function Eligibility() {
     moiState,
     setModalOpen,
     isModalOpen,
-    loginData
+    loginData,
   } = useContext(ThemeContext);
   console.log("eligibility ", moiState);
   let points_ = 0;
@@ -40,11 +40,11 @@ export default function Eligibility() {
     moiState["twitter"] * 10 +
     points_;
 
-    useEffect(() => {
-      if(loginData) {
-        handleLogin(loginData.userName);
-      }
-    }, [loginData])
+  useEffect(() => {
+    if (loginData) {
+      handleLogin(loginData.userName);
+    }
+  }, [loginData]);
 
   return (
     <>
@@ -90,25 +90,32 @@ export default function Eligibility() {
               </p>
               <p className="p-4">{`Your points: ${points_}`}</p>
             </div>
-            <ButtonComponent
-              variant="secondary"
-              className="my-8"
-              spanClass="!text-sm !py-3 !px-3"
-            >
-              Explore projects on MOI
-            </ButtonComponent>
+
             <div className="md:flex md:items-center">
               {!loginId ? (
-                <button
-                  className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                  onClick={() =>
-                    console.log("logn")
-                  }
+                <ButtonComponent
+                  onClick={() => setModalOpen(true)}
+                  variant="primary"
+                  className="shadow !bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded my-8"
                 >
-                  Log In
-                </button>
+                  Login Moi ID
+                </ButtonComponent>
+              ) : points_ >= 3 ? (
+                <ButtonComponent
+                  variant="secondary"
+                  className="my-8"
+                  spanClass="!text-sm !py-3 !px-3"
+                >
+                  Claim Tokens
+                </ButtonComponent>
               ) : (
-                <p>{"0zAND1z"}</p>
+                <ButtonComponent
+                  variant="secondary"
+                  className="my-8"
+                  spanClass="!text-sm !py-3 !px-3"
+                >
+                  Ineligible to claim Tokens
+                </ButtonComponent>
               )}
             </div>
           </div>
