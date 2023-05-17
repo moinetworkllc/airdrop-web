@@ -9,11 +9,11 @@ export const ELIGIBILITY_CRITERIA = [
   },
   {
     criteria: "You have a verified phone number attached to your MOI ID",
-    id: "phNumber",
+    id: "phone_no",
   },
   {
     criteria: "You have a verified email address attached to your MOI ID",
-    id: "emailAddress",
+    id: "email",
   },
   {
     criteria: "You have performed KYC of your MOI ID",
@@ -37,7 +37,7 @@ export const ELIGIBILITY_CRITERIA = [
   },
   {
     criteria: "You have signed transactions on our INDUS Testnet",
-    id: "indusTestnet",
+    id: "interactions",
   },
   {
     criteria: "You have created an App",

@@ -16,17 +16,17 @@ export default function Eligibility() {
     isModalOpen,
     loginData
   } = useContext(ThemeContext);
-  console.log("eligibility ", moiState);
+  console.log("eligibility ", moiState.isMoid);
   let points_ = 0;
   if (moiState["isMoid"]) points_ = points_ + 1;
 
-  if (moiState["emailAddress"]) points_ = points_ + 2;
+  if (moiState["email"]) points_ = points_ + 2;
 
-  if (moiState["phNumber"]) points_ = points_ + 2;
+  if (moiState["phone_no"]) points_ = points_ + 2;
 
   if (moiState["kyc"]) points_ = points_ + 5;
 
-  if (moiState["validator_nodes"]) points_ = points_ + 10;
+  if (moiState["validator_nodes"]) points_ = points_ + 10*moiState.validator_nodes;
 
   if (moiState["createdAvatar"]) points_ = points_ + 10;
 
@@ -38,6 +38,7 @@ export default function Eligibility() {
     moiState["telegram"] * 10 +
     moiState["discord"] * 10 +
     moiState["twitter"] * 10 +
+    moiState["interactions"] * 5 +
     points_;
 
     useEffect(() => {

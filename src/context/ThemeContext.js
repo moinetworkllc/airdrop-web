@@ -9,14 +9,14 @@ const ThemeProvider = ({ children }) => {
   const [loginData, setLoginData] = useState()
   const [moiState, setMoiState] = useState({
     isMoid: "",
-    phNumber: "",
-    emailAddress: "",
+    phone_no: "",
+    email: "",
     kyc: "",
     validator_nodes: "",
     twitter: "",
     telegram: "",
     discord: "",
-    indusTestnet: "",
+    interactions: "",
     createdApp: "",
     partApp: "",
     createdAvatar: "",
