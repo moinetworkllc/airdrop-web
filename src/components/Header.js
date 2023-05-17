@@ -6,6 +6,7 @@ import { classNames } from "../utils/helpers";
 import { ThemeContext } from "../context/ThemeContext";
 import { HeaderTabs } from "../utils/constants";
 import ButtonComponent from "../components/ButtonComponent";
+import Link from "next/link";
 
 export default function Header() {
   const { isDarkMode, loginId, handleLogin, setModalOpen, loginData } = useContext(ThemeContext);
@@ -27,16 +28,19 @@ export default function Header() {
             <div className="relative flex h-16 justify-between">
               <div className="flex ">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
+                  <Link href="/">
+                    <img
                     className="block h-8 w-auto lg:hidden"
                     src="https://moi.technology/images/moi.png"
                     alt="Moi Technology"
                   />
-                  <img
+                  </Link>
+                  <Link href="/">
+                    <img
                     className="hidden h-10 w-auto lg:block"
                     src="https://moi.technology/images/moi.png"
                     alt="Moi Technology"
-                  />
+                  /></Link>
                   <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
                 </div>
               </div>

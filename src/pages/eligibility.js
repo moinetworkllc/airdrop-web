@@ -52,25 +52,25 @@ export default function Eligibility() {
         {/* <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player
           src="https://assets9.lottiefiles.com/packages/lf20_GJh4G3t17P.json"
-          loop
+          
           controls
           autoplay
         ></lottie-player> */}
         {/*  background="transparent"  speed="1"  style="width: 300px; height: 300px;" */}
       </div>
       <div
-        className={`flex justify-center bg-moi-blur py-20 ${
+        className={`flex justify-center bg-moi-eligibility-bg py-20 ${
           isDarkMode ? "bg-black" : "bg-moi-white"
         }`}
       >
         <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         <div
-          className={`flex flex-col lg:flex-row max-w-5xl bg-eligibility-gradient border ${
+          className={`flex flex-col lg:flex-row max-w-5xl bg-glass-bg backdrop-blur-xl mx-6 lg:mx-0 border ${
             isDarkMode ? "border-white text-white" : "border-black text-black"
           } rounded-xl`}
         >
           <div
-            className={`w-[40%] p-6 lg:p-10 lg:border-r ${
+            className={`w-full lg:w-[40%] p-4 lg:p-10 lg:border-r ${
               isDarkMode ? "border-white" : "border-black"
             } `}
           >
@@ -119,8 +119,8 @@ export default function Eligibility() {
               )}
             </div>
           </div>
-
-          <div className="w-[60%] p-6 lg:p-10">
+          <div className="border border-white block lg:hidden"></div>
+          <div className="w-full lg:w-[60%] p-6 lg:p-10">
             <Accordion />
           </div>
         </div>
