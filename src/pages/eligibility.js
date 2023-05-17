@@ -3,39 +3,48 @@ import ButtonComponent from "../components/ButtonComponent";
 import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
+import Modal from "../components/Modal";
 
 export default function Eligibility() {
-  const { isDarkMode, loginId, handleLogin, setMoiState, moiState } =
-    useContext(ThemeContext);
-    console.log("eligibility ",moiState)
-    let points_ = 0
-    if (moiState["isMoid"])
-      points_ = points_ + 1
+  const {
+    isDarkMode,
+    loginId,
+    handleLogin,
+    setMoiState,
+    moiState,
+    setModalOpen,
+    isModalOpen,
+    loginData
+  } = useContext(ThemeContext);
+  console.log("eligibility ", moiState);
+  let points_ = 0;
+  if (moiState["isMoid"]) points_ = points_ + 1;
 
-    if (moiState["emailAddress"])
-      points_ = points_ + 2
+  if (moiState["emailAddress"]) points_ = points_ + 2;
 
-    if (moiState["phNumber"])
-      points_ = points_ + 2
+  if (moiState["phNumber"]) points_ = points_ + 2;
 
-    if(moiState["kyc"])
-    points_ = points_ + 5
+  if (moiState["kyc"]) points_ = points_ + 5;
 
-    if (moiState["validator_nodes"])
-      points_ = points_ + 10
+  if (moiState["validator_nodes"]) points_ = points_ + 10;
 
-    if (moiState["createdAvatar"])
-      points_ = points_ + 10
+  if (moiState["createdAvatar"]) points_ = points_ + 10;
 
-    if (moiState["createdApp"])
-      points_ = points_ + 50
-    
-    if (moiState["scannedAvatar"])
-      points_ = points_ + 5
+  if (moiState["createdApp"]) points_ = points_ + 50;
 
+  if (moiState["scannedAvatar"]) points_ = points_ + 5;
 
-    points_ = moiState["telegram"]*10 + moiState["discord"]*10 + moiState["twitter"]*10 + points_
+  points_ =
+    moiState["telegram"] * 10 +
+    moiState["discord"] * 10 +
+    moiState["twitter"] * 10 +
+    points_;
 
+    useEffect(() => {
+      if(loginData) {
+        handleLogin(loginData.userName);
+      }
+    }, [loginData])
 
   return (
     <>
@@ -54,6 +63,7 @@ export default function Eligibility() {
           isDarkMode ? "bg-black" : "bg-moi-white"
         }`}
       >
+        <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         <div
           className={`flex flex-col lg:flex-row max-w-5xl bg-eligibility-gradient border ${
             isDarkMode ? "border-white text-white" : "border-black text-black"
@@ -76,11 +86,9 @@ export default function Eligibility() {
             >
               <p className="p-4">
                 A minimum of 3 points total are required to be eligible. If you
-                scored less than 3 points, all criteria will be crossed out. 
+                scored less than 3 points, all criteria will be crossed out.
               </p>
-              <p className="p-4">
-                {`Your points: ${points_}`}
-              </p>
+              <p className="p-4">{`Your points: ${points_}`}</p>
             </div>
             <ButtonComponent
               variant="secondary"
@@ -94,7 +102,7 @@ export default function Eligibility() {
                 <button
                   className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                   onClick={() =>
-                    handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
+                    console.log("logn")
                   }
                 >
                   Log In

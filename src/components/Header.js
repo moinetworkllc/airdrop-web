@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import ToggleComponent from "./Toogle";
@@ -8,7 +8,13 @@ import { HeaderTabs } from "../utils/constants";
 import ButtonComponent from "../components/ButtonComponent";
 
 export default function Header() {
-  const { isDarkMode, loginId, handleLogin } = useContext(ThemeContext);
+  const { isDarkMode, loginId, handleLogin, setModalOpen, loginData } = useContext(ThemeContext);
+
+  useEffect(() => {
+    if(loginData) {
+      handleLogin(loginData.userName);
+    }
+  }, [loginData])
 
   return (
     <Disclosure
@@ -57,9 +63,9 @@ export default function Header() {
                   <ButtonComponent
                     variant="primary"
                     className="mx-4 px-2 py-2 lg:px-3 lg:py-1 text-sm lg:text-md"
-                    onClick={() =>
-                      //handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
-                      handleLogin("0zAND1z")
+                    onClick={() => {
+                      setModalOpen(true)
+                    }
                     }
                   >
                     LogIn MOI ID
@@ -81,7 +87,7 @@ export default function Header() {
                         "flex h-full items-center justify-center rounded-[40px] px-2 py-2 lg:px-3 lg:py-1 text-sm lg:text-md"
                       )}
                     >
-                      {"0x975...5a712"}
+                      {loginId}
                     </p>
                   </div>
                 )}

@@ -1,19 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CardContent } from "../../utils/constants";
 import { classNames } from "../../utils/helpers";
 import { ThemeContext, LoginContext } from "../../context/ThemeContext";
 import ButtonComponent from "../ButtonComponent";
-import {IOMe, Login} from 'iome-widget'
+import { IOMe, Login } from "iome-widget";
+import Modal from "../Modal";
 
 const LandingPage = () => {
-  const { isDarkMode, loginId, handleLogin } = useContext(ThemeContext);
+  const { isDarkMode, loginId, handleLogin, setModalOpen, isModalOpen, loginData } =
+    useContext(ThemeContext);
+
+    useEffect(() => {
+      if(loginData) {
+        handleLogin(loginData.userName);
+      }
+    }, [loginData])
 
   return (
     <>
-    
       <div className="p-4 lg:p-auto">
+        <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         <div className="flex flex-col justify-center items-center">
           <p className="bg-moi-gradient inline-block text-transparent text-4xl lg:text-[71px] bg-clip-text text-center py-2">
             Personalized Internet
@@ -42,10 +50,9 @@ const LandingPage = () => {
             <ButtonComponent
               variant="primary"
               className="px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
-              onClick={() =>
-                //handleLogin("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
-                handleLogin("0zAND1z")
-              }
+              onClick={() => {
+                setModalOpen(true);
+              }}
             >
               LogIn MOI ID
             </ButtonComponent>
@@ -59,7 +66,9 @@ const LandingPage = () => {
               <Link
                 href="/eligibility"
                 className={classNames(
-                  isDarkMode ? "bg-moi-purple-grad text-white" : "bg-white text-black",
+                  isDarkMode
+                    ? "bg-moi-purple-grad text-white"
+                    : "bg-white text-black",
                   "flex h-full items-center justify-center rounded-[40px] px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
                 )}
               >
@@ -72,7 +81,7 @@ const LandingPage = () => {
 
         <img
           className="mx-auto pb-[80px] lg:pb-[200px] bg-moi-blur"
-          style={{"background-size": "1000px"}}
+          style={{ "background-size": "1000px" }}
           src={"/images/moiBg.svg"}
         />
         <div className="p-auto flex flex-col justify-start gap-y-[80px] lg:gap-y-[130px]">

@@ -4,7 +4,9 @@ const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [loginId, setLoginId] = useState("");
+  const [loginData, setLoginData] = useState()
   const [moiState, setMoiState] = useState({
     isMoid: "",
     phNumber: "",
@@ -38,6 +40,10 @@ const ThemeProvider = ({ children }) => {
         handleLogin,
         moiState,
         setMoiState,
+        isModalOpen,
+        setModalOpen,
+        setLoginData,
+        loginData
       }}
     >
       {children}
