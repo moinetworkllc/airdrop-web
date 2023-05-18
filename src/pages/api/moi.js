@@ -22,14 +22,14 @@ export default async function handler(req, res) {
     validator_nodes = await fetch(`https://api.moinet.io/moi-id/moinode/list?userID=${req.query.userId}`)
     validator_nodes_response = await validator_nodes.json()
 
-    twitter = await fetch(`https://qa-sm.moinet.io/api/v1/engagement/twitter/${req.query.userId}`)
-    twitter_response = await twitter.json()
+    // twitter = await fetch(`https://qa-sm.moinet.io/api/v1/engagement/twitter/${req.query.userId}`)
+    // twitter_response = await twitter.json()
 
-    telegram = await fetch(`https://qa-sm.moinet.io/api/v1/engagement/telegram/${req.query.userId}`)
-    telegram_response = await telegram.json()
+    // telegram = await fetch(`https://qa-sm.moinet.io/api/v1/engagement/telegram/${req.query.userId}`)
+    // telegram_response = await telegram.json()
 
-    discord = await fetch(`https://qa-sm.moinet.io/api/v1/engagement/discord/${req.query.userId}`)
-    discord_response = await discord.json()
+    // discord = await fetch(`https://qa-sm.moinet.io/api/v1/engagement/discord/${req.query.userId}`)
+    // discord_response = await discord.json()
 
     interactions = await fetch(`https://api.moinet.io/iome/v0/user/${req.query.userId}/interactions?offset=0&limit=100`)
     interactions_response = await interactions.json()

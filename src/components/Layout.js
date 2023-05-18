@@ -21,17 +21,17 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
       email: data.email.data.result.givenAttributes.email?.verified,
       kyc: data.kyc,
       validator_nodes: data.validator_nodes.length,
-      twitter: data.twitter.data.level,
-      telegram: data.telegram.data.level,
-      discord: data.discord.data.level,
+      // twitter: data.twitter.data.level,
+      // telegram: data.telegram.data.level,
+      // discord: data.discord.data.level,
       interactions: data.interactions.data.length,
     }));
     console.log(data)
     
     console.log(data.validator_nodes);
-    console.log(data.twitter.data.level);
-    console.log(data.telegram.data.level);
-    console.log(data.discord.data.level);
+    // console.log(data.twitter.data.level);
+    // console.log(data.telegram.data.level);
+    // console.log(data.discord.data.level);
   };
 
   useEffect(() => {
