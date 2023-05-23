@@ -4,6 +4,14 @@ import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 import Modal from "../components/Modal";
+import {claim} from "../components/claim"
+
+async function sign_send(cid, wallet) {
+  console.log("Using wallet: ", wallet.address);
+  let signature = await wallet.signMessage(cid);
+  console.log(signature);
+  return signature;
+}
 
 export default function Eligibility() {
   const {
@@ -13,38 +21,54 @@ export default function Eligibility() {
     setMoiState,
     moiState,
     setModalOpen,
-    isModalOpen,
+    isModalOpen, 
+    setSignature,
+    signature,
     loginData,
+
   } = useContext(ThemeContext);
-  console.log("eligibility ", moiState);
+  console.log("eligibility ", moiState.isMoid);
   let points_ = 0;
   if (moiState["isMoid"]) points_ = points_ + 1;
 
-  if (moiState["emailAddress"]) points_ = points_ + 2;
+  if (moiState["email"]) points_ = points_ + 2;
 
-  if (moiState["phNumber"]) points_ = points_ + 2;
+  if (moiState["phone_no"]) points_ = points_ + 2;
 
   if (moiState["kyc"]) points_ = points_ + 5;
 
-  if (moiState["validator_nodes"]) points_ = points_ + 10;
+  if (moiState["validator_nodes"]) points_ = points_ + 10 * moiState.validator_nodes;
 
-  if (moiState["createdAvatar"]) points_ = points_ + 10;
+  if (moiState["validator_nodes_may"]) points_ = points_ + 10 * moiState.validator_nodes_may;
 
-  if (moiState["createdApp"]) points_ = points_ + 50;
+  if (moiState["createdAvatar"]) points_ = points_ + 10 * moiState["createdAvatar"];
 
-  if (moiState["scannedAvatar"]) points_ = points_ + 5;
+  if (moiState["createdApp"]) points_ = points_ + 50 * moiState["createdApp"];
+
+  if (moiState["scannedAvatar"]) points_ = points_ + 5 * moiState["scannedAvatar"];
+
+  if (moiState["partApp"]) points_ = points_ + 5 * moiState["partApp"];
 
   points_ =
     moiState["telegram"] * 10 +
     moiState["discord"] * 10 +
     moiState["twitter"] * 10 +
+    moiState["interactions"] * 5 +
     points_;
 
-  useEffect(() => {
-    if (loginData) {
-      handleLogin(loginData.userName);
-    }
-  }, [loginData]);
+  function Claim() {
+     console.log("In eligibilty claim ")
+     let cid, wallet  = claim()
+     sign_send(cid, wallet)
+      .then((signature) => setSignature(signature))
+    console.log("Yay we signed : ",signature)
+  }
+
+    useEffect(() => {
+      if(loginData) {
+        handleLogin(loginData.userName);
+      }
+    }, [loginData])
 
   return (
     <>
@@ -92,6 +116,17 @@ export default function Eligibility() {
             </div>
 
             <div className="md:flex md:items-center">
+
+             
+                <button
+                  className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  onClick={Claim}
+                >
+                  Claim Airdrop
+                </button>
+              
+                <p>{"0zAND1z"}</p>
+
               {!loginId ? (
                 <ButtonComponent
                   onClick={() => setModalOpen(true)}
@@ -117,6 +152,7 @@ export default function Eligibility() {
                   Ineligible to claim Tokens
                 </ButtonComponent>
               )}
+
             </div>
           </div>
           <div className="border border-white block lg:hidden"></div>
