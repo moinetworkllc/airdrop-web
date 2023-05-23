@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         "moi-ball-bg": "url('/images/ball-bg.svg')",
+        "moi-eligibility-bg": "url('/images/eligibility-bg.svg')",
         "moi-blur": "url('/images/bg-blur.svg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
@@ -26,6 +27,7 @@ module.exports = {
         "moi-black": "#000000",
         "moi-indigo": "#230d7b",
         "moi-snowfall": "#f7f7f7",
+        "glass-bg": "rgba(175, 175, 175, 0.2)",
         "moi-purple": {
           400: "#9d1fca",
           500: "#4d2bb9",
