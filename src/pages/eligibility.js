@@ -4,6 +4,14 @@ import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 import Modal from "../components/Modal";
+import {claim} from "../components/claim"
+
+async function sign_send(cid, wallet) {
+  console.log("Using wallet: ", wallet.address);
+  let signature = await wallet.signMessage(cid);
+  console.log(signature);
+  return signature;
+}
 
 export default function Eligibility() {
   const {
@@ -14,7 +22,9 @@ export default function Eligibility() {
     moiState,
     setModalOpen,
     isModalOpen,
-    loginData
+    loginData, 
+    setSignature,
+    signature
   } = useContext(ThemeContext);
   console.log("eligibility ", moiState.isMoid);
   let points_ = 0;
@@ -26,13 +36,17 @@ export default function Eligibility() {
 
   if (moiState["kyc"]) points_ = points_ + 5;
 
-  if (moiState["validator_nodes"]) points_ = points_ + 10*moiState.validator_nodes;
+  if (moiState["validator_nodes"]) points_ = points_ + 10 * moiState.validator_nodes;
 
-  if (moiState["createdAvatar"]) points_ = points_ + 10;
+  if (moiState["validator_nodes_may"]) points_ = points_ + 10 * moiState.validator_nodes_may;
 
-  if (moiState["createdApp"]) points_ = points_ + 50;
+  if (moiState["createdAvatar"]) points_ = points_ + 10 * moiState["createdAvatar"];
 
-  if (moiState["scannedAvatar"]) points_ = points_ + 5;
+  if (moiState["createdApp"]) points_ = points_ + 50 * moiState["createdApp"];
+
+  if (moiState["scannedAvatar"]) points_ = points_ + 5 * moiState["scannedAvatar"];
+
+  if (moiState["partApp"]) points_ = points_ + 5 * moiState["partApp"];
 
   points_ =
     moiState["telegram"] * 10 +
@@ -40,6 +54,14 @@ export default function Eligibility() {
     moiState["twitter"] * 10 +
     moiState["interactions"] * 5 +
     points_;
+
+  function Claim() {
+     console.log("In eligibilty claim ")
+     let cid, wallet  = claim()
+     sign_send(cid, wallet)
+      .then((signature) => setSignature(signature))
+    console.log("Yay we signed : ",signature)
+  }
 
     useEffect(() => {
       if(loginData) {
@@ -99,18 +121,16 @@ export default function Eligibility() {
               Explore projects on MOI
             </ButtonComponent>
             <div className="md:flex md:items-center">
-              {!loginId ? (
+             
                 <button
                   className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                  onClick={() =>
-                    console.log("logn")
-                  }
+                  onClick={Claim}
                 >
-                  Log In
+                  Claim Airdrop
                 </button>
-              ) : (
+              
                 <p>{"0zAND1z"}</p>
-              )}
+              
             </div>
           </div>
 

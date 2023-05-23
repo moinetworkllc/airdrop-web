@@ -13,6 +13,54 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     //let response = await fetch(`/api/moi?userId=${loginData.userID}&userName=${loginData.userName}`);
     let response = await fetch(`/api/moi?userId=0x9755aa020dB3784B15F286820CF4b6FC0075a712&userName=0zAND1z`);
     let data = await response.json();
+    const avatarsCreated = data.interactions.data.filter(function (txn) {
+      try {
+        let namespace = loginData.iome.utils.mDecode(txn.namespace)
+        return (namespace.includes("Avatar") &&
+        txn.action == "Created");
+      } catch (error) {
+        return ;
+      }
+    })
+    console.log(avatarsCreated)
+
+    const avatarsScanned = data.interactions.data.filter(function (txn) {
+      try {
+        let namespace = loginData.iome.utils.mDecode(txn.namespace)
+        return (namespace.includes("Avatar") &&
+        txn.action == "Scanned");
+      } catch (error) {
+        return ;
+      }
+    })
+    console.log(avatarsScanned)
+
+    const appsCreated = data.interactions.data.filter(function (txn) {
+      try {
+        let namespace = loginData.iome.utils.mDecode(txn.namespace)
+        return (namespace.includes("App") &&
+        txn.action == "Created");
+      } catch (error) {
+        return ;
+      }
+    })
+    console.log(appsCreated)
+
+    const appsJoined = data.interactions.data.filter(function (txn) {
+      try {
+        let namespace = loginData.iome.utils.mDecode(txn.namespace)
+        return (namespace.includes("App") &&
+        txn.action == "Joined");
+      } catch (error) {
+        return ;
+      }
+    })
+    console.log(appsJoined)
+
+    const kyc = data.interactions
+
+    const validator_nodes_may = data.validator_nodes[0].timeStamp
+    console.log(validator_nodes_may)
 
     setMoiState((prevData) => ({
       ...prevData,
@@ -21,17 +69,22 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
       email: data.email.data.result.givenAttributes.email?.verified,
       kyc: data.kyc,
       validator_nodes: data.validator_nodes.length,
-      // twitter: data.twitter.data.level,
-      // telegram: data.telegram.data.level,
-      // discord: data.discord.data.level,
+      validator_nodes_may: 0,
+      twitter: data.twitter.data.level,
+      telegram: data.telegram.data.level,
+      discord: data.discord.data.level,
       interactions: data.interactions.data.length,
+      createdApp: appsCreated.length,
+      partApp: appsJoined.length,
+      createdAvatar: avatarsCreated.length,
+      scannedAvatar: avatarsScanned.length
     }));
     console.log(data)
     
     console.log(data.validator_nodes);
-    // console.log(data.twitter.data.level);
-    // console.log(data.telegram.data.level);
-    // console.log(data.discord.data.level);
+    console.log(data.twitter.data.level);
+    console.log(data.telegram.data.level);
+    console.log(data.discord.data.level);
   };
 
   useEffect(() => {

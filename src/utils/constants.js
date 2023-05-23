@@ -24,6 +24,10 @@ export const ELIGIBILITY_CRITERIA = [
     id: "validator_nodes",
   },
   {
+    criteria: "You have hosted a unique validator node since May 2022",
+    id: "validator_nodes_may",
+  },
+  {
     criteria: "You have engaged with our Official Twitter account",
     id: "twitter",
   },

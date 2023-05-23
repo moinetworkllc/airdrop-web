@@ -38,6 +38,7 @@ export default function Modal({ setModalOpen, isModalOpen }) {
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <div className="mt-2 !text-black">
+                      
                       <IOMe
                         onSuccess={(creds) => {
                           console.log("creds", creds);
@@ -45,9 +46,11 @@ export default function Modal({ setModalOpen, isModalOpen }) {
                           // IOMe username
                           console.log(creds.userName);
                           // IOMe UserID
-                          console.log(creds.userID);
+                          console.log(creds.userid);
                           // User Authenticiation token to query information
                           console.log(creds.authToken);
+
+                          console.log(creds.iome.utils.mDecode("JmVwLwdzESa9GB1fUdwWY6Vow8UeQL"))
                         }}
                       />
                     </div>
