@@ -3,15 +3,14 @@ import { Inter } from "next/font/google";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
   const { setMoiState, loginData, loginId } = useContext(ThemeContext);
 
   const getEligibility = async () => {
-    //let response = await fetch(`/api/moi?userId=${loginData.userID}&userName=${loginData.userName}`);
-    let response = await fetch(`/api/moi?userId=0x9755aa020dB3784B15F286820CF4b6FC0075a712&userName=0zAND1z`);
+    let response = await fetch(`/api/moi?userId=${loginData.userID}&userName=${loginData.userName}`);
+    
     let data = await response.json();
     const avatarsCreated = data.interactions.data.filter(function (txn) {
       try {
@@ -57,17 +56,19 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     })
     console.log(appsJoined)
 
-    const kyc = data.interactions
+    const kyc = data.email.code == 200 ? true : false
+    const phone_no = data.phone_no.code == 200 ? true : false
+    const email = data.email.code == 200 ? true : false
 
-    const validator_nodes_may = data.validator_nodes[0].timeStamp
-    console.log(validator_nodes_may)
+    //const validator_nodes_may = data.validator_nodes[0].timeStamp
+    //console.log(validator_nodes_may)
 
     setMoiState((prevData) => ({
       ...prevData,
       isMoid: data.moidId,
-      phone_no: data.phone_no.data.result.givenAttributes.phone?.verified,
-      email: data.email.data.result.givenAttributes.email?.verified,
-      kyc: data.kyc,
+      phone_no: phone_no,
+      email: email,
+      kyc: kyc,
       validator_nodes: data.validator_nodes.length,
       validator_nodes_may: 0,
       twitter: data.twitter.data.level,
