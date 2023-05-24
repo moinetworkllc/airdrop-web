@@ -7,16 +7,18 @@ const ThemeProvider = ({ children }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [loginId, setLoginId] = useState("");
   const [loginData, setLoginData] = useState()
+  const [signature, setSignature] = useState({});
   const [moiState, setMoiState] = useState({
     isMoid: "",
-    phNumber: "",
-    emailAddress: "",
+    phone_no: "",
+    email: "",
     kyc: "",
     validator_nodes: "",
+    validator_nodes_may: "",
     twitter: "",
     telegram: "",
     discord: "",
-    indusTestnet: "",
+    interactions: "",
     createdApp: "",
     partApp: "",
     createdAvatar: "",
