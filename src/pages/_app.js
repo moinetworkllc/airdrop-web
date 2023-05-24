@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider>
-        <Layout className="transition-all duration-300" ref={AppMainBody}>
+        <Layout className="transition-all duration-300 font-[Poppins]" ref={AppMainBody}>
           <Component {...pageProps} key={router.route} />
         </Layout>
       </ThemeProvider>
