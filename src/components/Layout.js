@@ -3,6 +3,10 @@ import { Inter } from "next/font/google";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
+
+import { Background } from "../components/SvgComponent";
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
@@ -95,9 +99,14 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
   return (
     <>
       <Header />
-      <div ref={ref} className="p-auto">
+
+      <div
+        ref={ref}
+        className="p-auto bg-fixed bg-hero-section bg-[#F5F2FF] bg-no-repeat"
+      >
         <main className={`relative ${inter.className}`}>{children}</main>
       </div>
+
       <Footer />
     </>
   );

@@ -8,7 +8,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        "hero-moi": "url('/images/bg-moi-hero.png')",
         "moi-ball-bg": "url('/images/ball-bg.svg')",
+        "hero-section": "url('/images/hero-section.svg')",
         "moi-eligibility-bg": "url('/images/eligibility-bg.svg')",
         "moi-blur": "url('/images/bg-blur.svg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -22,6 +24,7 @@ module.exports = {
       },
       colors: {
         "header-bg": "hsla(0,0%,100%,.2)",
+        "moi=grad": "rgba(245, 242, 255, 1)",
         "card-bg": "rgba(255,255,255,.05)",
         "moi-white": "rgb(255,255,255,1)",
         "moi-black": "#000000",
@@ -31,7 +34,9 @@ module.exports = {
         "moi-purple": {
           400: "#9d1fca",
           500: "#4d2bb9",
-          900: "#9120C7"
+          600: "rgba(10, 0, 38, 0.84)",
+          700: "rgba(10, 0, 38, 0.69)",
+          900: "#9120C7",
         },
       }
     },
