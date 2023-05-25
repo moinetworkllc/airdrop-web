@@ -55,7 +55,6 @@ export default function Modal({ setModalOpen, isModalOpen }) {
                           // User Authenticiation token to query information
                           console.log(creds.authToken);
 
-                          console.log(creds.iome.utils.mDecode("JmVwLwdzESa9GB1fUdwWY6Vow8UeQL"))
                         }
                       }
                       />
