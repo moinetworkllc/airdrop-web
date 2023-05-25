@@ -45,6 +45,8 @@ const ThemeProvider = ({ children }) => {
         isModalOpen,
         setModalOpen,
         setLoginData,
+        setSignature,
+        signature,
         loginData
       }}
     >

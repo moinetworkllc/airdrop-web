@@ -96,8 +96,8 @@ export default function Eligibility() {
   }, [loginData]);
 
   useEffect(() => {
-    console.log("!moiStat", !!moiState["isMoid"]);
-    !!moiState["isMoid"] && router.push("/");
+    console.log("!moiStat", moiState["isMoid"]);
+    !moiState["isMoid"] && router.push("/");
   }, [moiState["isMoid"]])
 
   return (
@@ -155,7 +155,6 @@ export default function Eligibility() {
                   onClick = {Claim}
                   variant="secondary"
                   className="my-8"
-                  onClick={Claim}
                 >
                   Claim Tokens
                 </ButtonComponent>
