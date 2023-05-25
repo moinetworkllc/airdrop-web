@@ -1,17 +1,6 @@
-import React, { ReactNode } from "react";
+import React, { useContext } from "react";
 import { cls } from "../utils/helpers";
-
-const classes = {
-  base: "focus:outline-none transition ease-in-out duration-500",
-  disabled: "opacity-50 cursor-not-allowed",
-  variant: {
-    primary:
-      "font-semibold rounded-full leading-normal text-zee-white bg-button-gradient hover:bg-button-gradient",
-    secondary:
-      "relative p-0.5 flex font-semibold items-center leading-normal justify-center overflow-hidden text-sm xl:text-xl font-medium rounded-full text-white group bg-moi-button-secondary hover:from-blue-200 hover:to-blue-400",
-  },
-};
-
+import { ThemeContext, LoginContext } from "../context/ThemeContext";
 
 export default function ButtonComponent({
   children,
@@ -22,6 +11,20 @@ export default function ButtonComponent({
   spanClass,
   ...props
 }) {
+
+  const { isDarkMode } = useContext(ThemeContext);
+
+  const classes = {
+    base: "focus:outline-none transition ease-in-out duration-500",
+    disabled: "opacity-50 cursor-not-allowed",
+    variant: {
+      primary:
+        `font-semibold rounded-3xl leading-normal hover:bg-button-gradient ${isDarkMode ? " bg-moi-purple-800 text-moi-white-100" : "bg-moi-purple-100 text-moi-purple-600"}`,
+      secondary:
+        "relative p-0.5 flex font-semibold items-center leading-normal justify-center overflow-hidden text-sm xl:text-xl font-medium rounded-3xl text-white group bg-moi-button-secondary hover:from-blue-200 hover:to-blue-400",
+    },
+  };
+
   return (
     <button
       disabled={disabled}
@@ -36,7 +39,7 @@ export default function ButtonComponent({
     >
       {variant === "secondary" ? (
         <span
-          className={`relative px-4 py-3 text-lg font-semibold transition-all ease-in rounded-full text-zee-black md:px-6 md:py-4 md:text-xl ${spanClass}`}
+          className={`relative px-4 py-3 text-lg font-semibold transition-all ease-in rounded-3xl md:px-6 md:py-4 md:text-xl ${spanClass}`}
         >
           {children}
         </span>

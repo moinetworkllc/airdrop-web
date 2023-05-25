@@ -61,12 +61,12 @@ const Footer = () => {
             <div>
               <img
                 className="block h-8 w-auto lg:hidden"
-                src="https://moi.technology/images/moi.png"
+                src="/images/moi-light-logo.svg"
                 alt="Moi Technology"
               />
               <img
                 className="hidden h-10 w-auto lg:block"
-                src="https://moi.technology/images/moi.png"
+                src="/images/moi-light-logo.svg"
                 alt="Moi Technology"
               />
             </div>

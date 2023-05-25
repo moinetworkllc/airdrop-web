@@ -36,7 +36,7 @@ const LandingPage = () => {
           </p>
           <p
             className={classNames(
-              isDarkMode ? "text-moi-snowfall" : "text-moi-black",
+              isDarkMode ? "text-moi-snowfall" : "text-moi-black-100",
               "w-full lg:w-[600px] pt-2 text-center text-md lg:text-lg"
             )}
           >
@@ -164,14 +164,14 @@ const LandingPage = () => {
                 return (
                   <div
                     className={`border w-[305px] border-black bg-card-gradient p-8 mb-8 lg:my-0 ${
-                      isDarkMode ? "text-moi-snowfall" : "text-moi-black"
+                      isDarkMode ? "text-moi-snowfall" : "text-moi-black-100"
                     }`}
                     key={index}
                   >
                     <p className="text-xs">
                       <span
                         className={`border p-1 ${
-                          isDarkMode ? "border-moi-white" : "border-moi-black"
+                          isDarkMode ? "border-moi-white-200" : "border-moi-black-100"
                         }`}
                       >
                         {item.header}

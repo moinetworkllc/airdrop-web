@@ -10,10 +10,10 @@ import { Background } from "../components/SvgComponent";
 const inter = Inter({ subsets: ["latin"] });
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId } = useContext(ThemeContext);
+  const { setMoiState, loginData, loginId, isDarkMode } = useContext(ThemeContext);
 
   const getEligibility = async () => {
-    let response = await fetch(`/api/moi?userId=${loginData.userID}&userName=${loginData.userName}`);
+    let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`);
     
     let data = await response.json();
     const avatarsCreated = data.interactions.data.filter(function (txn) {
@@ -69,7 +69,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
 
     setMoiState((prevData) => ({
       ...prevData,
-      isMoid: data.moidId,
       phone_no: phone_no,
       email: email,
       kyc: kyc,
@@ -98,15 +97,16 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
 
   return (
     <>
+    <div  className={`p-auto bg-fixed bg-no-repeat ${isDarkMode ? "bg-hero-section bg-moi-white-600" : "bg-moi-dark"}`}>
       <Header />
 
       <div
         ref={ref}
-        className="p-auto bg-fixed bg-hero-section bg-[#F5F2FF] bg-no-repeat"
+        // className={`p-auto bg-fixed  bg-no-repeat ${isDarkMode ? "bg-hero-section bg-moi-white-600" : "bg-moi-black-300"}`}
       >
         <main className={`relative ${inter.className}`}>{children}</main>
       </div>
-
+      </div>
       <Footer />
     </>
   );

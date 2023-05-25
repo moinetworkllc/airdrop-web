@@ -4,7 +4,7 @@ import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 import Modal from "../components/Modal";
-import {claim} from "../components/claim"
+import { claim } from "../components/claim";
 
 async function sign_send(cid, wallet) {
   console.log("Using wallet: ", wallet.address);
@@ -21,11 +21,10 @@ export default function Eligibility() {
     setMoiState,
     moiState,
     setModalOpen,
-    isModalOpen, 
+    isModalOpen,
     setSignature,
     signature,
     loginData,
-
   } = useContext(ThemeContext);
   console.log("eligibility ", moiState.isMoid);
   let points_ = 0;
@@ -37,15 +36,19 @@ export default function Eligibility() {
 
   if (moiState["kyc"]) points_ = points_ + 5;
 
-  if (moiState["validator_nodes"]) points_ = points_ + 10 * moiState.validator_nodes;
+  if (moiState["validator_nodes"])
+    points_ = points_ + 10 * moiState.validator_nodes;
 
-  if (moiState["validator_nodes_may"]) points_ = points_ + 10 * moiState.validator_nodes_may;
+  if (moiState["validator_nodes_may"])
+    points_ = points_ + 10 * moiState.validator_nodes_may;
 
-  if (moiState["createdAvatar"]) points_ = points_ + 10 * moiState["createdAvatar"];
+  if (moiState["createdAvatar"])
+    points_ = points_ + 10 * moiState["createdAvatar"];
 
   if (moiState["createdApp"]) points_ = points_ + 50 * moiState["createdApp"];
 
-  if (moiState["scannedAvatar"]) points_ = points_ + 5 * moiState["scannedAvatar"];
+  if (moiState["scannedAvatar"])
+    points_ = points_ + 5 * moiState["scannedAvatar"];
 
   if (moiState["partApp"]) points_ = points_ + 5 * moiState["partApp"];
 
@@ -56,19 +59,20 @@ export default function Eligibility() {
     moiState["interactions"] * 5 +
     points_;
 
+    console.log("moiState", moiState);
   function Claim() {
-     console.log("In eligibilty claim ")
-     let cid, wallet  = claim()
-     sign_send(cid, wallet)
-      .then((signature) => setSignature(signature))
-    console.log("Yay we signed : ",signature)
+    console.log("In eligibilty claim ");
+    let cid,
+      wallet = claim();
+    sign_send(cid, wallet).then((signature) => setSignature(signature));
+    console.log("Yay we signed : ", signature);
   }
 
-    useEffect(() => {
-      if(loginData) {
-        handleLogin(loginData.userName);
-      }
-    }, [loginData])
+  useEffect(() => {
+    if (loginData) {
+      handleLogin(loginData.userName);
+    }
+  }, [loginData]);
 
   return (
     <>
@@ -82,20 +86,16 @@ export default function Eligibility() {
         ></lottie-player> */}
         {/*  background="transparent"  speed="1"  style="width: 300px; height: 300px;" */}
       </div>
-      <div
-        className={`flex justify-center bg-moi-eligibility-bg py-20 ${
-          isDarkMode ? "bg-black" : "bg-moi-white"
-        }`}
-      >
+      <div className="flex justify-center py-20">
         <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         <div
-          className={`flex flex-col lg:flex-row max-w-5xl bg-glass-bg backdrop-blur-xl mx-6 lg:mx-0 border ${
-            isDarkMode ? "border-white text-white" : "border-black text-black"
+          className={`flex flex-col lg:flex-row max-w-5xl backdrop-blur-xl mx-6 lg:mx-0 font-semibold border ${
+            isDarkMode ? "bg-moi-light border-moi-black-100 text-moi-purple-600" : "bg-moi-dark border-moi-purple-100 text-moi-white-100"
           } rounded-xl`}
         >
           <div
             className={`w-full lg:w-[40%] p-4 lg:p-10 lg:border-r ${
-              isDarkMode ? "border-white" : "border-black"
+              isDarkMode ? "border-moi-black-100" : "border-moi-purple-100"
             } `}
           >
             <p className="text-3xl font-bold">Ah shoot</p>
@@ -105,7 +105,7 @@ export default function Eligibility() {
             </p>
             <div
               className={`bg-card-bg border ${
-                isDarkMode ? "border-white" : "border-black"
+                isDarkMode ? "border-moi-black-100" : "border-moi-purple-100"
               } rounded-2xl`}
             >
               <p className="p-4">
@@ -116,16 +116,14 @@ export default function Eligibility() {
             </div>
 
             <div className="md:flex md:items-center">
+              <button
+                className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                onClick={Claim}
+              >
+                Claim Airdrop
+              </button>
 
-             
-                <button
-                  className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                  onClick={Claim}
-                >
-                  Claim Airdrop
-                </button>
-              
-                <p>{"0zAND1z"}</p>
+              <p>{"0zAND1z"}</p>
 
               {!loginId ? (
                 <ButtonComponent
@@ -152,7 +150,6 @@ export default function Eligibility() {
                   Ineligible to claim Tokens
                 </ButtonComponent>
               )}
-
             </div>
           </div>
           <div className="border border-white block lg:hidden"></div>

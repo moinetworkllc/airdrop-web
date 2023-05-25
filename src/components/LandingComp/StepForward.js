@@ -10,29 +10,29 @@ import {
 } from "../SvgComponent";
 const primaryFeatures = [
   {
-    name: "Participant-centric consensus mechanism",
+    name: "MOI Guardians",
     description:
-      "Dynamic state channels that boost performance & security using  network randomness",
+      "Run a MOI Pod to validate transactions and secure the MOI network",
     href: "#",
-    icon: <Humanize />,
+    icon: "moi-discover",
   },
   {
-    name: "Context-oriented computation engines",
-    description: "Protocol managed micro-interactions for improved security",
+    name: "MOI Nation",
+    description: "Perform small but crucial tasks as a CitZen to spread awareness about MOI",
     href: "#",
-    icon: <Context />,
+    icon: "moi-project",
   },
   {
-    name: "Task scheduling",
+    name: "MOI Ambassadors",
     description:
-      "Et quod quaerat dolorem quaerat architecto aliquam accusantium. Ex adipisci et doloremque autem quia quam. Quis eos molestiae at iure impedit.",
+      "Nurture and support the MOI community by educating and connecting members",
     href: "#",
-    icon: <NativeAssetIcon />,
+    icon: "moi-application",
   },
   {
-    name: "Participant-centric consensus mechanism",
+    name: "Community Hangouts",
     description:
-      "Dynamic state channels that boost performance & security using  network randomness",
+      "Dive into engaging discussions about MOI on our outreach channels",
     href: "#",
     icon: <Humanize />,
   },
@@ -40,32 +40,38 @@ const primaryFeatures = [
 
 const StepForward = () => {
     const [activeCard, setActiveCard] = useState(0);
+    const [isExpanded, setIsExpanded] = React.useState(false);
+
+  const handleHover = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
     <>
-      <div>
+      <div className="pb-[160px]">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="mt-2 text-3xl font-bold tracking-tight text-moi-purple-700 sm:text-4xl">
-            Step Forward
+          <p className="mt-2 text-3xl font-bold tracking-tight text-moi-purple-600 sm:text-4xl">
+            Contribute to MOI
           </p>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl lg:mt-10 lg:max-w-none">
-          <div className="flex gap-x-10 w-full">
+        <div className="mx-auto mt-16 max-w-2xl lg:mt-20 lg:max-w-none">
+          
+          <div className="flex flex-col lg:flex-row justify-between w-full">
+           
             {primaryFeatures.map((feature, index) => (
               <div
                 key={feature.name}
-                className={`flex flex-col bg-moi-white rounded-3xl py-6 ${activeCard === index ? 'w-[500px]' : 'w-[200px]' }`}
+                className={`relative flex flex-col gap-y-16 justify-center h-[526px] px-6 bg-moi-project bg-no-repeat bg-cover rounded-3xl py-6 transition-all duration-500 ${activeCard === index ? 'w-full lg:w-[600px]' : 'w-[250px]' }`}
+                onClick={()=> setActiveCard(index)}
                 onMouseEnter={()=> setActiveCard(index)}
               >
-                <div className="flex flex-col gap-y-4 items-start px-6">
-                  <div className="h-10 w-10 inline-flex">{feature.icon}</div>
-                  <div className="text-base font-semibold leading-7 text-moi-purple-700">
-                    {feature.name}
-                  </div>
-                </div>
-
-                <div className="mt-1 flex flex-auto flex-col text-base leading-7 text-moi-purple-700 px-6">
+                 {/* <img className="absolute w-full h-full" src="/image/discover.svg"/> */}
+                <div id="fade-in-image" className={`items-center text-[40px] font-semibold text-moi-purple-700 ${activeCard === index ? "block" : "hidden"}`}>
                   <p className="flex-auto">{feature.description}</p>
                 </div>
+               
+                   <div className={`border-black ${activeCard === index ? "border py-2 px-4 w-fit rounded-lg" : "rotate-[-90deg]"}`}>
+                     <p className={`text-base font-semibold text-moi-purple-700`}>{feature.name}</p>
+                  </div> 
               </div>
             ))}
           </div>

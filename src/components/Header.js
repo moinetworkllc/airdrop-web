@@ -9,7 +9,9 @@ import ButtonComponent from "../components/ButtonComponent";
 import Link from "next/link";
 
 export default function Header() {
-  const { isDarkMode, loginId, handleLogin, setModalOpen, loginData } = useContext(ThemeContext);
+  const { isDarkMode, loginId, handleLogin, setModalOpen, loginData, moiState } = useContext(ThemeContext);
+
+  console.log("moiState", moiState["isMoid"].userid);
 
   useEffect(() => {
     if(loginData) {
@@ -20,27 +22,27 @@ export default function Header() {
   return (
     <Disclosure
       as="nav"
-      className={classNames(isDarkMode ? "bg-black" : "bg-moi-white", "shadow")}
+      // className={classNames(isDarkMode ? "bg-moi-white-600" : "bg-moi-black-300")}
     >
       {({ open }) => (
-        <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <> 
+          <div className="2xl:max-w-screen-2xl mx-5 md:mx-[64px] 2xl:mx-auto px-0 lg:px-4 pt-3 pb-8">
             <div className="relative flex h-16 justify-between">
               <div className="flex ">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link href="/">
+                  {isDarkMode ? <Link href="/">
                     <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://moi.technology/images/moi.png"
+                    className="h-14 w-auto"
+                    src="/images/moi-dark-logo.svg"
                     alt="Moi Technology"
                   />
                   </Link>
-                  <Link href="/">
+                  :<Link href="/">
                     <img
-                    className="hidden h-10 w-auto lg:block"
-                    src="https://moi.technology/images/moi.png"
+                    className="h-14 w-auto"
+                    src="/images/moi-light-logo.svg"
                     alt="Moi Technology"
-                  /></Link>
+                  /></Link>}
                   <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
                 </div>
               </div>
@@ -52,8 +54,8 @@ export default function Header() {
                       key={index}
                       className={classNames(
                         isDarkMode
-                          ? "text-moi-snowfall"
-                          : "text-moi-purple-400",
+                          ? "text-moi-purple-600"
+                          : "text-moi-white-100",
                         "inline-flex items-center px-1 pt-1 font-semibold text-md"
                       )}
                     >
@@ -63,10 +65,10 @@ export default function Header() {
                 })}
               </div>
               <div className="flex items-center">
-                {!loginId ? (
+                {!moiState["isMoid"].userid ? (
                   <ButtonComponent
                     variant="primary"
-                    className="mx-4 px-2 py-2 lg:px-3 lg:py-1 text-sm lg:text-md"
+                    className="mx-4 px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-lg"
                     onClick={() => {
                       setModalOpen(true)
                     }
@@ -91,7 +93,7 @@ export default function Header() {
                         "flex h-full items-center justify-center rounded-[40px] px-2 py-2 lg:px-3 lg:py-1 text-sm lg:text-md"
                       )}
                     >
-                      {loginId}
+                      {moiState["isMoid"].userName}
                     </p>
                   </div>
                 )}

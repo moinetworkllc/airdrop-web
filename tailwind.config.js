@@ -12,6 +12,9 @@ module.exports = {
         "moi-ball-bg": "url('/images/ball-bg.svg')",
         "hero-section": "url('/images/hero-section.svg')",
         "moi-eligibility-bg": "url('/images/eligibility-bg.svg')",
+        "moi-discover": "url('/images/discover.svg')",
+        "moi-project": "url('/images/project-icon.svg')",
+        "moi-application": "url('/images/application.svg')",
         "moi-blur": "url('/images/bg-blur.svg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
@@ -26,16 +29,29 @@ module.exports = {
         "header-bg": "hsla(0,0%,100%,.2)",
         "moi=grad": "rgba(245, 242, 255, 1)",
         "card-bg": "rgba(255,255,255,.05)",
-        "moi-white": "rgb(255,255,255,1)",
-        "moi-black": "#000000",
+        "moi-black": {
+          100: "#000000",
+          200: "rgba(0, 0, 0, 0.66)",
+          300: "rgba(0, 0, 0, 1)"
+        },
         "moi-indigo": "#230d7b",
         "moi-snowfall": "#f7f7f7",
+        "moi-light": "#FCFBFF", 
         "glass-bg": "rgba(175, 175, 175, 0.2)",
+        "moi-dark": "rgba(10, 0, 38, 1)",
+        "moi-white": {
+          100: "rgba(255, 255, 255, 0.9)",
+          200: "rgb(255,255,255,1)",
+          600: "#F5F2FF"
+        },
         "moi-purple": {
+          100: "rgba(192, 171, 255, 1)",
+          300: "rgba(75, 23, 229, 1)",
           400: "#9d1fca",
           500: "#4d2bb9",
           600: "rgba(10, 0, 38, 0.84)",
           700: "rgba(10, 0, 38, 0.69)",
+          800: "#4B17E5",
           900: "#9120C7",
         },
       }

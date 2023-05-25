@@ -9,7 +9,7 @@ const ThemeProvider = ({ children }) => {
   const [loginData, setLoginData] = useState()
   const [signature, setSignature] = useState({});
   const [moiState, setMoiState] = useState({
-    isMoid: "",
+    isMoid: {},
     phone_no: "",
     email: "",
     kyc: "",

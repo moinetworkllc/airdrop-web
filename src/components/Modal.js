@@ -5,7 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 
 
 export default function Modal({ setModalOpen, isModalOpen }) {
-  const { setLoginData, loginData } = useContext(ThemeContext);
+  const { setLoginData, loginData, setMoiState } = useContext(ThemeContext);
 
 
   return (
@@ -42,7 +42,12 @@ export default function Modal({ setModalOpen, isModalOpen }) {
                       <IOMe
                         onSuccess={(creds) => {
                           console.log("creds", creds);
+                          setMoiState((prevData) => ({
+                            ...prevData,
+                            isMoid: creds,
+                          }));
                           setLoginData(creds)
+                          setModalOpen(false)
                           // IOMe username
                           console.log(creds.userName);
                           // IOMe UserID
@@ -51,7 +56,8 @@ export default function Modal({ setModalOpen, isModalOpen }) {
                           console.log(creds.authToken);
 
                           console.log(creds.iome.utils.mDecode("JmVwLwdzESa9GB1fUdwWY6Vow8UeQL"))
-                        }}
+                        }
+                      }
                       />
                     </div>
                   </div>

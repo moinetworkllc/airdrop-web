@@ -35,16 +35,16 @@ const WhyMoi = () => {
     <>
       <div className="mx-auto pb-22">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="mt-2 text-3xl font-bold tracking-tight text-moi-purple-700 sm:text-4xl">
+          <p className="mt-2 text-3xl font-bold tracking-tight text-moi-purple-600 sm:text-4xl">
             Together, we can transform web3
           </p>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl lg:mt-10 lg:max-w-none">
+        <div className="mx-auto mt-16 max-w-2xl lg:mt-20 lg:max-w-none">
           <div className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {primaryFeatures.map((feature) => (
               <div
                 key={feature.name}
-                className="flex flex-col bg-moi-white rounded-3xl py-6"
+                className="flex flex-col bg-moi-white-200 rounded-3xl py-6"
               >
                 <div className="flex flex-col gap-y-4 items-start px-6">
                   <div className="h-10 w-10 inline-flex">{feature.icon}</div>

@@ -1,18 +1,24 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { classNames } from "../utils/helpers";
-import LandingPage from "../components/LandingPage";
+import HeroSection from "../components/LandingComp/HerSection";
+import WhyMoi from "../components/LandingComp/WhyMoi";
+import StepForward from "../components/LandingComp/StepForward";
+import Distribution from "../components/LandingComp/Distribution";
 
 export default function Home({ data }) {
   const { isDarkMode } = useContext(ThemeContext);
 
   return (
     <>
-      <div 
+      <div
       // className={classNames(isDarkMode ? "bg-black" : "bg-[#F5F2FF]")}
       >
-        <div className="pt-14 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-screen">
-          <LandingPage />
+        <div className="p-0 lg:p-4 lg:p-auto flex flex-col gap-y-28 2xl:max-w-screen-2xl mx-5 md:mx-[64px] 2xl:mx-auto">
+          <HeroSection />
+          <WhyMoi />
+          <Distribution />
+          <StepForward />
         </div>
       </div>
     </>
