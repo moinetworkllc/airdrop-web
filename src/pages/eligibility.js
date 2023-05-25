@@ -96,8 +96,8 @@ export default function Eligibility() {
   }, [loginData]);
 
   useEffect(() => {
-    console.log("!moiStat", moiState["isMoid"]);
-    !moiState["isMoid"] && router.push("/");
+    console.log("!moiStat", !Object.keys(moiState["isMoid"]).length);
+    !Object.keys(moiState["isMoid"]).length && router.push("/");
   }, [moiState["isMoid"]])
 
   return (
