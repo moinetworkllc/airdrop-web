@@ -8,6 +8,7 @@ import {
   NativeAssetIcon,
   GlobalTruthIcon,
 } from "../SvgComponent";
+import { ThemeContext } from "../../context/ThemeContext";
 const primaryFeatures = [
   {
     name: "MOI Guardians",
@@ -40,16 +41,13 @@ const primaryFeatures = [
 
 const StepForward = () => {
     const [activeCard, setActiveCard] = useState(0);
-    const [isExpanded, setIsExpanded] = React.useState(false);
+    const { isDarkMode } = useContext(ThemeContext);
 
-  const handleHover = () => {
-    setIsExpanded(!isExpanded);
-  };
   return (
     <>
       <div className="pb-[160px]">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="mt-2 text-3xl font-bold tracking-tight text-moi-purple-600 sm:text-4xl">
+        <p className={`mt-2 text-3xl font-bold tracking-tight sm:text-4xl ${isDarkMode ? "text-moi-purple-600" : "text-moi-white-100"}`}>
             Contribute to MOI
           </p>
         </div>

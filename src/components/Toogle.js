@@ -11,7 +11,7 @@ const ToggleComponent = () => {
       <Switch
         checked={isDarkMode}
         onChange={toggleTheme}
-        className="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2"
+        className="group relative inline-flex h-5 w-[40px] bg-white flex-shrink-0 cursor-pointer items-center justify-center rounded-full"
       >
         <span className="sr-only">Use setting</span>
         <span
@@ -25,13 +25,19 @@ const ToggleComponent = () => {
             "pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out"
           )}
         />
-        <span
+        {isDarkMode ? <span
           aria-hidden="true"
           className={classNames(
             isDarkMode ? "translate-x-5" : "translate-x-0",
-            "pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white shadow ring-0 transition-transform duration-200 ease-in-out"
+            "pointer-events-none absolute left-0 inline-block h-10 w-10 transform rounded-full border border-gray-200 bg-moi-light-toggle bg-blue-400 bg-no-repeat shadow ring-0 transition-transform duration-200 ease-in-out"
           )}
-        />
+        /> : <span
+        aria-hidden="true"
+        className={classNames(
+          isDarkMode ? "translate-x-5" : "translate-x-0",
+          "pointer-events-none absolute left-0 inline-block h-10 w-10 transform rounded-full border border-gray-200 bg-moi-dark-toggle bg-no-repeat shadow ring-0 transition-transform duration-200 ease-in-out"
+        )}
+      />}
       </Switch>
     </div>
   );

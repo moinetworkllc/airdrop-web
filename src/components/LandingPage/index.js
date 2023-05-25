@@ -81,7 +81,7 @@ const LandingPage = () => {
 
         <img
           className="mx-auto pb-[80px] lg:pb-[200px] bg-moi-blur"
-          style={{ "background-size": "1000px" }}
+          style={{ "backgroundSize": "1000px" }}
           src={"/images/moiBg.svg"}
         />
         <div className="p-auto flex flex-col justify-start gap-y-[80px] lg:gap-y-[130px]">

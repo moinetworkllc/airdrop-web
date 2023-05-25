@@ -46,7 +46,7 @@ export default function Header() {
                   <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
                 </div>
               </div>
-              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <div className="hidden md:hidden lg:flex sm:ml-6 sm:flex sm:space-x-8">
                 {HeaderTabs.map((item, index) => {
                   return (
                     <a
@@ -65,7 +65,7 @@ export default function Header() {
                 })}
               </div>
               <div className="flex items-center">
-                {!moiState["isMoid"].userid ? (
+                <div>{!moiState["isMoid"].userid ? (
                   <ButtonComponent
                     variant="primary"
                     className="mx-4 px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-lg"
@@ -80,23 +80,23 @@ export default function Header() {
                   <div
                     className={classNames(
                       isDarkMode
-                        ? "bg-moi-button-secondary"
-                        : "bg-button-gradient",
-                      "rounded-[40px] p-[2px] mx-4"
+                        ? "border-2 border-moi-purple-800"
+                        : "border-2 border-moi-grey",
+                      "rounded-3xl p-[2px] mx-4"
                     )}
                   >
                     <p
                       className={classNames(
                         isDarkMode
-                          ? "bg-black text-white"
-                          : "bg-white text-black",
-                        "flex h-full items-center justify-center rounded-[40px] px-2 py-2 lg:px-3 lg:py-1 text-sm lg:text-md"
+                          ? "bg-moi-white-600 text-moi-purple-200"
+                          : "bg-moi-purple-dark text-moi-white-100",
+                        "flex h-full items-center justify-center rounded-3xl px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-lg font-semibold"
                       )}
                     >
                       {moiState["isMoid"].userName}
                     </p>
                   </div>
-                )}
+                )}</div>
                 <ToggleComponent />
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 lg:hidden">

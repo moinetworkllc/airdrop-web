@@ -1,5 +1,5 @@
 <svg 
- class="w-[2040px] lg:w-screen h-screen overflow-hidden" 
+ className="w-[2040px] lg:w-screen h-screen overflow-hidden" 
     viewBox="0 0 1440 640" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="1440" height="640" fill="url(#pattern0)"/>
 <defs>

@@ -8,6 +8,7 @@ import {
   NativeAssetIcon,
   GlobalTruthIcon,
 } from "../SvgComponent";
+import { ThemeContext } from "../../context/ThemeContext";
 const primaryFeatures = [
   {
     name: "Participant-centric consensus mechanism",
@@ -31,11 +32,12 @@ const primaryFeatures = [
   }
 ];
 const WhyMoi = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   return (
     <>
       <div className="mx-auto pb-22">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="mt-2 text-3xl font-bold tracking-tight text-moi-purple-600 sm:text-4xl">
+        <p className={`mt-2 text-3xl font-bold tracking-tight sm:text-4xl ${isDarkMode ? "text-moi-purple-600" : "text-moi-white-100"}`}>
             Together, we can transform web3
           </p>
         </div>

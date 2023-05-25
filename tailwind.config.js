@@ -15,6 +15,8 @@ module.exports = {
         "moi-discover": "url('/images/discover.svg')",
         "moi-project": "url('/images/project-icon.svg')",
         "moi-application": "url('/images/application.svg')",
+        "moi-light-toggle": "url('/images/light-toggle.svg')",
+        "moi-dark-toggle": "url('/images/dark-toggle.svg')",
         "moi-blur": "url('/images/bg-blur.svg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
@@ -39,13 +41,16 @@ module.exports = {
         "moi-light": "#FCFBFF", 
         "glass-bg": "rgba(175, 175, 175, 0.2)",
         "moi-dark": "rgba(10, 0, 38, 1)",
+        "moi-grey": "rgba(255, 255, 255, 0.33)",
         "moi-white": {
           100: "rgba(255, 255, 255, 0.9)",
           200: "rgb(255,255,255,1)",
+          300: "rgba(255, 255, 255, 0.66)",
           600: "#F5F2FF"
         },
         "moi-purple": {
           100: "rgba(192, 171, 255, 1)",
+          200: "rgba(75, 23, 229, 0.96)",
           300: "rgba(75, 23, 229, 1)",
           400: "#9d1fca",
           500: "#4d2bb9",
@@ -53,6 +58,7 @@ module.exports = {
           700: "rgba(10, 0, 38, 0.69)",
           800: "#4B17E5",
           900: "#9120C7",
+          "dark": "rgba(10, 0, 38, 0.05)"
         },
       }
     },

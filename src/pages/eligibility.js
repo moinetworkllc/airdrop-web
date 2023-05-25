@@ -5,6 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 import Modal from "../components/Modal";
 import { claim } from "../components/claim";
+import { useRouter } from 'next/router';
 
 async function sign_send(cid, wallet) {
   console.log("Using wallet: ", wallet.address);
@@ -26,6 +27,7 @@ export default function Eligibility() {
     signature,
     loginData,
   } = useContext(ThemeContext);
+  const router = useRouter();
   console.log("eligibility ", moiState.isMoid);
   let points_ = 0;
   if (moiState["isMoid"]) points_ = points_ + 1;
@@ -74,6 +76,11 @@ export default function Eligibility() {
     }
   }, [loginData]);
 
+  useEffect(() => {
+    console.log("!moiStat", !!moiState["isMoid"]);
+    !!moiState["isMoid"] && router.push("/");
+  }, [moiState["isMoid"]])
+
   return (
     <>
       <div className="absolute">
@@ -116,15 +123,6 @@ export default function Eligibility() {
             </div>
 
             <div className="md:flex md:items-center">
-              <button
-                className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                onClick={Claim}
-              >
-                Claim Airdrop
-              </button>
-
-              <p>{"0zAND1z"}</p>
-
               {!loginId ? (
                 <ButtonComponent
                   onClick={() => setModalOpen(true)}
@@ -137,7 +135,7 @@ export default function Eligibility() {
                 <ButtonComponent
                   variant="secondary"
                   className="my-8"
-                  spanClass="!text-sm !py-3 !px-3"
+                  onClick={Claim}
                 >
                   Claim Tokens
                 </ButtonComponent>
@@ -145,7 +143,7 @@ export default function Eligibility() {
                 <ButtonComponent
                   variant="secondary"
                   className="my-8"
-                  spanClass="!text-sm !py-3 !px-3"
+                  spanClass=""
                 >
                   Ineligible to claim Tokens
                 </ButtonComponent>

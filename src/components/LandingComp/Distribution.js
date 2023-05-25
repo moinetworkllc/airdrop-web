@@ -10,17 +10,17 @@ const Distribution = () => {
     <>
       <div>
         <div className="mx-auto max-w-2xl text-center">
-          <p className="mt-2 text-3xl font-bold tracking-tight text-moi-purple-600 sm:text-4xl">
+          <p className={`mt-2 text-3xl font-bold tracking-tight sm:text-4xl ${isDarkMode ? "text-moi-purple-600" : "text-moi-white-100"}`}>
             State of Distribution
           </p>
         </div>
 
-        <div className="grid grid-cols-2 justify-items-end items-center mt-20">
-          <div>
-            <p className="text-xl font-bold tracking-tight text-moi-purple-700 lg:text-3xl pb-5">
+        <div className="grid grid-row-2 lg:grid-cols-2 gap-y-10 justify-items-center lg:justify-items-end items-center mt-10 lg:mt-20">
+          <div className={`${isDarkMode ? "text-moi-purple-600" : "text-moi-white-100"}`}>
+            <p className="text-xl font-bold tracking-tight lg:text-3xl pb-5">
               God IS(M) in the details
             </p>
-            <div className="flex flex-col text-moi-black-100 gap-y-7">
+            <div className="flex flex-col gap-y-7 text-sm lg:text-md">
               <p>
                 MOI uses participants as a key element of computation to
                 realize a new era of "contextual computation".
@@ -44,7 +44,7 @@ const Distribution = () => {
             </div>
           </div>
 
-          <div className="w-[592px] h-full">
+          <div className="w-[300px] lg:w-[592px] h-full">
             {isDarkMode ? (
               <img src="images/light-distribution.svg" alt="Distribution" />
             ) : (

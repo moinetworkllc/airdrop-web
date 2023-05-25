@@ -23,31 +23,9 @@ const Accordion = () => {
                 <div className="flex items-center py-4">
                   <div className="text-green-300 pr-3">
                     {!moiState[item.id] ? (
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 147 147"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M14.7 147L0 132.3L58.8 73.5L0 14.7L14.7 0L73.5 58.8L132.3 0L147 14.7L88.2 73.5L147 132.3L132.3 147L73.5 88.2L14.7 147Z"
-                          fill="#FF3434"
-                        />
-                      </svg>
+                      <svg className="w-5 h-5 mr-1.5 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"></path></svg>
                     ) : (
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 175 135"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M56.0083 96.7417L148.442 4.30833C151.314 1.43611 154.969 0 159.408 0C163.847 0 167.503 1.43611 170.375 4.30833C173.247 7.18055 174.683 10.8361 174.683 15.275C174.683 19.7139 173.247 23.3694 170.375 26.2417L66.975 129.642C63.8417 132.775 60.1861 134.342 56.0083 134.342C51.8306 134.342 48.175 132.775 45.0417 129.642L4.30833 88.9083C1.43611 86.0361 0 82.3805 0 77.9417C0 73.5028 1.43611 69.8472 4.30833 66.975C7.18055 64.1028 10.8361 62.6667 15.275 62.6667C19.7139 62.6667 23.3694 64.1028 26.2417 66.975L56.0083 96.7417Z"
-                          fill="#4D8E0B"
-                        />
-                      </svg>
+                      <svg className="w-5 h-5 mr-1.5 text-green-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
                     )}
                   </div>
                   <div>{item.criteria}</div>
@@ -60,9 +38,12 @@ const Accordion = () => {
               </div>
             </div>
             {activeIndex === index && (
-              <div>
-                <p className="px-4">expanded data </p>
-              </div>
+              <ul className="max-w-md pl-14 space-y-1 list-disc list-outside">
+                {item.dataPoints.map((data, index) => <li key={index} className="text-sm font-normal text-moi-white-300">
+                    {data}
+                  </li>
+                )}
+              </ul>
             )}
           </div>
         );

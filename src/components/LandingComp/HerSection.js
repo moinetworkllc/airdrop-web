@@ -45,17 +45,17 @@ const HeroSection = () => {
             ) : (
               <div
                 className={classNames(
-                  isDarkMode ? "bg-black" : "bg-button-gradient",
-                  "rounded-[40px] p-[2px] mx-4"
+                  isDarkMode ? "border-2 border-moi-purple-800" : "border-2 border-moi-grey",
+                  "rounded-3xl p-[2px] mx-4 w-fit"
                 )}
               >
                 <Link
                   href="/eligibility"
                   className={classNames(
                     isDarkMode
-                      ? "bg-moi-purple-grad text-white"
-                      : "bg-white text-black",
-                    "flex h-full items-center justify-center rounded-[40px] px-2 py-2 lg:px-4 lg:py-3 text-sm lg:text-lg"
+                      ? "bg-moi-white-600 text-moi-purple-200"
+                      : "bg-moi-purple-dark text-moi-white-100",
+                    "flex h-full items-center justify-center rounded-3xl px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-md font-semibold"
                   )}
                 >
                   {" "}
@@ -68,7 +68,7 @@ const HeroSection = () => {
         <div>
           <img
             className="mx-auto bg-transperant"
-            style={{ "background-size": "1000px" }}
+            style={{ "backgroundSize": "1000px" }}
             src={"/images/human.svg"}
           />
         </div>
