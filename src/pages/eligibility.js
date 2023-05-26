@@ -6,8 +6,10 @@ import Accordion from "../components/Accordion";
 import Modal from "../components/Modal";
 import { getData } from "../components/claim";
 import { useRouter } from 'next/router';
+import JSConfetti from 'js-confetti'
 
 export default function Eligibility() {
+  
   const {
     isDarkMode,
     loginId,
@@ -21,6 +23,7 @@ export default function Eligibility() {
     loginData,
   } = useContext(ThemeContext);
   const router = useRouter();
+  const [confetti, setConfetti] = useState(false)
   console.log("eligibility ", moiState.isMoid);
 
   const points = {
@@ -81,13 +84,27 @@ export default function Eligibility() {
     const data = getData(moiState,loginData,points);
     loginData.iome.wallet.sign(data).then((txn) => 
       setSignature(txn.signature)
-      //console.log("Yay got the signature : ", txn.signature)
-    )
+    )   
+    setConfetti(true)
      
-    
     }
           
-  
+  useEffect(() => {
+    if (confetti){
+      const jsConfetti = new JSConfetti()
+      jsConfetti.addConfetti({
+      emojis: ['💎', '💎', '✨', '💎', '💎', '💫'],
+      
+   })
+   jsConfetti.addConfetti({
+    confettiColors: [
+      '#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7',
+    ],
+  })
+   jsConfetti.addConfetti().then()
+      console.log('Confetti animation completed!') 
+    }}
+    );
 
   useEffect(() => {
     if (loginData) {
