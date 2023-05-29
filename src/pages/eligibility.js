@@ -118,7 +118,7 @@ export default function Eligibility() {
   }, [moiState["isMoid"]])
 
   return (
-    <>
+    <div className="py-20">
       <div className="absolute">
         {/* <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player
@@ -129,16 +129,17 @@ export default function Eligibility() {
         ></lottie-player> */}
         {/*  background="transparent"  speed="1"  style="width: 300px; height: 300px;" */}
       </div>
-      <div className="flex justify-center py-20">
+      <div className="flex justify-center">
         <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         <div
-          className={`flex flex-col lg:flex-row max-w-5xl backdrop-blur-xl mx-6 lg:mx-0 font-semibold border ${
-            isDarkMode ? "bg-moi-light border-moi-black-100 text-moi-purple-600" : "bg-moi-dark border-moi-purple-100 text-moi-white-100"
+        id="container"
+          className={`flex flex-col lg:flex-row max-w-5xl mx-6 lg:mx-0 font-semibold border ${
+            isDarkMode ? "bg-moi-card-light backdrop-opacity-light border-moi-white-400 text-moi-purple-600" : "bg-moi-card-dark backdrop-opacity-dark border-moi-white-700 text-moi-white-100"
           } rounded-xl`}
         >
           <div
             className={`w-full lg:w-[40%] p-4 lg:p-10 lg:border-r ${
-              isDarkMode ? "border-moi-black-100" : "border-moi-purple-100"
+              isDarkMode ? "border-moi-white-400" : "border-moi-white-700"
             } `}
           >
             <p className="text-3xl font-bold">Ah shoot</p>
@@ -147,8 +148,8 @@ export default function Eligibility() {
               participate in the ecosystem and governance in several ways.
             </p>
             <div
-              className={`bg-card-bg border ${
-                isDarkMode ? "border-moi-black-100" : "border-moi-purple-100"
+              className={`bg-card-bg shadow border ${
+                isDarkMode ? "border-moi-white-400" : "border-moi-white-700"
               } rounded-2xl`}
             >
               <p className="p-4">
@@ -192,6 +193,6 @@ export default function Eligibility() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

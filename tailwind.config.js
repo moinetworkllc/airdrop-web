@@ -25,7 +25,15 @@ module.exports = {
         "card-gradient": "linear-gradient(180deg, rgba(145, 32, 199, 0.4) 0%, rgba(93, 40, 188, 0.4) 100%)",
         "button-gradient": "linear-gradient(180deg, #A105EE 0%, #E604DE 100%)",
         "moi-button-secondary": "linear-gradient(180deg, #D1D3E2 0%, #75629D 100%)",
-        "eligibility-gradient": "linear-gradient(180deg, rgba(145, 32, 199, 0.1) 0%, rgba(93, 40, 188, 0.1) 100%)"
+        "eligibility-gradient": "linear-gradient(180deg, rgba(145, 32, 199, 0.1) 0%, rgba(93, 40, 188, 0.1) 100%)",
+        "main-bg": "radial-gradient(at 47% 33%, hsl(240.00, 35%, 36%) 0, transparent 39%), radial-gradient(at 22% 65%, hsl(240.00, 24%, 31%) 0, transparent 55%)"
+      },
+      boxShadow: {
+        'card': 'inset 0 0 0 600px rgba(255,255,255,0.1)',
+      },
+      backdropOpacity: {
+        'light': 'blur(14px) saturate(65%)',
+        'dark': 'blur(16px) saturate(164%)'
       },
       colors: {
         "header-bg": "hsla(0,0%,100%,.2)",
@@ -34,7 +42,12 @@ module.exports = {
         "moi-black": {
           100: "#000000",
           200: "rgba(0, 0, 0, 0.66)",
-          300: "rgba(0, 0, 0, 1)"
+          300: "rgba(0, 0, 0, 1)",
+          500: "rgba(0, 0, 0, 0.25)"
+        },
+        "moi-card" : {
+          "light": "rgba(118, 118, 190, 0.18)",
+          "dark": "rgba(78, 78, 99, 0.74)"
         },
         "moi-indigo": "#230d7b",
         "moi-snowfall": "#f7f7f7",
@@ -46,7 +59,9 @@ module.exports = {
           100: "rgba(255, 255, 255, 0.9)",
           200: "rgb(255,255,255,1)",
           300: "rgba(255, 255, 255, 0.66)",
-          600: "#F5F2FF"
+          400: "rgba(255, 255, 255, 0.35)",
+          600: "#F5F2FF",
+          700: "rgba(255, 255, 255, 0.125)"
         },
         "moi-purple": {
           100: "rgba(192, 171, 255, 1)",

@@ -97,7 +97,7 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
 
   return (
     <>
-    <div  className={`p-auto bg-fixed bg-no-repeat ${isDarkMode ? "bg-hero-section bg-moi-white-600" : "bg-moi-dark"}`}>
+    <div  className={`p-auto bg-fixed bg-no-repeat ${isDarkMode ? "bg-hero-section bg-moi-white-600" : "bg-main-bg bg-[#13162e]"}`}>
       <Header />
 
       <div
