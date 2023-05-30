@@ -120,63 +120,75 @@ export const CardContent = [
 ];
 
 export const FooterTabs = {
-  "Our Company": [
+  Legal: [
     {
-      label: "Home",
+      label: "Privacy Policy",
       target: "_blank",
-      text: "home",
-    },
-
-    {
-      label: "About",
-      target: "_blank",
-    },
-
-    {
-      label: "Services",
-      target: "_blank",
-      text: "services",
+      link: "/",
     },
     {
-      label: "News",
+      label: "Cookie Policy",
       target: "_blank",
-    },
-    {
-      label: "Contact",
-      target: "_blank",
-      text: "contact",
-    },
+      link: "/",
+    }
   ],
-
-  Services: [
+  Sitemap: [
     {
-      label: "Smart COntract",
-      link: "",
+      label: "Technology",
       target: "_blank",
+      link: "/",
     },
     {
-      label: "Solutions",
-      link: "",
+      label: "People",
       target: "_blank",
-      text: "",
+      link: "/",
     },
     {
-      label: "Roadmap",
-      link: "",
+      label: "Blogs",
       target: "_blank",
-      text: "",
+      link: "/",
     },
     {
-      label: "Whitepaper",
-      link: "",
+      label: "Documentation",
       target: "_blank",
-      text: "",
+      link: "/",
     },
     {
-      label: "Airdrop",
-      link: "",
+      label: "Project Roadmap",
       target: "_blank",
-      text: "",
+      link: "/",
     },
+    {
+      label: "Babylon Testnet",
+      target: "_blank",
+      link: "/",
+    }
+  ],
+  'MOI Ecosystem': [
+    {
+      label: "Voyage Explorer",
+      target: "_blank",
+      link: "/",
+    },
+    {
+      label: "MOI Bit",
+      target: "_blank",
+      link: "/",
+    },
+    {
+      label: "IOMe",
+      target: "_blank",
+      link: "/",
+    },
+    {
+      label: "MOI Nation",
+      target: "_blank",
+      link: "/",
+    },
+    {
+      label: "Mint Valley",
+      target: "_blank",
+      link: "/",
+    }
   ],
 };
