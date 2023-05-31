@@ -21,6 +21,7 @@ export default function Eligibility() {
     setSignature,
     signature,
     loginData,
+    rewards,
     setPoints,
     points
   } = useContext(ThemeContext);
@@ -34,6 +35,9 @@ export default function Eligibility() {
     setTotalPoints(pointsEarned)
   }, [points])
 
+  points.rewards = rewards
+  points.amount = totalPoints*100 + points.rewards
+  console.log("Airdrop amount : ", points.amount)
   function Claim() {
     const data = getData(moiState, loginData, points, totalPoints);
     loginData.iome.wallet.sign(data).then((txn) => 
@@ -66,7 +70,6 @@ export default function Eligibility() {
   }, [loginData]);
 
   useEffect(() => {
-    console.log("!moiStat", !Object.keys(moiState["isMoid"]).length);
     !Object.keys(moiState["isMoid"]).length && router.push("/");
   }, [moiState["isMoid"]])
 

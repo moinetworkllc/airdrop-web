@@ -54,6 +54,11 @@ export const ELIGIBILITY_CRITERIA = [
     dataPoints : ["interactions"]
   },
   {
+    criteria: "You have kramaID",
+    id: "kramaID",
+    dataPoints : ["Krama ID"]
+  },
+  {
     criteria: "You have created an App",
     id: "createdApp",
     dataPoints : ["createdApp"]
