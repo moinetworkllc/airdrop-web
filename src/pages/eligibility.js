@@ -21,10 +21,10 @@ export default function Eligibility() {
     setSignature,
     signature,
     loginData,
+    rewards
   } = useContext(ThemeContext);
   const router = useRouter();
   const [confetti, setConfetti] = useState(false)
-  console.log("eligibility ", moiState.isMoid);
 
   const points = {
     moid: 0,
@@ -37,11 +37,14 @@ export default function Eligibility() {
     telegram: 0,
     discord: 0,
     interactions: 0,
+    kramaId: 0,
     createdApp: 0,
     partApp: 0,
     createdAvatar: 0,
     scannedAvatar: 0,
-    total: 0
+    total: 0,
+    rewards: 0,
+    amount: 0
   }
 
   if (moiState["isMoid"]) points.moid = 1;
@@ -69,6 +72,8 @@ export default function Eligibility() {
 
   if (moiState["partApp"]) points.partApp = 5 * moiState["partApp"];
 
+  if (moiState["kramaId"]) points.kramaId = 10 * moiState["kramaId"];
+
   points.telegram =  moiState["telegram"] * 10;
   points.discord = moiState["discord"] * 10;
   points.twitter = moiState["twitter"] * 10;
@@ -79,6 +84,11 @@ export default function Eligibility() {
                               }, 0)
 
   console.log("Total pointa are : ",points.total)
+  console.log("Total rewards are  : ", rewards)
+
+  points.rewards = rewards
+  points.amount = points.total*100 + points.rewards
+  console.log("Airdrop amount : ", points.amount)
 
   function Claim() {
     const data = getData(moiState,loginData,points);
@@ -113,7 +123,6 @@ export default function Eligibility() {
   }, [loginData]);
 
   useEffect(() => {
-    console.log("!moiStat", !Object.keys(moiState["isMoid"]).length);
     !Object.keys(moiState["isMoid"]).length && router.push("/");
   }, [moiState["isMoid"]])
 

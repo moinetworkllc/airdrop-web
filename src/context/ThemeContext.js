@@ -8,6 +8,7 @@ const ThemeProvider = ({ children }) => {
   const [loginId, setLoginId] = useState("");
   const [loginData, setLoginData] = useState()
   const [signature, setSignature] = useState("");
+  const [rewards, setRewards] = useState(0)
   const [moiState, setMoiState] = useState({
     isMoid: {},
     phone_no: "",
@@ -19,6 +20,7 @@ const ThemeProvider = ({ children }) => {
     telegram: "",
     discord: "",
     interactions: "",
+    kramaID: "",
     createdApp: "",
     partApp: "",
     createdAvatar: "",
@@ -47,7 +49,9 @@ const ThemeProvider = ({ children }) => {
         setLoginData,
         setSignature,
         signature,
-        loginData
+        loginData,
+        rewards,
+        setRewards
       }}
     >
       {children}

@@ -11,8 +11,6 @@ import Link from "next/link";
 export default function Header() {
   const { isDarkMode, loginId, handleLogin, setModalOpen, loginData, moiState } = useContext(ThemeContext);
 
-  console.log("moiState", moiState["isMoid"].userid);
-
   useEffect(() => {
     if(loginData) {
       handleLogin(loginData.userName);

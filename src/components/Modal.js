@@ -48,13 +48,7 @@ export default function Modal({ setModalOpen, isModalOpen }) {
                           }));
                           setLoginData(creds)
                           setModalOpen(false)
-                          // IOMe username
-                          console.log(creds.userName);
-                          // IOMe UserID
-                          console.log(creds.userid);
-                          // User Authenticiation token to query information
-                          console.log(creds.authToken);
-
+                         
                         }
                       }
                       />
