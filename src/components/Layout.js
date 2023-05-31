@@ -10,7 +10,7 @@ import { Background } from "../components/SvgComponent";
 const inter = Inter({ subsets: ["latin"] });
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId, isDarkMode } = useContext(ThemeContext);
+  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState } = useContext(ThemeContext);
 
   const getEligibility = async () => {
     let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`);
@@ -25,7 +25,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
         return ;
       }
     })
-    console.log(avatarsCreated)
 
     const avatarsScanned = data.interactions.data.filter(function (txn) {
       try {
@@ -36,7 +35,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
         return ;
       }
     })
-    console.log(avatarsScanned)
 
     const appsCreated = data.interactions.data.filter(function (txn) {
       try {
@@ -47,7 +45,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
         return ;
       }
     })
-    console.log(appsCreated)
 
     const appsJoined = data.interactions.data.filter(function (txn) {
       try {
@@ -58,7 +55,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
         return ;
       }
     })
-    console.log(appsJoined)
 
     const kyc = data.email.code == 200 ? true : false
     const phone_no = data.phone_no.code == 200 ? true : false
@@ -83,13 +79,27 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
       createdAvatar: avatarsCreated.length,
       scannedAvatar: avatarsScanned.length
     }));
-    console.log(data)
-    
-    console.log(data.validator_nodes);
-    console.log(data.twitter.data.level);
-    console.log(data.telegram.data.level);
-    console.log(data.discord.data.level);
   };
+
+
+  useEffect (() => {
+    setPoints({
+      moid: moiState["isMoid"] ? 1 : 0,
+      phone_no: moiState["phone_no"] ? 2 : 0,
+      email: moiState["email"] ? 2 : 0,
+      kyc: moiState["kyc"] ? 5 : 0,
+      validator_nodes: moiState["validator_nodes"] * 10,
+      validator_nodes_may: moiState["validator_nodes_may"] * 10,
+      twitter: moiState["twitter"] * 10,
+      telegram: moiState["telegram"] * 10,
+      discord: moiState["discord"] * 10,
+      interactions: moiState["interactions"] * 5,
+      createdApp: moiState["createdApp"] * 50,
+      partApp: moiState["partApp"] * 5,
+      createdAvatar: moiState["createdAvatar"] * 10,
+      scannedAvatar: moiState["scannedAvatar"] * 5,
+    });
+  }, [moiState])
 
   useEffect(() => {
     loginId && getEligibility();

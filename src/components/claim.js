@@ -1,11 +1,10 @@
 
-export default function getData(moiState, loginData, points) {
-    console.log("Claim airdrop : ",moiState)
-    
+export default function getData(moiState, loginData, points, totalPoints) {
+
 // STEP 2: Upload the Claim data in JSON format and get the CID
 var data = JSON.stringify({
     "userName": loginData.userName,
-    "points": points.total,
+    "points": totalPoints,
     "details": {
         "wallet": {
             "creation": points.moid,

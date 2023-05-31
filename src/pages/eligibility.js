@@ -21,73 +21,26 @@ export default function Eligibility() {
     setSignature,
     signature,
     loginData,
+    setPoints,
+    points
   } = useContext(ThemeContext);
   const router = useRouter();
   const [confetti, setConfetti] = useState(false)
-  console.log("eligibility ", moiState.isMoid);
+  const [totalPoints, setTotalPoints] = useState(0)
 
-  const points = {
-    moid: 0,
-    phone_no: 0,
-    email: 0,
-    kyc: 0,
-    validator_nodes: 0,
-    validator_nodes_may: 0,
-    twitter: 0,
-    telegram: 0,
-    discord: 0,
-    interactions: 0,
-    createdApp: 0,
-    partApp: 0,
-    createdAvatar: 0,
-    scannedAvatar: 0,
-    total: 0
-  }
-
-  if (moiState["isMoid"]) points.moid = 1;
-
-  if (moiState["email"]) points.email =  2;
-
-  if (moiState["phone_no"]) points.phone_no = 2;
-
-  if (moiState["kyc"]) points.kyc = 5;
-
-  if (moiState["validator_nodes"])
-    points.validator_nodes = 10 * moiState.validator_nodes;
-
-  if (moiState["validator_nodes_may"])
-    points.validator_nodes_may =  10 * moiState.validator_nodes_may;
-
-  if (moiState["createdAvatar"])
-    points.createdAvatar = 10 * moiState["createdAvatar"];
-
-  if (moiState["createdApp"]) 
-    points.createdApp = 50 * moiState["createdApp"];
-
-  if (moiState["scannedAvatar"])
-    points.scannedAvatar = 5 * moiState["scannedAvatar"];
-
-  if (moiState["partApp"]) points.partApp = 5 * moiState["partApp"];
-
-  points.telegram =  moiState["telegram"] * 10;
-  points.discord = moiState["discord"] * 10;
-  points.twitter = moiState["twitter"] * 10;
-  points.interactions =   moiState["interactions"] * 5 ;
- 
-  points.total = Object.values(points).reduce((a, b) => 
-                              { return a + b;
-                              }, 0)
-
-  console.log("Total pointa are : ",points.total)
+  useEffect(() => {
+    const pointsEarned = Object.values(points).reduce((a, b) => { return a + b }, 0)
+    console.log('pointsEarned', pointsEarned);
+    setTotalPoints(pointsEarned)
+  }, [points])
 
   function Claim() {
-    const data = getData(moiState,loginData,points);
+    const data = getData(moiState, loginData, points, totalPoints);
     loginData.iome.wallet.sign(data).then((txn) => 
       setSignature(txn.signature)
     )   
     setConfetti(true)
-     
-    }
+  }
           
   useEffect(() => {
     if (confetti){
@@ -156,7 +109,7 @@ export default function Eligibility() {
                 A minimum of 3 points total are required to be eligible. If you
                 scored less than 3 points, all criteria will be crossed out.
               </p>
-              <p className="p-4">{`Your points: ${points.total}`}</p>
+              <p className="p-4">{`Your points: ${totalPoints}`}</p>
             </div>
 
             <div className="md:flex md:items-center">
@@ -168,7 +121,7 @@ export default function Eligibility() {
                 >
                   Login Moi ID
                 </ButtonComponent>
-              ) : points.total >= 3 ? (
+              ) : totalPoints >= 3 ? (
                 <ButtonComponent
                   onClick = {Claim}
                   variant="secondary"

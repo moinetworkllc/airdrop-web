@@ -20,7 +20,7 @@ const Distribution = () => {
             <p className="text-xl font-bold tracking-tight lg:text-3xl pb-5">
               God IS(M) in the details
             </p>
-            <div className="flex flex-col gap-y-7 text-sm lg:text-md">
+            <div className="flex flex-col gap-y-7 text-base lg:text-md 2xl:text-lg">
               <p>
                 MOI uses participants as a key element of computation to
                 realize a new era of "contextual computation".

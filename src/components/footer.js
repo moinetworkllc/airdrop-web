@@ -67,7 +67,7 @@ const Footer = () => {
                   <h5 className="text-base font-semibold">{item}</h5>
                   <div class="grid gap-4">
                     {Object.values(FooterTabs)[index].map((data) => (
-                      <a className="text-sm" href={data.link}>
+                      <a className="text-sm text-moi-white-300" href={data.link}>
                         {data.label}
                       </a>
                     ))}
@@ -97,8 +97,7 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div class="hidden md:block text-sm 2xl:text-base"></div>
-            <div class="gap-32 grid grid-flow-col items-start md:justify-self-end">
+            <div class="col-span-2 gap-32 grid grid-flow-col items-start md:justify-self-end">
               <div class="grid gap-6">
                 <h5 className="text-base font-semibold">Community</h5>
                 <div class="grid gap-2">

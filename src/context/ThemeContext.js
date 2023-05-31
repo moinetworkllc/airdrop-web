@@ -24,6 +24,22 @@ const ThemeProvider = ({ children }) => {
     createdAvatar: "",
     scannedAvatar: "",
   });
+  const [points, setPoints] = useState({
+    moid: 0,
+    phone_no: 0,
+    email: 0,
+    kyc: 0,
+    validator_nodes: 0,
+    validator_nodes_may: 0,
+    twitter: 0,
+    telegram: 0,
+    discord: 0,
+    interactions: 0,
+    createdApp: 0,
+    partApp: 0,
+    createdAvatar: 0,
+    scannedAvatar: 0,
+  });
 
   const handleLogin = (id) => {
     setLoginId(id);
@@ -47,7 +63,9 @@ const ThemeProvider = ({ children }) => {
         setLoginData,
         setSignature,
         signature,
-        loginData
+        loginData,
+        setPoints,
+        points
       }}
     >
       {children}

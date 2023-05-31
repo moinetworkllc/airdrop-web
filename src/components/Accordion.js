@@ -39,7 +39,7 @@ const Accordion = () => {
             </div>
             {activeIndex === index && (
               <ul className="max-w-md pl-14 space-y-1 list-disc list-outside">
-                {item.dataPoints.map((data, index) => <li key={index} className="text-sm font-normal text-moi-white-300">
+                {item.dataPoints.map((data, index) => <li key={index} className="text-[14px] font-normal text-moi-white-300">
                     {data}
                   </li>
                 )}
