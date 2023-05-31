@@ -13,8 +13,8 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
   const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds } = useContext(ThemeContext);
 
   const getEligibility = async () => {
-    //let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`);
-    let response = await fetch(`/api/moi?userId=0x9755aa020dB3784B15F286820CF4b6FC0075a712&userName=0zAND1z`);
+    let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`);
+    
     let data = await response.json();
     const avatarsCreated = data.interactions.data.filter(function (txn) {
       try {
@@ -59,6 +59,9 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     const kyc = data.email.code == 200 ? true : false
     const phone_no = data.phone_no.code == 200 ? true : false
     const email = data.email.code == 200 ? true : false
+    //const twitter = data.twitter ? data.twitter.data.level : 0
+    const telegram = data.telegram ? data.telegram.data.level : 0
+    const discord = data.discord ? data.discord.data.level : 0
     
     const validator_nodes_may = data.interactions.data.filter(function (txn) {
       if (txn.namespace == "MOI Net" &&
@@ -94,9 +97,9 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
       kyc: kyc,
       validator_nodes: data.validator_nodes.length,
       validator_nodes_may: validator_nodes_may.length,
-      twitter: 0,//data.twitter.data.level,
-      telegram: data.telegram.data.level,
-      discord: data.discord.data.level,
+      twitter: 0,//twitter,
+      telegram: telegram,
+      discord: discord,
       interactions: data.interactions.data.length,
       createdApp: appsCreated.length,
       partApp: appsJoined.length,

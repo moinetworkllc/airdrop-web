@@ -47,6 +47,7 @@ export default function Eligibility() {
     loginData.iome.wallet.sign(data).then((txn) => 
       setSignature(txn.signature)
     ) 
+    console.log(signature)
     setConfetti(true)
   }
   // useEffect(() => {
