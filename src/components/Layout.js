@@ -10,8 +10,8 @@ import { Background } from "../components/SvgComponent";
 const inter = Inter({ subsets: ["latin"] });
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId, isDarkMode } = useContext(ThemeContext);
-
+  const { setMoiState, loginData, loginId, isDarkMode, setRewards, rewards } = useContext(ThemeContext);
+  
   const getEligibility = async () => {
     let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`);
     
@@ -25,7 +25,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
         return ;
       }
     })
-    console.log(avatarsCreated)
 
     const avatarsScanned = data.interactions.data.filter(function (txn) {
       try {
@@ -36,7 +35,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
         return ;
       }
     })
-    console.log(avatarsScanned)
 
     const appsCreated = data.interactions.data.filter(function (txn) {
       try {
@@ -47,7 +45,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
         return ;
       }
     })
-    console.log(appsCreated)
 
     const appsJoined = data.interactions.data.filter(function (txn) {
       try {
@@ -58,37 +55,47 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
         return ;
       }
     })
-    console.log(appsJoined)
 
     const kyc = data.email.code == 200 ? true : false
     const phone_no = data.phone_no.code == 200 ? true : false
     const email = data.email.code == 200 ? true : false
-
-    //const validator_nodes_may = data.validator_nodes[0].timeStamp
-    //console.log(validator_nodes_may)
-
+    
+    const validator_nodes_may = data.interactions.data.filter(function (txn) {
+      if (txn.namespace == "MOI Net" &&
+          txn.attr == "Validator" &&
+          txn.action == "Created" &&
+          parseInt(txn.instant) < 1650470399)
+          return txn
+    })
+    let rewards_ = 0
+    await data.kramaID.filter(async function (ids) {
+      let krama_response = await fetch(`/api/kramaId?kramaId=${ids.kramaID}`)
+      let krama_data = await krama_response.json()
+      if (krama_data.rewards.data.total_token_summary) {
+       rewards_ = rewards_ +  parseInt(krama_data.rewards.data.total_token_summary)
+       setRewards(rewards_)
+      }
+     
+         
+     }) 
+    
     setMoiState((prevData) => ({
       ...prevData,
       phone_no: phone_no,
       email: email,
       kyc: kyc,
       validator_nodes: data.validator_nodes.length,
-      validator_nodes_may: 0,
+      validator_nodes_may: validator_nodes_may.length,
       twitter: data.twitter.data.level,
       telegram: data.telegram.data.level,
       discord: data.discord.data.level,
       interactions: data.interactions.data.length,
+      kramaID : data.kramaID.length,
       createdApp: appsCreated.length,
       partApp: appsJoined.length,
       createdAvatar: avatarsCreated.length,
       scannedAvatar: avatarsScanned.length
     }));
-    console.log(data)
-    
-    console.log(data.validator_nodes);
-    console.log(data.twitter.data.level);
-    console.log(data.telegram.data.level);
-    console.log(data.discord.data.level);
   };
 
   useEffect(() => {
