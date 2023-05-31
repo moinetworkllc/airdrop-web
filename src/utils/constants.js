@@ -55,7 +55,7 @@ export const ELIGIBILITY_CRITERIA = [
   },
   {
     criteria: "You have kramaID",
-    id: "kramaID",
+    id: "kramaId",
     dataPoints : ["Krama ID"]
   },
   {

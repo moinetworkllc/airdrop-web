@@ -9,6 +9,7 @@ const ThemeProvider = ({ children }) => {
   const [loginData, setLoginData] = useState()
   const [signature, setSignature] = useState("");
   const [rewards, setRewards] = useState(0)
+  const [kramaIds, setKramaIds] = useState([])
   const [moiState, setMoiState] = useState({
     isMoid: {},
     phone_no: "",
@@ -20,7 +21,7 @@ const ThemeProvider = ({ children }) => {
     telegram: "",
     discord: "",
     interactions: "",
-    kramaID: "",
+    kramaId: "",
     createdApp: "",
     partApp: "",
     createdAvatar: "",
@@ -41,6 +42,7 @@ const ThemeProvider = ({ children }) => {
     partApp: 0,
     createdAvatar: 0,
     scannedAvatar: 0,
+    kramaId: 0
   });
 
   const handleLogin = (id) => {
@@ -69,7 +71,9 @@ const ThemeProvider = ({ children }) => {
         rewards,
         setRewards,
         setPoints,
-        points
+        points,
+        kramaIds,
+        setKramaIds
       }}
     >
       {children}

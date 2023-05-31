@@ -5,6 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 import Modal from "../components/Modal";
 import { getData } from "../components/claim";
+import { getCid} from "../components/pinata"
 import { useRouter } from 'next/router';
 import JSConfetti from 'js-confetti'
 
@@ -23,29 +24,41 @@ export default function Eligibility() {
     loginData,
     rewards,
     setPoints,
-    points
+    points,
+    kramaIds,
   } = useContext(ThemeContext);
   const router = useRouter();
   const [confetti, setConfetti] = useState(false)
   const [totalPoints, setTotalPoints] = useState(0)
+  const [data, setData] = useState("")
 
   useEffect(() => {
+    console.log(moiState)
     const pointsEarned = Object.values(points).reduce((a, b) => { return a + b }, 0)
-    console.log('pointsEarned', pointsEarned);
     setTotalPoints(pointsEarned)
   }, [points])
 
-  points.rewards = rewards
-  points.amount = totalPoints*100 + points.rewards
-  console.log("Airdrop amount : ", points.amount)
+  const amount = totalPoints*100 + rewards
+  console.log("Airdrop amount : ", amount)
+  
   function Claim() {
-    const data = getData(moiState, loginData, points, totalPoints);
+    setData(getData(moiState, loginData, points, totalPoints, rewards, amount, kramaIds))
+    console.log(data)
     loginData.iome.wallet.sign(data).then((txn) => 
       setSignature(txn.signature)
-    )   
+    ) 
     setConfetti(true)
   }
-          
+  // useEffect(() => {
+  //   const details =  JSON.parse(data)
+  //   details["signature"] = signature
+  //   data = JSON.stringify(details)
+  //   console.log(data)
+  //   const cid =  getCid(data)
+  //   console.log("CID = ", cid)
+    
+
+  // }, [signature])
   useEffect(() => {
     if (confetti){
       const jsConfetti = new JSConfetti()

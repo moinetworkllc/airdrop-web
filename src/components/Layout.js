@@ -10,11 +10,11 @@ import { Background } from "../components/SvgComponent";
 const inter = Inter({ subsets: ["latin"] });
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards } = useContext(ThemeContext);
+  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds } = useContext(ThemeContext);
 
   const getEligibility = async () => {
-    let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`);
-    
+    //let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`);
+    let response = await fetch(`/api/moi?userId=0x9755aa020dB3784B15F286820CF4b6FC0075a712&userName=0zAND1z`);
     let data = await response.json();
     const avatarsCreated = data.interactions.data.filter(function (txn) {
       try {
@@ -68,16 +68,24 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
           return txn
     })
     let rewards_ = 0
-    await data.kramaID.filter(async function (ids) {
+   
+     data.kramaID.filter(async function (ids) {
       let krama_response = await fetch(`/api/kramaId?kramaId=${ids.kramaID}`)
       let krama_data = await krama_response.json()
       if (krama_data.rewards.data.total_token_summary) {
        rewards_ = rewards_ +  parseInt(krama_data.rewards.data.total_token_summary)
-       setRewards(rewards_)
-      }
-     
-         
-     }) 
+        await setRewards(rewards_)
+       
+        await setKramaIds((prev)=>
+       [...prev,
+        {
+        kramaId: ids.kramaID,
+        rewards: parseInt(krama_data.rewards.data.total_token_summary)
+       }
+      ])
+    }
+    else return;
+   })
     
     setMoiState((prevData) => ({
       ...prevData,
@@ -86,11 +94,10 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
       kyc: kyc,
       validator_nodes: data.validator_nodes.length,
       validator_nodes_may: validator_nodes_may.length,
-      twitter: data.twitter.data.level,
+      twitter: 0,//data.twitter.data.level,
       telegram: data.telegram.data.level,
       discord: data.discord.data.level,
       interactions: data.interactions.data.length,
-      kramaID : data.kramaID.length,
       createdApp: appsCreated.length,
       partApp: appsJoined.length,
       createdAvatar: avatarsCreated.length,
@@ -110,17 +117,30 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
       twitter: moiState["twitter"] * 10,
       telegram: moiState["telegram"] * 10,
       discord: moiState["discord"] * 10,
+      kramaIds: kramaIds.length * 10,
       interactions: moiState["interactions"] * 5,
       createdApp: moiState["createdApp"] * 50,
       partApp: moiState["partApp"] * 5,
       createdAvatar: moiState["createdAvatar"] * 10,
       scannedAvatar: moiState["scannedAvatar"] * 5,
     });
-  }, [moiState])
+  }, [moiState, kramaIds])
 
   useEffect(() => {
     loginId && getEligibility();
   }, [loginId]);
+
+  useEffect(() => {
+    console.log(kramaIds.length)
+    setMoiState((prev) => ({
+      ...prev,
+      kramaId: kramaIds.length
+    }))
+    // setPoints((prev) => ({
+    //   ...prev,
+    //   kramaId: kramaIds.length * 10
+    // }))
+  }, [kramaIds])
 
   return (
     <>
