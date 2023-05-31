@@ -58,7 +58,7 @@ const StepForward = () => {
             {primaryFeatures.map((feature, index) => (
               <div
                 key={feature.name}
-                className={`relative flex flex-col gap-y-16 justify-center h-fit lg:h-[526px] px-6 bg-moi-project bg-no-repeat bg-cover rounded-3xl py-6 transition-all duration-500 ${activeCard === index ? 'w-full lg:w-[600px]' : 'w-full lg:w-[250px]' }`}
+                className={`relative flex flex-col gap-y-16 justify-center h-fit lg:h-[526px] px-6 bg-moi-project bg-no-repeat bg-cover rounded-3xl py-6 transition-all duration-500 shadow-5xl ${activeCard === index ? 'w-full lg:w-[600px]' : 'w-full lg:w-[250px]' }`}
                 onClick={()=> setActiveCard(index)}
                 onMouseEnter={()=> setActiveCard(index)}
               >

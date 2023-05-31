@@ -46,7 +46,7 @@ const WhyMoi = () => {
             {primaryFeatures.map((feature) => (
               <div
                 key={feature.name}
-                className="flex flex-col bg-moi-white-200 rounded-3xl py-6"
+                className="flex flex-col bg-moi-white-200 shadow-5xl rounded-3xl py-6"
               >
                 <div className="flex flex-col gap-y-4 items-start px-6">
                   <div className="h-10 w-10 inline-flex">{feature.icon}</div>

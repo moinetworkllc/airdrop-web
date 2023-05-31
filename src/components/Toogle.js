@@ -12,7 +12,7 @@ const ToggleComponent = () => {
         checked={true}
         onChange={toggleTheme}
         className={classNames(
-          !isDarkMode ? "bg-gray-700 flow-root" : "bg-gray-200 inline-flex",
+          !isDarkMode ? "!bg-gray-700 flow-root" : "!bg-gray-200 inline-flex",
           "relative h-8 w-16 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out"
         )}
       >

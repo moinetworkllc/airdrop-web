@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import Header from '../components/Header';
 import { ThemeProvider } from '../context/ThemeContext';
+import "iome-widget/src/styles/main.css"
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();

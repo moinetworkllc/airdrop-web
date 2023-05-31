@@ -26,10 +26,14 @@ module.exports = {
         "button-gradient": "linear-gradient(180deg, #A105EE 0%, #E604DE 100%)",
         "moi-button-secondary": "linear-gradient(180deg, #D1D3E2 0%, #75629D 100%)",
         "eligibility-gradient": "linear-gradient(180deg, rgba(145, 32, 199, 0.1) 0%, rgba(93, 40, 188, 0.1) 100%)",
-        "main-bg": "radial-gradient(at 47% 33%, hsl(240.00, 35%, 36%) 0, transparent 39%), radial-gradient(at 22% 65%, hsl(240.00, 24%, 31%) 0, transparent 55%)"
+        "main-bg": "radial-gradient(at 47% 33%, hsl(240.00, 35%, 36%) 0, transparent 39%), radial-gradient(at 22% 65%, rgba(10, 0, 38, 0.84) 0, transparent 55%)"
       },
       boxShadow: {
         'card': 'inset 0 0 0 600px rgba(255,255,255,0.1)',
+        '5xl': '0px 1px 6px 0px rgba(20, 10, 51, 0.07)',
+        '6xl': '0px 2px 2px 0px rgba(20, 10, 51, 0.03)',
+        '7xl': '0px 1px 2px 0px rgba(20, 10, 51, 0.05)'
+
       },
       backdropOpacity: {
         'light': 'blur(14px) saturate(65%)',
@@ -60,8 +64,10 @@ module.exports = {
           200: "rgb(255,255,255,1)",
           300: "rgba(255, 255, 255, 0.66)",
           400: "rgba(255, 255, 255, 0.35)",
+          500: "rgba(255, 255, 255, 0.8)",
           600: "#F5F2FF",
-          700: "rgba(255, 255, 255, 0.125)"
+          700: "rgba(255, 255, 255, 0.125)",
+          800: "rgba(255, 255, 255, 0.65)"
         },
         "moi-purple": {
           100: "rgba(192, 171, 255, 1)",

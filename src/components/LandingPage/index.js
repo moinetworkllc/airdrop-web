@@ -5,7 +5,6 @@ import { CardContent } from "../../utils/constants";
 import { classNames } from "../../utils/helpers";
 import { ThemeContext, LoginContext } from "../../context/ThemeContext";
 import ButtonComponent from "../ButtonComponent";
-import { IOMe, Login } from "iome-widget";
 import Modal from "../Modal";
 
 const LandingPage = () => {

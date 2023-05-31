@@ -19,9 +19,9 @@ export default function ButtonComponent({
     disabled: "opacity-50 cursor-not-allowed",
     variant: {
       primary:
-        `font-semibold rounded-3xl leading-normal hover:bg-button-gradient ${isDarkMode ? "bg-moi-purple-800 text-moi-white-100" : "bg-moi-purple-100 text-moi-purple-600"}`,
+        `font-semibold rounded-3xl leading-normal hover:bg-opacity-80 ${isDarkMode ? "!bg-moi-purple-800 !text-moi-white-100" : "!bg-moi-purple-100 !text-moi-purple-600"}`,
       secondary:
-        `relative p-0.5 flex font-semibold items-center leading-normal justify-center overflow-hidden text-sm xl:text-xl font-medium rounded-3xl ${isDarkMode ? "bg-moi-purple-800 text-moi-white-100": "bg-moi-purple-100 text-moi-purple-600"}`,
+        `relative p-0.5 flex font-semibold items-center leading-normal justify-center overflow-hidden text-sm xl:text-xl font-medium rounded-3xl ${isDarkMode ? "!bg-moi-purple-800 !text-moi-white-100": "!bg-moi-purple-100 !text-moi-purple-600"}`,
     },
   };
 
