@@ -2,10 +2,12 @@ import { Fragment, useState, Component, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import IOMe from "iome-widget";
 import { ThemeContext } from "../context/ThemeContext";
+import { useRouter } from 'next/router';
 
 
 export default function Modal({ setModalOpen, isModalOpen }) {
   const { setLoginData, loginData, setMoiState } = useContext(ThemeContext);
+  const router = useRouter();
 
   const onSuccess = async(creds) => {
     setMoiState((prevData) => ({
@@ -14,6 +16,7 @@ export default function Modal({ setModalOpen, isModalOpen }) {
     }));
     setLoginData(creds)
     setModalOpen(false)
+    creds && router.push("/eligibility");
     // IOMe username
     console.log(creds.userName);
     // IOMe UserID

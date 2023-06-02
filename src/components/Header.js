@@ -7,9 +7,11 @@ import { ThemeContext } from "../context/ThemeContext";
 import { HeaderTabs } from "../utils/constants";
 import ButtonComponent from "../components/ButtonComponent";
 import Link from "next/link";
+import LogoutModal from "./LogoutModal";
 
 export default function Header() {
   const { isDarkMode, loginId, handleLogin, setModalOpen, loginData, moiState } = useContext(ThemeContext);
+  const [logoutModal, setLogoutModal] = useState(false);
 
   useEffect(() => {
     if(loginData) {
@@ -25,6 +27,7 @@ export default function Header() {
       {({ open }) => (
         <> 
           <div className="2xl:max-w-screen-2xl mx-5 md:mx-[64px] 2xl:mx-auto px-0 lg:px-4 pt-3 pb-8">
+            <LogoutModal logoutModal={logoutModal} setLogoutModal={setLogoutModal}/>
             <div className="relative flex h-16 justify-between">
               <div className="flex ">
                 <div className="flex flex-shrink-0 items-center">
@@ -83,7 +86,8 @@ export default function Header() {
                       "rounded-3xl p-[2px] mx-4"
                     )}
                   >
-                    <p
+                    <button
+                      onClick={() => setLogoutModal(true)}
                       className={classNames(
                         isDarkMode
                           ? "bg-moi-white-600 text-moi-purple-200"
@@ -92,7 +96,7 @@ export default function Header() {
                       )}
                     >
                       {moiState["isMoid"].userName}
-                    </p>
+                    </button>
                   </div>
                 )}</div>
                 <ToggleComponent />
