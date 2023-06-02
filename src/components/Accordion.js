@@ -40,8 +40,8 @@ const Accordion = () => {
     {
       criteria: "You have hosted a unique validator node since May 2022",
       id: "validator_nodes_may",
-      sucessMessage: [`Points earned: ${points.validator_nodes_may}`, `Description: You've have hosted ${points.validator_nodes / 10} unique nodes scince May 2022`],
-      failureMessage : ["Points earned: 0", "Description: You've not hosted nodes scince May 2022"],
+      sucessMessage: [`Points earned: ${points.validator_nodes_may}`, `Description: You've have hosted ${points.validator_nodes / 10} unique nodes since May 2022`],
+      failureMessage : ["Points earned: 0", "Description: You've not hosted nodes since May 2022"],
     },
     {
       criteria: "You have engaged with our Official Twitter account",
@@ -73,7 +73,7 @@ const Accordion = () => {
       criteria: "You have kramaID",
       id: "kramaId",
       sucessMessage: [`Points earned: ${points.kramaIds}`, `Description: You've have ${points.kramaIds / 10} Krama Ids`],
-      failureMessage : ["Points earned: 0", "Description: You've not"],
+      failureMessage : ["Points earned: 0", "Description: You've 0 Krama Ids"],
       dataPoints : ["Krama ID"]
     },
     {
