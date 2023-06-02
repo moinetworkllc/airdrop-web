@@ -34,45 +34,45 @@ const Accordion = () => {
     {
       criteria: "You have hosted a unique validator node through your MOI ID",
       id: "validator_nodes",
-      sucessMessage: [`Points earned: ${points.validator_nodes}`, `Description: You have hosted ${points.validator_nodes} unique nodes`],
+      sucessMessage: [`Points earned: ${points.validator_nodes}`, `Description: You have hosted ${points.validator_nodes / 10} unique nodes`],
       failureMessage : ["Points earned: 0", "Description: You've not hosted any nodes"],
     },
     {
       criteria: "You have hosted a unique validator node since May 2022",
       id: "validator_nodes_may",
-      sucessMessage: [`Points earned: ${points.validator_nodes_may}`, `Description: You've have hosted ${points.validator_nodes} unique nodes scince May 2022`],
+      sucessMessage: [`Points earned: ${points.validator_nodes_may}`, `Description: You've have hosted ${points.validator_nodes / 10} unique nodes scince May 2022`],
       failureMessage : ["Points earned: 0", "Description: You've not hosted nodes scince May 2022"],
     },
     {
       criteria: "You have engaged with our Official Twitter account",
       id: "twitter",
-      sucessMessage: [`Points earned: ${points.twitter}`, "Description: You've earned Level 1 staus in our Twitter Community"],
+      sucessMessage: [`Points earned: ${points.twitter}`, `Description: You've earned Level ${points.twitter / 10} staus in our Twitter Community`],
       failureMessage : ["Points earned: 0", "Description: You've not earned any level in our Twitter Community"],
     },
     {
       criteria: "You have engaged in our Official Telegram Community",
       id: "telegram",
-      sucessMessage: [`Points earned: ${points.telegram}`, "You've earned Level 1 staus in our Telegram Community"],
+      sucessMessage: [`Points earned: ${points.telegram}`, `Description: You've earned Level ${points.telegram / 10} staus in our Telegram Community`],
       failureMessage : ["Points earned: 0", "Description: You've not earned any level in our Telegram Community"],
       dataPoints : ["Telegram"]
     },
     {
       criteria: "You have engaged in our Official Discord Community",
       id: "discord",
-      sucessMessage: [`Points earned: ${points.discord}`, "You've earned Level 1 staus in our Discord Community"],
+      sucessMessage: [`Points earned: ${points.discord}`, `Description: You've earned Level ${points.discord / 10} staus in our Discord Community`],
       failureMessage : ["Points earned: 0", "Description: You've not earned any level in our Discord Community"],
       dataPoints : ["Discord"]
     },
     {
       criteria: "You have signed transactions on our INDUS Testnet",
       id: "interactions",
-      sucessMessage: [`Points earned: ${points.interactions}`, `Description: You've made ${points.interactions} interaction on our indus testnet`],
+      sucessMessage: [`Points earned: ${points.interactions}`, `Description: You've made ${points.interactions / 5} interaction on our indus testnet`],
       failureMessage : ["Points earned: 0", "Description: You'v not made any interaction on our indus testnet"],
     },
     {
       criteria: "You have kramaID",
       id: "kramaId",
-      sucessMessage: [`Points earned: `, "Description: You've have "],
+      sucessMessage: [`Points earned: ${points.kramaIds}`, `Description: You've have ${points.kramaIds / 10} Krama Ids`],
       failureMessage : ["Points earned: 0", "Description: You've not"],
       dataPoints : ["Krama ID"]
     },
@@ -85,13 +85,13 @@ const Accordion = () => {
     {
       criteria: "You are part of an App",
       id: "partApp",
-      sucessMessage: [`Points earned: ${points.partApp}`, `Description: You've used ${points.partApp} apps`],
+      sucessMessage: [`Points earned: ${points.partApp}`, `Description: You've used ${points.partApp / 5} apps`],
       failureMessage : ["Points earned: 0", "Description: You've not used any app"],
     },
     {
       criteria: "You have created an Avatar",
       id: "createdAvatar",
-      sucessMessage: [`Points earned: ${points.createdAvatar}`, `Description: You've created an ${points.createdAvatar} avatar`],
+      sucessMessage: [`Points earned: ${points.createdAvatar}`, `Description: You've created an ${points.createdAvatar / 10} avatar`],
       failureMessage : ["Points earned: 0", "Description: You've not created any avatar"],
     },
     {
