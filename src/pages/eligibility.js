@@ -83,10 +83,7 @@ export default function Eligibility() {
  
 
   useEffect(() => {
-    console.log("henlo print", cid)
     if (cid) {
-      console.log("Ubssss")
-      //debugger
       const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
       const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_SEPOLIA_URL);
 	    const signer1 = new ethers.Wallet(process.env.NEXT_PUBLIC_PRIV_KEY, provider);
@@ -96,7 +93,6 @@ export default function Eligibility() {
           signer1
         );
       (async() => {
-        console.log("Inside contract")
         const txn = await moiContract.allocate(
           0x00,
           [loginData.userid],

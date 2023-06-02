@@ -30,7 +30,6 @@ const cid_data = await axios.post('https://api.pinata.cloud/pinning/pinJSONToIPF
     cid = response.data.IpfsHash;
     console.log(response.data);
     console.log(cid)
-    //return cid
     
 })
 const cid_xx =  await cid_data
