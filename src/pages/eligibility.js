@@ -8,6 +8,9 @@ import { getData } from "../components/claim";
 import { getCid} from "../components/pinata"
 import { useRouter } from 'next/router';
 import JSConfetti from 'js-confetti'
+const contract = require("../components/contract.json")
+require('dotenv').config();
+const { ethers } = require("ethers");
 
 export default function Eligibility() {
   
@@ -32,6 +35,8 @@ export default function Eligibility() {
   const [confetti, setConfetti] = useState(false)
   const [totalPoints, setTotalPoints] = useState(0)
   const [data, setData] = useState("")
+  const [cid, setCid] = useState("")
+  //let data = ""
 
   useEffect(() => {
     console.log("loading", loading);
@@ -69,15 +74,64 @@ export default function Eligibility() {
     console.log(signature);
     setConfetti(true);
   }
-  // useEffect(() => {
-  //   const details =  JSON.parse(data)
-  //   details["signature"] = signature
-  //   data = JSON.stringify(details)
-  //   console.log(data)
-  //   const cid =  getCid(data)
-  //   console.log("CID = ", cid)
+  useEffect(() => {
+    if (loginData && data)
+    {
+      console.log("inside", data)
+      loginData.iome.wallet.sign(data).then((txn) => 
+      setSignature(txn.signature)
+    ) 
+    }
+    
+  }, [data])
 
-  // }, [signature])
+  useEffect(() => {
+    if (data) {
+      const details =  JSON.parse(data)
+      details["signature"] = signature
+      let data_ = JSON.stringify(details)
+      
+      let cid_ = getCid(data_)
+      
+      cid_.then((result) => {
+        console.log("Defined!!!", result)
+        setCid(result)
+      })
+      
+     
+
+    
+    }
+  }, [signature])
+ 
+
+  useEffect(() => {
+    if (cid) {
+      const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+      const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_SEPOLIA_URL);
+	    const signer1 = new ethers.Wallet(process.env.NEXT_PUBLIC_PRIV_KEY, provider);
+	    const moiContract = new ethers.Contract(
+          address,
+          contract["abi"],
+          signer1
+        );
+      (async() => {
+        const txn = await moiContract.allocate(
+          0x00,
+          [loginData.userid],
+          [amount],
+          cid,
+          {
+				gasLimit: 100000,
+				gasPrice: 20000000000,
+				}
+        )
+        console.log("contract : ", txn.hash)
+        })();
+        
+    }
+  }, [cid])
+
   useEffect(() => {
     if (confetti) {
       const jsConfetti = new JSConfetti();

@@ -1,0 +1,320 @@
+{
+    "abi" : [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "bytes1",
+				"name": "allocationClassIndex",
+				"type": "bytes1"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "eventMessage",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			}
+		],
+		"name": "AllocationClassCreatedOrUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "string",
+				"name": "user",
+				"type": "string"
+			},
+			{
+				"indexed": true,
+				"internalType": "bytes1",
+				"name": "allocationClassType",
+				"type": "bytes1"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "time",
+				"type": "uint256"
+			}
+		],
+		"name": "NewUserInAllocationClass",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes1",
+				"name": "_index",
+				"type": "bytes1"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_users",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "_amounts",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string",
+				"name": "_allocationProofHash",
+				"type": "string"
+			}
+		],
+		"name": "allocate",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_className",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_capacity",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_metadata",
+				"type": "bytes"
+			}
+		],
+		"name": "createAllocationClass",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllocLimitPerCall",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes1",
+				"name": "_index",
+				"type": "bytes1"
+			}
+		],
+		"name": "getAllocationClass",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "bytes1",
+						"name": "index",
+						"type": "bytes1"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "capacity",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "allocated",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "metadata",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct MoiIncentiveContract.AllocationClass",
+				"name": "_assetClass",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_user",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes1",
+				"name": "_index",
+				"type": "bytes1"
+			}
+		],
+		"name": "getAllocationProofsOf",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "_proofs",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getOwner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTotalTokensAllocated",
+		"outputs": [
+			{
+				"internalType": "bytes1[]",
+				"name": "",
+				"type": "bytes1[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_user",
+				"type": "string"
+			}
+		],
+		"name": "getUserAllocations",
+		"outputs": [
+			{
+				"internalType": "bytes1[]",
+				"name": "",
+				"type": "bytes1[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_newRateLimit",
+				"type": "uint256"
+			}
+		],
+		"name": "updateAllocationsRateLimit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes1",
+				"name": "_index",
+				"type": "bytes1"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_newCapacity",
+				"type": "uint256"
+			}
+		],
+		"name": "updateCapacity",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes1",
+				"name": "_index",
+				"type": "bytes1"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_newMetadata",
+				"type": "bytes"
+			}
+		],
+		"name": "updateMetadata",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes1",
+				"name": "_index",
+				"type": "bytes1"
+			},
+			{
+				"internalType": "bool",
+				"name": "_newStatus",
+				"type": "bool"
+			}
+		],
+		"name": "updateStatus",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
+}
