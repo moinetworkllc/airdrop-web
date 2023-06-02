@@ -26,12 +26,13 @@ axios.post('https://api.pinata.cloud/pinning/pinJSONToIPFS',
             'Authorization': AUTH
         }
     }).then(response => {
+        
     cid = response.data.IpfsHash;
-    console.log(cid);
     console.log(response.data);
+    return cid
+    
 })
-   
-  return cid
+  
 
 }
 
