@@ -10,6 +10,7 @@ const ThemeProvider = ({ children }) => {
   const [signature, setSignature] = useState("");
   const [rewards, setRewards] = useState(0)
   const [kramaIds, setKramaIds] = useState([])
+  const [loading, setLoading] = useState(false)
   const [moiState, setMoiState] = useState({
     isMoid: {},
     phone_no: "",
@@ -73,7 +74,9 @@ const ThemeProvider = ({ children }) => {
         setPoints,
         points,
         kramaIds,
-        setKramaIds
+        setKramaIds,
+        setLoading,
+        loading
       }}
     >
       {children}

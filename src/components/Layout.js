@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Inter } from "next/font/google";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "./Header";
@@ -10,12 +10,13 @@ import { Background } from "../components/SvgComponent";
 const inter = Inter({ subsets: ["latin"] });
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds } = useContext(ThemeContext);
+  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading } = useContext(ThemeContext);
 
   const getEligibility = async () => {
-    let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`);
+    let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`)
     
     let data = await response.json();
+    data && setLoading(false)
     const avatarsCreated = data.interactions.data.filter(function (txn) {
       try {
         let namespace = loginData.iome.utils.mDecode(txn.namespace)
@@ -131,6 +132,7 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
 
   useEffect(() => {
     loginId && getEligibility();
+    loginId && setLoading(true)
   }, [loginId]);
 
   useEffect(() => {
