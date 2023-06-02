@@ -109,6 +109,8 @@ export default function Eligibility() {
     !Object.keys(moiState["isMoid"]).length && router.push("/");
   }, [moiState["isMoid"]]);
 
+  console.log('rewards', rewards);
+
   return (
     <div className="py-20">
       <div className="flex justify-center">
@@ -148,7 +150,7 @@ export default function Eligibility() {
                       A minimum of 6 points in total are required to be eligible
                       for the airdrop.
                     </p>
-                    <p className="p-4">{`You can claim 0 MOI tokens`}</p>
+                    <p className="p-4">{`You can claim ${amount} MOI tokens`}</p>
                     <p className="p-4">{`Your points: ${totalPoints}`}</p>
                   </div>
                 </>
@@ -206,7 +208,7 @@ export default function Eligibility() {
             </div>
             <div className="border border-white block lg:hidden"></div>
             <div className="w-full lg:w-[60%] p-6 lg:p-10">
-              <Accordion />
+              <Accordion/>
             </div>
           </div>
         )}
