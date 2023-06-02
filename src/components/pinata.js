@@ -4,7 +4,7 @@ require('dotenv').config();
 
 
 
-export default function getCid(data) {
+export default async function getCid(data) {
     const AUTH='Bearer '+process.env.NEXT_PUBLIC_AUTH
     console.log(AUTH)
 // Check Connection
@@ -18,7 +18,7 @@ export default function getCid(data) {
 })
     
 var cid =""
-axios.post('https://api.pinata.cloud/pinning/pinJSONToIPFS',
+const cid_data = await axios.post('https://api.pinata.cloud/pinning/pinJSONToIPFS',
     data,
     {
         'Content-Type': 'application/json',
@@ -29,9 +29,14 @@ axios.post('https://api.pinata.cloud/pinning/pinJSONToIPFS',
         
     cid = response.data.IpfsHash;
     console.log(response.data);
-    return cid
+    console.log(cid)
+    //return cid
     
 })
+const cid_xx =  await cid_data
+console.log(cid)
+return  cid
+
   
 
 }

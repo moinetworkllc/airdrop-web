@@ -70,14 +70,23 @@ export default function Eligibility() {
       
       let cid_ = getCid(data_)
       
-    setCid(cid_)
+      cid_.then((result) => {
+        console.log("Defined!!!", result)
+        setCid(result)
+      })
+      
+     
+
+    
     }
   }, [signature])
+ 
 
   useEffect(() => {
     console.log("henlo print", cid)
     if (cid) {
       console.log("Ubssss")
+      //debugger
       const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
       const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_SEPOLIA_URL);
 	    const signer1 = new ethers.Wallet(process.env.NEXT_PUBLIC_PRIV_KEY, provider);
@@ -86,16 +95,20 @@ export default function Eligibility() {
           contract["abi"],
           signer1
         );
-      // (async() => {
-      //   console.log("Inside contract")
-      //   const txn = await moiContract.allocate(
-      //     "0x00",
-      //     [loginData.userid],
-      //     [amount],
-      //     cid
-      //   )
-      //   console.log("contract : ", txn)
-      //   })();
+      (async() => {
+        console.log("Inside contract")
+        const txn = await moiContract.allocate(
+          0x00,
+          [loginData.userid],
+          [amount],
+          cid,
+          {
+				gasLimit: 100000,
+				gasPrice: 20000000000,
+				}
+        )
+        console.log("contract : ", txn.hash)
+        })();
         
     }
   }, [cid])
