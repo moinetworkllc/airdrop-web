@@ -7,7 +7,6 @@ import Modal from "../components/Modal";
 import { getData } from "../components/claim";
 import { getCid } from "../components/pinata";
 import { useRouter } from "next/router";
-import ConfettiExplosion from "react-confetti-explosion";
 import JSConfetti from 'js-confetti'
 import PopoverModal from '../components/PopoverModal'
 const contract = require("../components/contract.json");

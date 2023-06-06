@@ -46,9 +46,9 @@ const Distribution = () => {
 
           <div className="w-[300px] lg:w-[592px] h-full">
             {isDarkMode ? (
-              <img src="images/light-distribution.svg" alt="Distribution" />
+              <img src="images/light-circle.png" alt="Distribution" />
             ) : (
-              <img src="images/dark-distribution.svg" alt="Distribution" />
+              <img src="images/dark-circle.png" alt="Distribution" />
             )}
           </div>
         </div>
