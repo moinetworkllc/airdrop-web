@@ -1,15 +1,17 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import ButtonComponent from "../components/ButtonComponent";
 import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 import Modal from "../components/Modal";
 import { getData } from "../components/claim";
-import { getCid} from "../components/pinata"
-import { useRouter } from 'next/router';
+import { getCid } from "../components/pinata";
+import { useRouter } from "next/router";
+import ConfettiExplosion from "react-confetti-explosion";
 import JSConfetti from 'js-confetti'
-const contract = require("../components/contract.json")
-require('dotenv').config();
+import PopoverModal from '../components/PopoverModal'
+const contract = require("../components/contract.json");
+require("dotenv").config();
 const { ethers } = require("ethers");
 
 export default function Eligibility() {
@@ -29,25 +31,21 @@ export default function Eligibility() {
     setPoints,
     points,
     kramaIds,
-    loading
+    loading,
   } = useContext(ThemeContext);
   const router = useRouter();
+  const [totalPoints, setTotalPoints] = useState(0);
+  const [data, setData] = useState("");
+  const [cid, setCid] = useState("");
   const [confetti, setConfetti] = useState(false)
-  const [totalPoints, setTotalPoints] = useState(0)
-  const [data, setData] = useState("")
-  const [cid, setCid] = useState("")
-  //let data = ""
+  const [claimModal, setClaimModal] = useState(false);
+  const [checkedCitizen, setCheckedCitizen] = useState(false);
+  const [isExploding, setIsExploding] = useState(false);
+  const [claimTokens, setClaimTokens] = useState(false);
+  const [txModal, setTxModal] = useState(false);
+  const [txnHash, setTxnHash] = useState("");
 
   useEffect(() => {
-    console.log("loading", loading);
-  }, [loading]);
-
-  useEffect(() => {
-    console.log("loading", loading);
-  }, [loading]);
-
-  useEffect(() => {
-    console.log(moiState);
     const pointsEarned = Object.values(points).reduce((a, b) => {
       return a + b;
     }, 0);
@@ -55,82 +53,83 @@ export default function Eligibility() {
   }, [points]);
 
   const amount = totalPoints * 100 + rewards;
-  console.log("Airdrop amount : ", amount);
+
+  useEffect(() => {
+    if (checkedCitizen) {
+      setData(
+        getData(
+          moiState,
+          loginData,
+          points,
+          totalPoints,
+          rewards,
+          amount,
+          kramaIds
+        )
+      );
+      loginData.iome.wallet
+        .sign(data)
+        .then((txn) => setSignature(txn.signature));
+    }
+  }, [claimTokens]);
 
   function Claim() {
-    setData(
-      getData(
-        moiState,
-        loginData,
-        points,
-        totalPoints,
-        rewards,
-        amount,
-        kramaIds
-      )
-    );
-    console.log(data);
-    loginData.iome.wallet.sign(data).then((txn) => setSignature(txn.signature));
-    console.log(signature);
-    setConfetti(true);
+    setClaimModal(true);
   }
   useEffect(() => {
-    if (loginData && data)
-    {
-      console.log("inside", data)
-      loginData.iome.wallet.sign(data).then((txn) => 
-      setSignature(txn.signature)
-    ) 
+    if (loginData && data) {
+      loginData.iome.wallet
+        .sign(data)
+        .then((txn) => setSignature(txn.signature));
     }
-    
-  }, [data])
+  }, [data]);
 
   useEffect(() => {
     if (data) {
-      const details =  JSON.parse(data)
-      details["signature"] = signature
-      let data_ = JSON.stringify(details)
-      
-      let cid_ = getCid(data_)
-      
-      cid_.then((result) => {
-        console.log("Defined!!!", result)
-        setCid(result)
-      })
-      
-     
+      const details = JSON.parse(data);
+      details["signature"] = signature;
+      let data_ = JSON.stringify(details);
 
-    
+      let cid_ = getCid(data_);
+
+      cid_.then((result) => {
+        setCid(result);
+      });
     }
-  }, [signature])
- 
+  }, [signature]);
 
   useEffect(() => {
     if (cid) {
       const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
-      const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_SEPOLIA_URL);
-	    const signer1 = new ethers.Wallet(process.env.NEXT_PUBLIC_PRIV_KEY, provider);
-	    const moiContract = new ethers.Contract(
-          address,
-          contract["abi"],
-          signer1
-        );
-      (async() => {
+      const provider = new ethers.providers.JsonRpcProvider(
+        process.env.NEXT_PUBLIC_SEPOLIA_URL
+      );
+      const signer1 = new ethers.Wallet(
+        process.env.NEXT_PUBLIC_PRIV_KEY,
+        provider
+      );
+      const moiContract = new ethers.Contract(
+        address,
+        contract["abi"],
+        signer1
+      );
+      (async () => {
         const txn = await moiContract.allocate(
           0x00,
           [loginData.userid],
           [amount],
           cid,
           {
-				gasLimit: 100000,
-				gasPrice: 20000000000,
-				}
-        )
-        console.log("contract : ", txn.hash)
-        })();
-        
+            gasLimit: 100000,
+            gasPrice: 20000000000,
+          }
+        );
+        setClaimTokens(false);
+        setTxnHash(txn.hash);
+        setTxModal(true);
+      })();
     }
-  }, [cid])
+  }, [cid]);
 
   useEffect(() => {
     if (confetti) {
@@ -163,11 +162,128 @@ export default function Eligibility() {
     !Object.keys(moiState["isMoid"]).length && router.push("/");
   }, [moiState["isMoid"]]);
 
-  console.log('rewards', rewards);
+  useEffect(() => {
+    if (isExploding) {
+      !loading && setIsExploding(true);
+    } else {
+      setIsExploding(false);
+    }
+  }, [loading]);
+
+  const confettiProps = {
+    force: 0.8,
+    duration: 9000,
+    particleCount: 300,
+    width: 1600,
+    colors: ["#9120C7", "#F5F2FF", "#4B17E5", "#9d1fca"],
+  };
+
+  useEffect(() => {
+    setCheckedCitizen(false);
+  }, [claimModal]);
+
+  const renderbutton = useCallback(() => {
+    if (!loginId) {
+      return (
+        <ButtonComponent
+          onClick={() => setModalOpen(true)}
+          variant="primary"
+          className="my-8 px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-md"
+        >
+          Login Moi ID
+        </ButtonComponent>
+      );
+    } else if (claimTokens) {
+      return (
+        <ButtonComponent variant="secondary" disabled={true} className="my-8">
+          {checkedCitizen ? "Claiming......" : "Ineligibale to claim tokens"}
+        </ButtonComponent>
+      );
+    } else if (txnHash) {
+      return (
+        <ButtonComponent variant="secondary" disabled={true} className="my-8">
+          Claimed tokens
+        </ButtonComponent>
+      );
+    } else if (totalPoints >= 6) {
+      return (
+        <ButtonComponent onClick={Claim} variant="secondary" className="my-8">
+          Claim tokens
+        </ButtonComponent>
+      );
+    } else {
+      return (
+        <ButtonComponent variant="secondary" className="my-8" spanClass="">
+          Explore MOI Ecosystem
+        </ButtonComponent>
+      );
+    }
+  }, [txnHash, totalPoints, claimTokens, loginId]);
 
   return (
     <div className="py-20">
-      <div className="flex justify-center">
+      <div className="relative flex justify-center">
+        <div className="absolute">
+          {isExploding && <ConfettiExplosion {...confettiProps} />}
+        </div>
+        {!txnHash && (
+          <PopoverModal logoutModal={txModal} setLogoutModal={setTxModal}>
+            <div className="w-full flex flex-col px-4 py-4 justify-center items-center">
+              <img src="/images/moi-claim.png" className="w-24 h-24"/>
+              <p className="text-moi-dark text-lg font-semibold pt-2">Transaction Successful</p>
+              <a
+                className="text-moi-purple-400 text-sm underline pt-1"
+                target="_blank"
+                href={`https://sepolia.etherscan.io/tx/${txnHash}`}
+              >
+                View Transaction on explorer
+              </a>
+            </div>
+          </PopoverModal>
+        )}
+        <PopoverModal logoutModal={claimModal} setLogoutModal={setClaimModal}>
+          <div className="text-black px-4 py-4">
+            <div className="flex items-center pb-6">
+              <button
+                className=""
+                onClick={() => setCheckedCitizen(!checkedCitizen)}
+              >
+                {checkedCitizen ? (
+                  <svg
+                    class="h-6 w-6 flex-none fill-moi-white-500 stroke-moi-purple-900 stroke-2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="11" />
+                    <path
+                      d="m8 13 2.165 2.165a1 1 0 0 0 1.521-.126L16 9"
+                      fill="none"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    class="h-6 w-6 flex-none fill-moi-white-500 stroke-moi-purple-900 stroke-2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="11" />
+                  </svg>
+                )}
+              </button>
+              <p class="ml-4">I am not a U.S. Citizen</p>
+            </div>
+            <ButtonComponent
+              variant="primary"
+              className="mx-0 px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-lg"
+              onClick={() => {
+                setClaimTokens(true);
+                setClaimModal(false);
+              }}
+            >
+              Submit
+            </ButtonComponent>
+          </div>
+        </PopoverModal>
         <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         {loading ? (
           <p className="text-black text-bold text-xl">Loding.......</p>
@@ -231,38 +347,11 @@ export default function Eligibility() {
                   </div>
                 </>
               )}
-
-              <div className="md:flex md:items-center">
-                {!loginId ? (
-                  <ButtonComponent
-                    onClick={() => setModalOpen(true)}
-                    variant="primary"
-                    className="shadow !bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded my-8"
-                  >
-                    Login Moi ID
-                  </ButtonComponent>
-                ) : totalPoints >= 6 ? (
-                  <ButtonComponent
-                    onClick={Claim}
-                    variant="secondary"
-                    className="my-8"
-                  >
-                    Claim tokens
-                  </ButtonComponent>
-                ) : (
-                  <ButtonComponent
-                    variant="secondary"
-                    className="my-8"
-                    spanClass=""
-                  >
-                    Explore MOI Ecosystem
-                  </ButtonComponent>
-                )}
-              </div>
+              {renderbutton()}
             </div>
             <div className="border border-white block lg:hidden"></div>
             <div className="w-full lg:w-[60%] p-6 lg:p-10">
-              <Accordion/>
+              <Accordion />
             </div>
           </div>
         )}

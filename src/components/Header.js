@@ -7,7 +7,8 @@ import { ThemeContext } from "../context/ThemeContext";
 import { HeaderTabs } from "../utils/constants";
 import ButtonComponent from "../components/ButtonComponent";
 import Link from "next/link";
-import LogoutModal from "./LogoutModal";
+import PopoverModal from "./PopoverModal";
+import { LogoutIcon } from '../components/SvgComponent';
 
 export default function Header() {
   const { isDarkMode, loginId, handleLogin, setModalOpen, loginData, moiState } = useContext(ThemeContext);
@@ -27,7 +28,20 @@ export default function Header() {
       {({ open }) => (
         <> 
           <div className="2xl:max-w-screen-2xl mx-5 md:mx-[64px] 2xl:mx-auto px-0 lg:px-4 pt-3 pb-8">
-            <LogoutModal logoutModal={logoutModal} setLogoutModal={setLogoutModal}/>
+            <PopoverModal logoutModal={logoutModal} setLogoutModal={setLogoutModal}>  
+              <div className="flex flex-col mt-5 sm:mt-4 gap-6">
+                <div className='text-moi-black-100 px-6'>
+                  <p> User Name: Prathibha Bilagi</p>
+                  <p> Wallet address: Prathibha Bilagi</p>
+                </div>
+                <div 
+                  className='text-black flex justify-end cursor-pointer' 
+                  onClick={() => setLogoutModal(false)}
+                >
+                  <LogoutIcon/>
+                </div>
+              </div>
+            </PopoverModal>
             <div className="relative flex h-16 justify-between">
               <div className="flex ">
                 <div className="flex flex-shrink-0 items-center">

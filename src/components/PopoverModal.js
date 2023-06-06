@@ -1,8 +1,7 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { RightArrowIcon, LogoutIcon } from '../components/SvgComponent';
 
-export default function LogoutModal({logoutModal, setLogoutModal}) {
+export default function PopoverModal({logoutModal, setLogoutModal, children}) {
   return (
     <Transition.Root show={logoutModal} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setLogoutModal}>
@@ -29,8 +28,12 @@ export default function LogoutModal({logoutModal, setLogoutModal}) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative w-fit transform overflow-hidden rounded-xl bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:p-6">
-                <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+              <Dialog.Panel className="w-fit lg:w-[350px] relative transform overflow-hidden rounded-xl bg-white pb-4 pt-5 text-left shadow-xl transition-all sm:my-8">
+                <div className="flex justify-between items-center px-4 pb-3">
+                  <div>
+                  
+                  </div>
+                  <div>
                   <button
                     type="button"
                     className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -39,17 +42,9 @@ export default function LogoutModal({logoutModal, setLogoutModal}) {
                     <span className="sr-only">Close</span>
                     X
                   </button>
+                  </div>
                 </div>
-                
-                <div className="flex flex-col mt-5 sm:mt-4 gap-6">
-                
-                <div className='text-moi-black-100 px-6'>
-                  <p> User Name: Prathibha Bilagi</p>
-                  <p> Wallet address: Prathibha Bilagi</p>
-                </div>
-                  <div className='text-black flex justify-end cursor-pointer'  onClick={() => setLogoutModal(false)}><LogoutIcon/></div>
-                 
-                </div>
+                {children}
               </Dialog.Panel>
             </Transition.Child>
           </div>

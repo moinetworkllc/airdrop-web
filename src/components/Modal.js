@@ -38,7 +38,7 @@ export default function Modal({ setModalOpen, isModalOpen }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-moi-white-100 transition-opacity" />
         </Transition.Child>
       
         <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -52,7 +52,7 @@ export default function Modal({ setModalOpen, isModalOpen }) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg backdrop-blur-md bg-moi-white-500 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+              <Dialog.Panel className="relative transform overflow-hidden transition-all bg-moi-white-100">
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <div className="mt-2 !text-black">

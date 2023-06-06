@@ -67,9 +67,8 @@ const HeroSection = () => {
         </div>
         <div>
           <img
-            className="mx-auto bg-transperant"
-            style={{ "backgroundSize": "1000px" }}
-            src={"/images/human.svg"}
+            className="mx-auto bg-transperant w-full h-full"
+            src={`/images/${isDarkMode ? 'light-header.png' : 'dark-header.png'}`}
           />
         </div>
       </div>
