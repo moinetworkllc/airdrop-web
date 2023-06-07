@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { XIcon } from "@heroicons/react/outline";
 
 export default function PopoverModal({logoutModal, setLogoutModal, children}) {
   return (
@@ -36,11 +37,14 @@ export default function PopoverModal({logoutModal, setLogoutModal, children}) {
                   <div>
                   <button
                     type="button"
-                    className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="rounded-md bg-white text-gray-400 hover:text-gray-500"
                     onClick={() => setLogoutModal(false)}
                   >
                     <span className="sr-only">Close</span>
-                    X
+                      <XIcon
+                        className="w-6 h-6 text-moi-dark"
+                        aria-hidden="true"
+                      />
                   </button>
                   </div>
                 </div>

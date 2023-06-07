@@ -7,8 +7,8 @@ import Modal from "../components/Modal";
 import { getData } from "../components/claim";
 import { getCid } from "../components/pinata";
 import { useRouter } from "next/router";
-import JSConfetti from 'js-confetti'
-import PopoverModal from '../components/PopoverModal'
+import JSConfetti from "js-confetti";
+import PopoverModal from "../components/PopoverModal";
 const contract = require("../components/contract.json");
 const { Network, Alchemy } = require("alchemy-sdk");
 const settings = {
@@ -20,7 +20,6 @@ require("dotenv").config();
 const { ethers } = require("ethers");
 
 export default function Eligibility() {
-  
   const {
     isDarkMode,
     loginId,
@@ -42,13 +41,14 @@ export default function Eligibility() {
   const [totalPoints, setTotalPoints] = useState(0);
   const [data, setData] = useState("");
   const [cid, setCid] = useState("");
-  const [confetti, setConfetti] = useState(false)
+  const [confetti, setConfetti] = useState(false);
   const [claimModal, setClaimModal] = useState(false);
   const [checkedCitizen, setCheckedCitizen] = useState(false);
   const [isExploding, setIsExploding] = useState(false);
   const [claimTokens, setClaimTokens] = useState(false);
   const [txModal, setTxModal] = useState(false);
-  const [txnHash, setTxnHash] = useState("");
+  const [hash, setHash] = useState("");
+  const [txnHash, setTxnHash] = useState();
 
   useEffect(() => {
     const pointsEarned = Object.values(points).reduce((a, b) => {
@@ -129,27 +129,29 @@ export default function Eligibility() {
             gasPrice: 20000000000,
           }
         );
-       console.log(txn.hash)
-       for (var i=0; i<100; i++) {
-        let tx = await alchemy.core.getTransactionReceipt(txn.hash)
-        console.log(tx)
-        
+        setHash(txn.hash);
+        for (var i = 0; i < 100; i++) {
+          let tx = await alchemy.core.getTransactionReceipt(txn.hash);
           if (!tx) {
             console.log("Pending or Unknown Transaction");
-            continue
+            continue;
           } else if (tx.status === 1) {
             console.log("Transaction was successful!");
             setClaimTokens(false);
-            setTxnHash(txn.hash);
+            setTxnHash(true);
             setTxModal(true);
-            break
+            break;
           } else {
+            setClaimTokens(false);
+            setTxnHash(false);
+            setTxModal(true);
+            setCheckedCitizen(false);
+            setSignature("");
             console.log("Transaction failed!");
             // give notification transaction failed
-            break
+            break;
           }
-       }
-  
+        }
       })();
     }
   }, [cid]);
@@ -219,7 +221,14 @@ export default function Eligibility() {
     } else if (claimTokens) {
       return (
         <ButtonComponent variant="secondary" disabled={true} className="my-8">
-          {checkedCitizen ? "Claiming......" : "Ineligibale to claim tokens"}
+          <span className="flex items-center">
+            {isDarkMode ? (
+              <span className="w-6 h-6 rounded-full animate-spin border-2 border-solid border-t-transparent mr-2 border-moi-white-100"></span>
+            ) : (
+              <span class="w-6 h-6 rounded-full animate-spin border-2 border-solid border-t-transparent mr-2 border-moi-purple-600"></span>
+            )}
+            <span>Claiming....</span>
+          </span>
         </ButtonComponent>
       );
     } else if (txnHash) {
@@ -249,21 +258,30 @@ export default function Eligibility() {
         <div className="absolute">
           {isExploding && <ConfettiExplosion {...confettiProps} />}
         </div>
-        {txnHash && (
-          <PopoverModal logoutModal={txModal} setLogoutModal={setTxModal}>
+        <PopoverModal logoutModal={txModal} setLogoutModal={setTxModal}>
+          {txnHash ? (
             <div className="w-full flex flex-col px-4 py-4 justify-center items-center">
-              <img src="/images/moi-claim.png" className="w-24 h-24"/>
-              <p className="text-moi-dark text-lg font-semibold pt-2">Transaction Successful</p>
+              <img src="/images/moi-claim.png" className="w-24 h-24" />
+              <p className="text-moi-dark text-lg font-semibold pt-2">
+                Transaction Successful
+              </p>
               <a
                 className="text-moi-purple-400 text-sm underline pt-1"
                 target="_blank"
-                href={`https://sepolia.etherscan.io/tx/${txnHash}`}
+                href={`https://sepolia.etherscan.io/tx/${hash}`}
               >
                 View Transaction on explorer
               </a>
             </div>
-          </PopoverModal>
-        )}
+          ) : (
+            <div className="w-full flex flex-col px-4 py-4 justify-center items-center">
+              <img src="/images/moi-claim.png" className="w-24 h-24" />
+              <p className="text-moi-dark text-lg font-semibold pt-2">
+                Transaction Failed
+              </p>
+            </div>
+          )}
+        </PopoverModal>
         <PopoverModal logoutModal={claimModal} setLogoutModal={setClaimModal}>
           <div className="text-black px-4 py-4">
             <div className="flex items-center pb-6">
@@ -297,6 +315,7 @@ export default function Eligibility() {
             </div>
             <ButtonComponent
               variant="primary"
+              disabled={!checkedCitizen}
               className="mx-0 px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-lg"
               onClick={() => {
                 setClaimTokens(true);
