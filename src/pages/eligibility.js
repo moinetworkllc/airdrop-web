@@ -10,6 +10,12 @@ import { useRouter } from "next/router";
 import JSConfetti from 'js-confetti'
 import PopoverModal from '../components/PopoverModal'
 const contract = require("../components/contract.json");
+const { Network, Alchemy } = require("alchemy-sdk");
+const settings = {
+  apiKey: process.env.NEXT_PUBLIC_API, // Replace with your Alchemy API Key.
+  network: Network.ETH_SEPOLIA, // Replace with your network.
+};
+const alchemy = new Alchemy(settings);
 require("dotenv").config();
 const { ethers } = require("ethers");
 
@@ -119,13 +125,31 @@ export default function Eligibility() {
           [amount],
           cid,
           {
-            gasLimit: 100000,
+            gasLimit: 10000000,
             gasPrice: 20000000000,
           }
         );
-        setClaimTokens(false);
-        setTxnHash(txn.hash);
-        setTxModal(true);
+       console.log(txn.hash)
+       for (var i=0; i<100; i++) {
+        let tx = await alchemy.core.getTransactionReceipt(txn.hash)
+        console.log(tx)
+        
+          if (!tx) {
+            console.log("Pending or Unknown Transaction");
+            continue
+          } else if (tx.status === 1) {
+            console.log("Transaction was successful!");
+            setClaimTokens(false);
+            setTxnHash(txn.hash);
+            setTxModal(true);
+            break
+          } else {
+            console.log("Transaction failed!");
+            // give notification transaction failed
+            break
+          }
+       }
+  
       })();
     }
   }, [cid]);
