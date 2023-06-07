@@ -7,8 +7,8 @@ import Modal from "../components/Modal";
 import { getData } from "../components/claim";
 import { getCid } from "../components/pinata";
 import { useRouter } from "next/router";
-import JSConfetti from "js-confetti";
 import PopoverModal from "../components/PopoverModal";
+
 const contract = require("../components/contract.json");
 const { Network, Alchemy } = require("alchemy-sdk");
 const settings = {
@@ -41,10 +41,8 @@ export default function Eligibility() {
   const [totalPoints, setTotalPoints] = useState(0);
   const [data, setData] = useState("");
   const [cid, setCid] = useState("");
-  const [confetti, setConfetti] = useState(false);
   const [claimModal, setClaimModal] = useState(false);
   const [checkedCitizen, setCheckedCitizen] = useState(false);
-  const [isExploding, setIsExploding] = useState(false);
   const [claimTokens, setClaimTokens] = useState(false);
   const [txModal, setTxModal] = useState(false);
   const [hash, setHash] = useState("");
@@ -157,27 +155,6 @@ export default function Eligibility() {
   }, [cid]);
 
   useEffect(() => {
-    if (confetti) {
-      const jsConfetti = new JSConfetti();
-      jsConfetti.addConfetti({
-        emojis: ["💎", "💎", "✨", "💎", "💎", "💫"],
-      });
-      jsConfetti.addConfetti({
-        confettiColors: [
-          "#ff0a54",
-          "#ff477e",
-          "#ff7096",
-          "#ff85a1",
-          "#fbb1bd",
-          "#f9bec7",
-        ],
-      });
-      jsConfetti.addConfetti().then();
-      console.log("Confetti animation completed!");
-    }
-  });
-
-  useEffect(() => {
     if (loginData) {
       handleLogin(loginData.userName);
     }
@@ -186,22 +163,6 @@ export default function Eligibility() {
   useEffect(() => {
     !Object.keys(moiState["isMoid"]).length && router.push("/");
   }, [moiState["isMoid"]]);
-
-  useEffect(() => {
-    if (isExploding) {
-      !loading && setIsExploding(true);
-    } else {
-      setIsExploding(false);
-    }
-  }, [loading]);
-
-  const confettiProps = {
-    force: 0.8,
-    duration: 9000,
-    particleCount: 300,
-    width: 1600,
-    colors: ["#9120C7", "#F5F2FF", "#4B17E5", "#9d1fca"],
-  };
 
   useEffect(() => {
     setCheckedCitizen(false);
@@ -255,9 +216,6 @@ export default function Eligibility() {
   return (
     <div className="py-20">
       <div className="relative flex justify-center">
-        <div className="absolute">
-          {isExploding && <ConfettiExplosion {...confettiProps} />}
-        </div>
         <PopoverModal logoutModal={txModal} setLogoutModal={setTxModal}>
           {txnHash ? (
             <div className="w-full flex flex-col px-4 py-4 justify-center items-center">
