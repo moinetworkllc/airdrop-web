@@ -225,7 +225,7 @@ export default function Eligibility() {
         <div className="absolute">
           {isExploding && <ConfettiExplosion {...confettiProps} />}
         </div>
-        {!txnHash && (
+        {txnHash && (
           <PopoverModal logoutModal={txModal} setLogoutModal={setTxModal}>
             <div className="w-full flex flex-col px-4 py-4 justify-center items-center">
               <img src="/images/moi-claim.png" className="w-24 h-24"/>
@@ -279,7 +279,7 @@ export default function Eligibility() {
                 setClaimModal(false);
               }}
             >
-              Submit
+              Confirm
             </ButtonComponent>
           </div>
         </PopoverModal>
@@ -319,17 +319,17 @@ export default function Eligibility() {
                       A minimum of 6 points in total are required to be eligible
                       for the airdrop.
                     </p>
-                    <p className="p-4">{`You can claim ${amount} MOI tokens`}</p>
                     <p className="p-4">{`Your points: ${totalPoints}`}</p>
+                    <p className="p-4">{`You can claim ${amount} MOI tokens`}</p>
                   </div>
                 </>
               ) : (
                 <>
-                  <p className="text-3xl font-bold">Ah shoot !</p>
+                  <p className="text-3xl font-bold">Ah shoot ! 🙁</p>
                   <p className="py-8">
                     Looks like you are not eligible for now. No sweat, you may
-                    become eligible in the future rounds by exploring the
-                    ecosystem, host nodes, fulfil bounties and start using apps.
+                    become eligible in the future rounds. Start exploring the
+                    ecosystem now.
                   </p>
                   <div
                     className={`bg-card-bg shadow border ${
@@ -343,6 +343,7 @@ export default function Eligibility() {
                       for the airdrop.
                     </p>
                     <p className="p-4">{`Your points: ${totalPoints}`}</p>
+                    <p className="p-4">{`You can't claim any MOI tokens as of now`}</p>
                   </div>
                 </>
               )}

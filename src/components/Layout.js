@@ -4,9 +4,6 @@ import { ThemeContext } from "../context/ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
 
-import { Background } from "../components/SvgComponent";
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
@@ -150,8 +147,7 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
   return (
     <>
     <div  className={`p-auto bg-fixed bg-no-repeat ${isDarkMode ? "bg-hero-section bg-moi-white-600" : "bg-main-bg bg-[#13162e]"}`}>
-      <Header />
-
+      <Header name={ref}/>
       <div
         ref={ref}
         // className={`p-auto bg-fixed  bg-no-repeat ${isDarkMode ? "bg-hero-section bg-moi-white-600" : "bg-moi-black-300"}`}

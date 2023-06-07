@@ -46,3 +46,13 @@ body {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: #ffffff !important;
+  box-shadow: 1px 1px#d1d5db;
+}
