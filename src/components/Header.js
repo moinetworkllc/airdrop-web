@@ -46,7 +46,7 @@ export default function Header(props) {
   });
 
   return (
-    <header ref={headerSection} className="px-5 lg:px-0 py-6">
+    <header ref={headerSection} className="px-5 lg:px-0 py-3 lg:py-5">
       <PopoverModal logoutModal={logoutModal} setLogoutModal={setLogoutModal}>
         <div className="flex flex-col mt-5 sm:mt-4 gap-6">
           <div className="text-moi-black-100 px-6">
@@ -66,7 +66,6 @@ export default function Header(props) {
           <div className="relative flex items-center justify-between lg:justify-start md:space-x-6 lg:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <span className="sr-only">Moi</span>
-              {isDarkMode ? (
                 <Link href="/" rel="noopener noreferrer">
                   <img
                     className="h-14 w-auto"
@@ -74,22 +73,13 @@ export default function Header(props) {
                     alt="Moi Technology"
                   />
                 </Link>
-              ) : (
-                <Link href="/" rel="noopener noreferrer">
-                  <img
-                    className="h-14 w-auto"
-                    src="/images/moi-light-logo.svg"
-                    alt="Moi Technology"
-                  />
-                </Link>
-              )}
             </div>
             {HeaderTabs.map((item, index) => {
               return (
                 <a
                   key={index}
                   href={item.href}
-                  target="_blank"
+                  target={item.target}
                   className={`hidden font-semibold text-md lg:block  ${
                     isDarkMode ? "text-moi-purple-600" : "text-moi-white-100"
                   }`}
@@ -166,7 +156,7 @@ export default function Header(props) {
                 <div className="flex items-center justify-between">
                   <Link href="/" rel="noopener noreferrer">
                     <span className="sr-only">Moi</span>
-                    {isDarkMode ? (
+                  
                       <Link href="/">
                         <img
                           className="h-14 w-auto"
@@ -174,15 +164,7 @@ export default function Header(props) {
                           alt="Moi Technology"
                         />
                       </Link>
-                    ) : (
-                      <Link href="/">
-                        <img
-                          className="h-14 w-auto"
-                          src="/images/moi-light-logo.svg"
-                          alt="Moi Technology"
-                        />
-                      </Link>
-                    )}
+                    
                   </Link>
                   <div className="-mr-2">
                     <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-400">
@@ -201,12 +183,8 @@ export default function Header(props) {
                         <a
                           href={item.href}
                           key={index}
-                          className={classNames(
-                            isDarkMode
-                              ? "text-moi-purple-600"
-                              : "text-moi-white-100",
-                            "inline-flex items-center px-1 pt-1 font-semibold text-md"
-                          )}
+                          target={item.target}
+                          className="text-moi-purple-600 inline-flex items-center px-1 pt-1 font-semibold text-md"
                         >
                           {item.name}
                         </a>

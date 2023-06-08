@@ -4,24 +4,29 @@ import DiscoverIcon from "../../public/images/discover.svg";
 
 export const HeaderTabs = [
   {
-    name: "Smart Contracts",
-    href: "/",
+    name: "Babylon",
+    href: "https://moi.technology/pages/babylon.html",
+    target: ""
   },
   {
-    name: "Services",
-    href: "/",
+    name: "Technology",
+    href: "https://moi.technology/pages/technology.html",
+    target: ""
   },
   {
-    name: "Solutions",
-    href: "/",
+    name: "Humans",
+    href: "https://moi.technology/pages/people.html",
+    target: ""
   },
   {
-    name: "Roadmap",
-    href: "/",
+    name: "Blog",
+    href: "https://blog.moi.technology/",
+    target: ""
   },
   {
-    name: "Whitepaper",
-    href: "/",
+    name: "Documentation",
+    href: "https://docs.moi.technology/",
+    target: "_blank"
   },
 ];
 
@@ -51,34 +56,34 @@ export const FooterTabs = {
     {
       label: "Privacy Policy",
       target: "_blank",
-      link: "/",
+      link: "https://moi.technology/pages/privacy-policy.html",
     },
     {
       label: "Cookie Policy",
       target: "_blank",
-      link: "/",
+      link: "https://moi.technology/pages/cookie-policy.html",
     }
   ],
   Sitemap: [
     {
       label: "Technology",
       target: "_blank",
-      link: "/",
+      link: "https://moi.technology/pages/technology.html",
     },
     {
       label: "People",
       target: "_blank",
-      link: "/",
+      link: "https://moi.technology/pages/people.html",
     },
     {
       label: "Blogs",
       target: "_blank",
-      link: "/",
+      link: "https://blog.moi.technology/",
     },
     {
       label: "Documentation",
       target: "_blank",
-      link: "/",
+      link: "https://docs.moi.technology/",
     },
     {
       label: "Project Roadmap",
@@ -88,34 +93,34 @@ export const FooterTabs = {
     {
       label: "Babylon Testnet",
       target: "_blank",
-      link: "/",
+      link: "https://moi.technology/pages/babylon.html",
     }
   ],
   'MOI Ecosystem': [
     {
       label: "Voyage Explorer",
       target: "_blank",
-      link: "/",
+      link: "https://voyage.moi.technology/",
     },
     {
       label: "MOI Bit",
       target: "_blank",
-      link: "/",
+      link: "https://moibit.io/",
     },
     {
       label: "IOMe",
       target: "_blank",
-      link: "/",
+      link: "https://iome.ai/",
     },
     {
       label: "MOI Nation",
       target: "_blank",
-      link: "/",
+      link: "https://moination.com/",
     },
     {
       label: "Mint Valley",
       target: "_blank",
-      link: "/",
+      link: "https://mintvalley.ai/",
     }
   ],
 };

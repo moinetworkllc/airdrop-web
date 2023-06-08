@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import React, { useEffect, useState, useContext, useCallback, useRef } from "react";
 import ButtonComponent from "../components/ButtonComponent";
 import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
@@ -8,6 +8,7 @@ import { getData } from "../components/claim";
 import { getCid } from "../components/pinata";
 import { useRouter } from "next/router";
 import PopoverModal from "../components/PopoverModal";
+import ReactCanvasConfetti from "react-canvas-confetti";
 
 const contract = require("../components/contract.json");
 const { Network, Alchemy } = require("alchemy-sdk");
@@ -213,27 +214,75 @@ export default function Eligibility() {
     }
   }, [txnHash, totalPoints, claimTokens, loginId]);
 
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const canvasStyles = {
+    position: "absolute",
+    pointerEvents: "none",
+    width: "100%",
+    height: "100%",
+    top: 0,
+    left: 0
+  };
+  
+  function getAnimationSettings(originXA, originXB) {
+    return {
+      startVelocity: 10,
+      spread: 360,
+      ticks: 60,
+      zIndex: 0,
+      particleCount: 15,
+      origin: {
+        x: randomInRange(originXA, originXB),
+        y: Math.random() - 0.2
+      }
+    };
+  }
+  const refAnimationInstance = useRef(null);
+
+  const getInstance = useCallback((instance) => {
+    refAnimationInstance.current = instance;
+  }, []);
+
+  const nextTickAnimation = useCallback(() => {
+    if (refAnimationInstance.current) {
+      refAnimationInstance.current(getAnimationSettings(0.1, 0.3));
+      refAnimationInstance.current(getAnimationSettings(0.7, 0.9));
+    }
+  }, []);
+
+  useEffect(() => {
+    setInterval(nextTickAnimation, 700);
+  }, [nextTickAnimation]);
+
   return (
     <div className="py-20">
       <div className="relative flex justify-center">
         <PopoverModal logoutModal={txModal} setLogoutModal={setTxModal}>
           {txnHash ? (
-            <div className="w-full flex flex-col px-4 py-4 justify-center items-center">
-              <img src="/images/moi-claim.png" className="w-24 h-24" />
-              <p className="text-moi-dark text-lg font-semibold pt-2">
-                Transaction Successful
-              </p>
-              <a
-                className="text-moi-purple-400 text-sm underline pt-1"
-                target="_blank"
-                href={`https://sepolia.etherscan.io/tx/${hash}`}
-              >
-                View Transaction on explorer
-              </a>
-            </div>
+            <>
+              <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
+              <div className="w-full flex flex-col px-4 py-4 justify-center items-center">
+                <img src="/images/moi-claim.png" className="w-24 h-24" />
+                <p className="text-moi-dark text-lg font-semibold pt-2">
+                  Transaction Successful
+                </p>
+                <a
+                  className="text-moi-purple-400 text-sm underline pt-1"
+                  target="_blank"
+                  href={`https://sepolia.etherscan.io/tx/${hash}`}
+                >
+                  View Transaction on explorer
+                </a>
+              </div>
+            </>
           ) : (
-            <div className="w-full flex flex-col px-4 py-4 justify-center items-center">
-              <img src="/images/moi-claim.png" className="w-24 h-24" />
+            <div className="w-full flex flex-col px-4 pt-0 pb-4 justify-center items-center">
+              <svg width="80" height="80" viewBox="0 0 921 809" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M904.653 690.176L529.869 47.104C512.461 16.384 487.885 0 460.237 0C433.613 0 408.013 16.384 390.605 47.104L14.7968 690.176C-2.6112 719.872 -4.6592 749.568 8.6528 773.12C21.9648 796.672 48.5888 808.96 83.4048 808.96H837.069C871.885 808.96 898.509 795.648 911.821 773.12C925.133 749.568 922.061 719.872 904.653 690.176ZM875.981 752.64C869.837 762.88 856.525 768 837.069 768H83.4048C63.9488 768 49.6128 761.856 44.4928 752.64C38.3488 742.4 40.3968 727.04 50.6368 710.656L427.469 67.584C437.709 50.176 449.997 40.96 461.261 40.96C472.525 40.96 485.837 51.2 495.053 67.584L869.837 710.656C879.053 727.04 882.125 742.4 875.981 752.64ZM490.957 604.16C490.957 621.568 477.645 634.88 460.237 634.88C442.829 634.88 429.517 621.568 429.517 604.16C429.517 586.752 442.829 573.44 460.237 573.44C477.645 573.44 490.957 586.752 490.957 604.16ZM490.957 307.2V501.76C490.957 519.168 477.645 532.48 460.237 532.48C442.829 532.48 429.517 519.168 429.517 501.76V307.2C429.517 289.792 442.829 276.48 460.237 276.48C477.645 276.48 490.957 289.792 490.957 307.2Z" fill="#BA1F1F"/>
+              </svg>
               <p className="text-moi-dark text-lg font-semibold pt-2">
                 Transaction Failed
               </p>

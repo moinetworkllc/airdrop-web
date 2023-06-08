@@ -85,7 +85,7 @@ const Footer = () => {
                     <div class="">
                       <div class="relative w-full border-2 border-moi-white-800 bg-transparent rounded-2xl text-left col-span-2">
                         <input
-                          className="px-4 py-3 bg-transparent placeholder:text-xs placeholder:text-moi-grey placeholder:font-semibold"
+                          className="w-full rounded-2xl px-4 py-3 bg-transparent placeholder:text-xs placeholder:text-moi-grey placeholder:font-semibold"
                           placeholder="Enter your email"
                         />
                         <button className="absolute text-white top-3 right-5">
