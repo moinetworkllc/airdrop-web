@@ -14,14 +14,14 @@ const primaryFeatures = [
     name: "MOI Guardians",
     description:
       "Run a MOI Pod to validate transactions and secure the MOI network",
-    href: "#",
+    href: "https://voyage.moi.technology/",
     lightImage: "light-guardians",
-    darkImage: "dark-guardians"
+    darkImage: "dark-guardians",
   },
   {
     name: "MOI Nation",
     description: "Perform small but crucial tasks as a CitZen to spread awareness about MOI",
-    href: "#",
+    href: "https://moination.com/",
     lightImage: "light-nation",
     darkImage: "dark-nation"
   },
@@ -29,7 +29,7 @@ const primaryFeatures = [
     name: "MOI Ambassadors",
     description:
       "Nurture and support the MOI community by educating and connecting members",
-    href: "#",
+    href: "https://medium.com/moi-technology/introducing-the-moi-ambassador-program-towards-the-million-nodes-billion-interactions-1513521ece54",
     lightImage: "light-ambassadors",
     darkImage: "dark-ambassadors"
   },

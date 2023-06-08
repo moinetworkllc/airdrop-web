@@ -24,9 +24,8 @@ const primaryFeatures = [
     icon: <Context />,
   },
   {
-    name: "Task scheduling",
-    description:
-      "Et quod quaerat dolorem quaerat architecto aliquam accusantium. Ex adipisci et doloremque autem quia quam. Quis eos molestiae at iure impedit.",
+    name: "Local finality, global truth",
+    description: "Supporting billions of assets across millions of nodes",
     href: "#",
     icon: <NativeAssetIcon />,
   }
@@ -50,21 +49,13 @@ const WhyMoi = () => {
               >
                 <div className="flex flex-col gap-y-4 items-start px-6">
                   <div className="h-10 w-10 inline-flex">{feature.icon}</div>
-                  <div className="text-base font-semibold leading-7 text-moi-purple-700">
+                  <div className="text-base lg:text-md font-semibold leading-7 text-moi-purple-700">
                     {feature.name}
                   </div>
                 </div>
 
-                <div className="mt-1 flex flex-auto flex-col text-base leading-7 text-moi-purple-700 px-6">
-                  <p className="flex-auto">{feature.description}</p>
-                  <p className="mt-6">
-                    <a
-                      href={feature.href}
-                      className="text-sm font-semibold leading-6 text-indigo-400"
-                    >
-                      Learn more <span aria-hidden="true">→</span>
-                    </a>
-                  </p>
+                <div className="mt-1 flex flex-auto flex-col text-moi-purple-700 px-6">
+                  <p className="flex-auto text-sm lg:text-base leading-7">{feature.description}</p>
                 </div>
               </div>
             ))}
