@@ -3,9 +3,9 @@ import { Inter } from "next/font/google";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
+import axios from 'axios';
 
 const inter = Inter({ subsets: ["latin"] });
-import axios from 'axios';
 
 const makeKycRequest = async (userid) => {
   const url = 'https://api.moinet.io/moi-id/digitalme/checkForKYC';
@@ -13,7 +13,7 @@ const makeKycRequest = async (userid) => {
     'Content-Type': 'application/json',
   };
   const data = {
-    defAddr: "0x9755aa020dB3784B15F286820CF4b6FC0075a712",//userid,
+    defAddr: userid,
     nameSpace: 'validator',
   };
 
@@ -109,7 +109,7 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     }
     else return;
    })
-   if (!kyc) {
+   if (kyc) {
     let response = await makeKycRequest(loginData.userid)
     console.log("Country is : ", response.kycMethod.nationality)
     
