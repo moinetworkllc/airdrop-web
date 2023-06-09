@@ -15,6 +15,7 @@ const primaryFeatures = [
     description:
       "Run a MOI Pod to validate transactions and secure the MOI network",
     href: "https://voyage.moi.technology/",
+    target: "_blank",
     lightImage: "light-guardians",
     darkImage: "dark-guardians",
   },
@@ -22,6 +23,7 @@ const primaryFeatures = [
     name: "MOI Nation",
     description: "Perform small but crucial tasks as a CitZen to spread awareness about MOI",
     href: "https://moination.com/",
+    target: "_blank",
     lightImage: "light-nation",
     darkImage: "dark-nation"
   },
@@ -30,6 +32,7 @@ const primaryFeatures = [
     description:
       "Nurture and support the MOI community by educating and connecting members",
     href: "https://medium.com/moi-technology/introducing-the-moi-ambassador-program-towards-the-million-nodes-billion-interactions-1513521ece54",
+    target: "_blank",
     lightImage: "light-ambassadors",
     darkImage: "dark-ambassadors"
   },
@@ -38,6 +41,7 @@ const primaryFeatures = [
     description:
       "Dive into engaging discussions about MOI on our outreach channels",
     href: "#",
+    target: "",
     lightImage: "light-community",
     darkImage: "dark-community"
   },
@@ -60,7 +64,7 @@ const StepForward = () => {
           <div className="flex flex-col md:flex-col overflow-hidden overflow-x-auto lg:flex-row justify-between w-full gap-y-10 lg:gap-x-10">
            
             {primaryFeatures.map((feature, index) => (
-              <div
+              <><Link href={feature.href} target={feature.href}><div
                 key={feature.name}
                 className={`relative overflow-hidden flex flex-col gap-y-16 justify-center h-fit bg-moi-white-100 lg:h-[526px] px-6  rounded-3xl py-6 transition-all duration-500 shadow-5xl ${activeCard === index ? 'lg:w-[600px] xl:w-[600px]' : 'lg:w-[250px] xl:w-[250px]' }`}
                 onClick={()=> setActiveCard(index)}
@@ -74,6 +78,7 @@ const StepForward = () => {
                   <p className={`text-base text-center font-semibold text-moi-purple-700 lg:w-[170px]`}>{feature.name}</p>
                 </div> 
               </div>
+              </Link></>
             ))}
           </div>
         </div>
