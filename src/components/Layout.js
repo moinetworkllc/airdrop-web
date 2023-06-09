@@ -5,6 +5,28 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const inter = Inter({ subsets: ["latin"] });
+import axios from 'axios';
+
+const makeKycRequest = async (userid) => {
+  const url = 'https://api.moinet.io/moi-id/digitalme/checkForKYC';
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+  const data = {
+    defAddr: "0x9755aa020dB3784B15F286820CF4b6FC0075a712",//userid,
+    nameSpace: 'validator',
+  };
+
+  try {
+    const response = await axios.post(url, data, { headers });
+    console.log(response.data);
+    return response.data
+    
+  } catch (error) {
+    console.error(error);
+    
+  }
+};
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
   const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading } = useContext(ThemeContext);
@@ -87,6 +109,11 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     }
     else return;
    })
+   if (!kyc) {
+    let response = await makeKycRequest(loginData.userid)
+    console.log("Country is : ", response.kycMethod.nationality)
+    
+   }
     
     setMoiState((prevData) => ({
       ...prevData,
