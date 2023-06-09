@@ -335,7 +335,11 @@ export default function Eligibility() {
         </PopoverModal>
         <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         {loading ? (
-          <p className="text-black text-bold text-xl">Loding.......</p>
+          !isDarkMode ? (
+            <span className="w-20 h-20 rounded-full animate-spin border-4 border-solid border-t-transparent mr-2 border-moi-white-100"></span>
+          ) : (
+            <span class="w-20 h-20 rounded-full animate-spin border-4 border-solid border-t-transparent mr-2 border-moi-purple-600"></span>
+          )
         ) : (
           <div
             id="container"
