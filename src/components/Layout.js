@@ -39,12 +39,12 @@ const getAllocationProof = async (userid) => {
       userid,
       0x00
     )
+
+    return txn
      
-    console.log("Allocation proof : ", txn)
   } catch (error) {
-    console.error(error);
-    return "alreadyClaimed"
-    
+    console.error(error)
+    return ([])
   }
 };
 const makeKycRequest = async (userid) => {
@@ -69,15 +69,13 @@ const makeKycRequest = async (userid) => {
 };
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading } = useContext(ThemeContext);
+  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading, setProof } = useContext(ThemeContext);
 
   const getEligibility = async () => {
-    const proof = await getAllocationProof("0x9755aa020dB3784B15F286820CF4b6FC0075a712")
+  const proof = await getAllocationProof(loginData.userid)
   console.log(proof)
+  setProof(proof)
 
-  if (proof == "alreadyClaimed") {
-    // show pop up already claim
-  }
 
     let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`)
     
