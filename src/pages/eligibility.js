@@ -37,6 +37,7 @@ export default function Eligibility() {
     points,
     kramaIds,
     loading,
+    proof
   } = useContext(ThemeContext);
   const router = useRouter();
   const [totalPoints, setTotalPoints] = useState(0);
@@ -97,12 +98,20 @@ export default function Eligibility() {
       let cid_ = getCid(data_);
 
       cid_.then((result) => {
-        setCid(result);
-      });
+        if (proof.includes(result)){
+          console.log("Already claimed")
+        }
+        else {
+          console.log("Why else")
+          setCid(result);
+        }   
+        });
+      
     }
   }, [signature]);
 
   useEffect(() => {
+    console.log("Cid is :", cid)
     if (cid) {
       const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
       const provider = new ethers.providers.JsonRpcProvider(
