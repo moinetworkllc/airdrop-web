@@ -11,6 +11,7 @@ const ThemeProvider = ({ children }) => {
   const [rewards, setRewards] = useState(0)
   const [kramaIds, setKramaIds] = useState([])
   const [loading, setLoading] = useState(false)
+  const [kycNationality, setKycNationality] = useState("")
   const [proof, setProof] = useState([])
   const [moiState, setMoiState] = useState({
     isMoid: {},
@@ -78,6 +79,8 @@ const ThemeProvider = ({ children }) => {
         setKramaIds,
         setLoading,
         loading,
+        setKycNationality,
+        kycNationality,
         proof,
         setProof
       }}

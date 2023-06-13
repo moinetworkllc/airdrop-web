@@ -40,7 +40,7 @@ const primaryFeatures = [
     name: "Community Hangouts",
     description:
       "Dive into engaging discussions about MOI on our outreach channels",
-    href: "#",
+    href: "",
     target: "",
     lightImage: "light-community",
     darkImage: "dark-community"
@@ -61,24 +61,38 @@ const StepForward = () => {
         </div>
         <div className="mx-auto mt-16 max-w-2xl lg:mt-20 lg:max-w-none">
           
-          <div className="flex flex-col md:flex-col overflow-hidden overflow-x-auto lg:flex-row justify-between w-full gap-y-10 lg:gap-x-10">
+          <div className="w-full flex flex-col md:flex-col overflow-hidden overflow-x-auto lg:flex-row justify-between gap-y-10 lg:gap-x-10">
            
             {primaryFeatures.map((feature, index) => (
-              <><Link href={feature.href} target={feature.href}><div
-                key={feature.name}
-                className={`relative overflow-hidden flex flex-col gap-y-16 justify-center h-fit bg-moi-white-100 lg:h-[526px] px-6  rounded-3xl py-6 transition-all duration-500 shadow-5xl ${activeCard === index ? 'lg:w-[600px] xl:w-[600px]' : 'lg:w-[250px] xl:w-[250px]' }`}
-                onClick={()=> setActiveCard(index)}
-                onMouseEnter={()=> setActiveCard(index)}
-              >
-                <img className={`absolute z-0 h-[500px] w-[200px] right-0 ${activeCard === index ? 'opacity-25 lg:opacity-90': 'opacity-25'}`} src={`/images/${isDarkMode ? feature.lightImage : feature.darkImage}.png`}/>
-                <div id="fade-in-image" className={`items-center z-50 text-xl lg:text-[30px] 2xl:text-[40px] 2xl:leading-[40px] font-semibold text-moi-purple-700 ${activeCard === index ? "block" : "lg:hidden"}`}>
-                  <p className="flex-auto w-[70%]">{feature.description}</p>
+              feature?.target ? <Link key={index} href={feature.href} target={feature.target}>
+                <div
+                  key={feature.name}
+                  className={`relative overflow-hidden flex flex-col gap-y-16 justify-center h-fit bg-moi-white-100 lg:h-[526px] px-6 rounded-3xl py-6 transition-all duration-500 shadow-5xl ${activeCard === index ? 'lg:w-[550px] 2xl:w-[600px]' : 'lg:w-[200px] 2xl:w-[250px]' }`}
+                  onClick={()=> setActiveCard(index)}
+                  onMouseEnter={()=> setActiveCard(index)}
+                >
+                  <img className={`absolute z-0 h-auto lg:h-[500px] w-[200px] right-0 ${activeCard === index ? 'opacity-25 lg:opacity-90': 'opacity-25'}`} src={`/images/${isDarkMode ? feature.lightImage : feature.darkImage}.png`}/>
+                  <div id="fade-in-image" className={`items-center z-50 text-xl lg:text-[30px] 2xl:text-[40px] 2xl:leading-[40px] font-semibold text-moi-purple-700 ${activeCard === index ? "block" : "lg:hidden"}`}>
+                    <p className="flex-auto w-[70%]">{feature.description}</p>
+                  </div>
+                  <div className={`border-black bg-white ${activeCard === index ? "border py-2 px-4 w-fit rounded-lg" : "border py-2 px-4 w-fit rounded-lg lg:rotate-[-90deg]"}`}>
+                    <p className={`text-base text-center font-semibold text-moi-purple-700 lg:w-[170px]`}>{feature.name}</p>
+                  </div> 
                 </div>
-                <div className={`border-black bg-white ${activeCard === index ? "border py-2 px-4 w-fit rounded-lg" : "border py-2 px-4 w-fit rounded-lg lg:rotate-[-90deg]"}`}>
-                  <p className={`text-base text-center font-semibold text-moi-purple-700 lg:w-[170px]`}>{feature.name}</p>
-                </div> 
-              </div>
-              </Link></>
+              </Link> : <div
+                  key={feature.name}
+                  className={`relative overflow-hidden flex flex-col gap-y-16 justify-center h-fit bg-moi-white-100 lg:h-[526px] px-6  rounded-3xl py-6 transition-all duration-500 shadow-5xl ${activeCard === index ? 'lg:w-[550px] 2xl:w-[600px]' : 'lg:w-[200px] 2xl:w-[250px]' }`}
+                  onClick={()=> setActiveCard(index)}
+                  onMouseEnter={()=> setActiveCard(index)}
+                >
+                  <img className={`absolute z-0 h-auto lg:h-[500px] w-[200px] right-0 ${activeCard === index ? 'opacity-25 lg:opacity-90': 'opacity-25'}`} src={`/images/${isDarkMode ? feature.lightImage : feature.darkImage}.png`}/>
+                  <div id="fade-in-image" className={`items-center z-50 text-xl lg:text-[30px] 2xl:text-[40px] 2xl:leading-[40px] font-semibold text-moi-purple-700 ${activeCard === index ? "block" : "lg:hidden"}`}>
+                    <p className="flex-auto w-[70%]">{feature.description}</p>
+                  </div>
+                  <div className={`border-black bg-white ${activeCard === index ? "border py-2 px-4 w-fit rounded-lg" : "border py-2 px-4 w-fit rounded-lg lg:rotate-[-90deg]"}`}>
+                    <p className={`text-base text-center font-semibold text-moi-purple-700 lg:w-[170px]`}>{feature.name}</p>
+                  </div> 
+                </div>
             ))}
           </div>
         </div>

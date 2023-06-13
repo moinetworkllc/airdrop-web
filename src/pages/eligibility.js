@@ -37,7 +37,8 @@ export default function Eligibility() {
     points,
     kramaIds,
     loading,
-    proof
+    proof,
+    kycNationality
   } = useContext(ThemeContext);
   const router = useRouter();
   const [totalPoints, setTotalPoints] = useState(0);
@@ -137,6 +138,8 @@ export default function Eligibility() {
             gasPrice: 20000000000,
           }
         );
+        const cidprofff = await moiContract.getAllocationProofsOf(0, cid);
+        console.log("cidprofff====================", cidprofff);
         setHash(txn.hash);
         for (var i = 0; i < 100; i++) {
           let tx = await alchemy.core.getTransactionReceipt(txn.hash);
@@ -196,7 +199,7 @@ export default function Eligibility() {
             {isDarkMode ? (
               <span className="w-6 h-6 rounded-full animate-spin border-2 border-solid border-t-transparent mr-2 border-moi-white-100"></span>
             ) : (
-              <span class="w-6 h-6 rounded-full animate-spin border-2 border-solid border-t-transparent mr-2 border-moi-purple-600"></span>
+              <span className="w-6 h-6 rounded-full animate-spin border-2 border-solid border-t-transparent mr-2 border-moi-purple-600"></span>
             )}
             <span>Claiming....</span>
           </span>
@@ -209,9 +212,10 @@ export default function Eligibility() {
         </ButtonComponent>
       );
     } else if (totalPoints >= 6) {
+      {console.log("kycNationality", kycNationality === 'The United States of America')}
       return (
-        <ButtonComponent onClick={Claim} variant="secondary" className="my-8">
-          Claim tokens
+        <ButtonComponent onClick={Claim} variant="secondary" disabled={kycNationality === 'The United States of America'} className="my-8 disabled:cursor-not-allowed">
+          {kycNationality === 'The United States of America' ? 'Unable to claim tokens': 'Claim tokens'}
         </ButtonComponent>
       );
     } else {
@@ -307,9 +311,9 @@ export default function Eligibility() {
               >
                 {checkedCitizen ? (
                   <svg
-                    class="h-6 w-6 flex-none fill-moi-white-500 stroke-moi-purple-900 stroke-2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    className="h-6 w-6 flex-none fill-moi-white-500 stroke-moi-purple-900 stroke-2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <circle cx="12" cy="12" r="11" />
                     <path
@@ -319,15 +323,15 @@ export default function Eligibility() {
                   </svg>
                 ) : (
                   <svg
-                    class="h-6 w-6 flex-none fill-moi-white-500 stroke-moi-purple-900 stroke-2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    className="h-6 w-6 flex-none fill-moi-white-500 stroke-moi-purple-900 stroke-2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <circle cx="12" cy="12" r="11" />
                   </svg>
                 )}
               </button>
-              <p class="ml-4">I am not a U.S. Citizen</p>
+              <p className="ml-4">I am not a U.S. Citizen</p>
             </div>
             <ButtonComponent
               variant="primary"
@@ -347,7 +351,7 @@ export default function Eligibility() {
           !isDarkMode ? (
             <span className="w-20 h-20 rounded-full animate-spin border-4 border-solid border-t-transparent mr-2 border-moi-white-100"></span>
           ) : (
-            <span class="w-20 h-20 rounded-full animate-spin border-4 border-solid border-t-transparent mr-2 border-moi-purple-600"></span>
+            <span className="w-20 h-20 rounded-full animate-spin border-4 border-solid border-t-transparent mr-2 border-moi-purple-600"></span>
           )
         ) : (
           <div
