@@ -3,10 +3,50 @@ import { Inter } from "next/font/google";
 import { ThemeContext } from "../context/ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
+import axios from 'axios';
+const contract = require("../components/contract.json");
+require("dotenv").config();
+const { ethers } = require("ethers");
 
 const inter = Inter({ subsets: ["latin"] });
-import axios from 'axios';
 
+const getAllocationProof = async (userid) => {
+  const url = 'https://api.moinet.io/moi-id/digitalme/checkForKYC';
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+  const data = {
+    defAddr: userid,
+    nameSpace: 'validator',
+  };
+
+  try {
+    const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+      const provider = new ethers.providers.JsonRpcProvider(
+        process.env.NEXT_PUBLIC_SEPOLIA_URL
+      );
+      const signer1 = new ethers.Wallet(
+        process.env.NEXT_PUBLIC_PRIV_KEY,
+        provider
+      );
+      const moiContract = new ethers.Contract(
+        address,
+        contract["abi"],
+        signer1
+      );
+      console.log("userid", userid);
+    const txn = await moiContract.getAllocationProofsOf(
+      userid,
+      0x00
+    )
+      console.log("txn", txn);
+    return txn
+     
+  } catch (error) {
+    console.error(error)
+    return ([])
+  }
+};
 const makeKycRequest = async (userid) => {
   const url = 'https://api.moinet.io/moi-id/digitalme/checkForKYC';
   const headers = {
@@ -29,9 +69,12 @@ const makeKycRequest = async (userid) => {
 };
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading, setKycNationality } = useContext(ThemeContext);
+  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading, setProof } = useContext(ThemeContext);
 
   const getEligibility = async () => {
+  const proof = await getAllocationProof(loginData.userid)
+  setProof(proof)
+
     let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`)
     
     let data = await response.json();
@@ -109,9 +152,11 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     }
     else return;
    })
-   if (!kyc) {
+   if (kyc) {
     let response = await makeKycRequest(loginData.userid)
-    response && setKycNationality(response.kycMethod.nationality)    
+    response && setKycNationality(response.kycMethod.nationality) 
+    response && console.log("Country is : ", response.kycMethod.nationality)
+    
    }
     
     setMoiState((prevData) => ({

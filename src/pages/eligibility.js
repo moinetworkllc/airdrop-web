@@ -138,8 +138,6 @@ export default function Eligibility() {
             gasPrice: 20000000000,
           }
         );
-        const cidprofff = await moiContract.getAllocationProofsOf(0, cid);
-        console.log("cidprofff====================", cidprofff);
         setHash(txn.hash);
         for (var i = 0; i < 100; i++) {
           let tx = await alchemy.core.getTransactionReceipt(txn.hash);
@@ -212,8 +210,10 @@ export default function Eligibility() {
         </ButtonComponent>
       );
     } else if (totalPoints >= 6) {
-      {console.log("kycNationality", kycNationality === 'The United States of America')}
       return (
+        proof.length ? <ButtonComponent variant="secondary" disabled={true} className="my-8 !cursor-not-allowed">
+          Claimed tokens
+        </ButtonComponent> : 
         <ButtonComponent onClick={Claim} variant="secondary" disabled={kycNationality === 'The United States of America'} className="my-8 disabled:cursor-not-allowed">
           {kycNationality === 'The United States of America' ? 'Unable to claim tokens': 'Claim tokens'}
         </ButtonComponent>
