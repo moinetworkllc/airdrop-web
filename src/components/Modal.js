@@ -10,20 +10,13 @@ export default function Modal({ setModalOpen, isModalOpen }) {
   const router = useRouter();
 
   const onSuccess = async(creds) => {
+    creds && router.push("/eligibility");
     setMoiState((prevData) => ({
       ...prevData,
       isMoid: creds,
     }));
     setLoginData(creds)
     setModalOpen(false)
-    creds && router.push("/eligibility");
-    // IOMe username
-    console.log(creds.userName);
-    // IOMe UserID
-    console.log(creds.userid);
-    // User Authenticiation token to query information
-    console.log(creds.authToken);
-
   }
 
   return (

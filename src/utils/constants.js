@@ -2,6 +2,42 @@ import ApplicationIcon from "../../public/images/application.svg";
 import ProjectIcon from "../../public/images/project-icon.svg";
 import DiscoverIcon from "../../public/images/discover.svg";
 
+export const MOI_INITIAL_DATA = {
+  isMoid: {},
+  phone_no: "",
+  email: "",
+  kyc: "",
+  validator_nodes: "",
+  validator_nodes_may: "",
+  twitter: "",
+  telegram: "",
+  discord: "",
+  interactions: "",
+  kramaId: "",
+  createdApp: "",
+  partApp: "",
+  createdAvatar: "",
+  scannedAvatar: "",
+}
+
+export const INITAL_POINTS = {
+  moid: 0,
+  phone_no: 0,
+  email: 0,
+  kyc: 0,
+  validator_nodes: 0,
+  validator_nodes_may: 0,
+  twitter: 0,
+  telegram: 0,
+  discord: 0,
+  interactions: 0,
+  createdApp: 0,
+  partApp: 0,
+  createdAvatar: 0,
+  scannedAvatar: 0,
+  kramaId: 0
+} 
+
 export const HeaderTabs = [
   {
     name: "Babylon",

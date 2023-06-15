@@ -103,7 +103,6 @@ export default function Eligibility() {
           console.log("Already claimed")
         }
         else {
-          console.log("Why else")
           setCid(result);
         }   
         });
@@ -112,7 +111,6 @@ export default function Eligibility() {
   }, [signature]);
 
   useEffect(() => {
-    console.log("Cid is :", cid)
     if (cid) {
       const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
       const provider = new ethers.providers.JsonRpcProvider(
@@ -336,7 +334,7 @@ export default function Eligibility() {
             <ButtonComponent
               variant="primary"
               disabled={!checkedCitizen}
-              className="mx-0 px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-lg"
+              className="mx-0 px-2 py-2 lg:px-8 lg:py-2 !text-sm lg:!text-lg w-full disabled:cursor-not-allowed"
               onClick={() => {
                 setClaimTokens(true);
                 setClaimModal(false);

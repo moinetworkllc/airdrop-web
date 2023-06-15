@@ -34,12 +34,10 @@ const getAllocationProof = async (userid) => {
         contract["abi"],
         signer1
       );
-      console.log("userid", userid);
     const txn = await moiContract.getAllocationProofsOf(
       userid,
       0x00
     )
-      console.log("txn", txn);
     return txn
      
   } catch (error) {
@@ -59,7 +57,6 @@ const makeKycRequest = async (userid) => {
 
   try {
     const response = await axios.post(url, data, { headers });
-    console.log(response.data);
     return response.data
     
   } catch (error) {
@@ -154,9 +151,7 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
    })
    if (kyc) {
     let response = await makeKycRequest(loginData.userid)
-    response && setKycNationality(response.kycMethod.nationality) 
-    response && console.log("Country is : ", response.kycMethod.nationality)
-    
+    response && setKycNationality(response.kycMethod.nationality)
    }
     
     setMoiState((prevData) => ({

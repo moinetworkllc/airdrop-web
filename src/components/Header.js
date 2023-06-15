@@ -2,7 +2,7 @@ import { Fragment, useEffect, useRef, useContext, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Popover, Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon, CheckCircleIcon } from "@heroicons/react/outline";
 import { classNames } from "../utils/helpers";
 import { ThemeContext } from "../context/ThemeContext";
 import { HeaderTabs } from "../utils/constants";
@@ -10,6 +10,9 @@ import ButtonComponent from "./ButtonComponent";
 import ToggleComponent from "./Toogle";
 import { LogoutIcon } from "./SvgComponent";
 import PopoverModal from "./PopoverModal";
+import copy from 'copy-to-clipboard';
+import { MOI_INITIAL_DATA, INITAL_POINTS } from "../utils/constants";
+import { AccountIcon, WalletIcon, CopyIcon } from '../components/SvgComponent';
 
 export default function Header(props) {
   const {
@@ -19,8 +22,17 @@ export default function Header(props) {
     setModalOpen,
     loginData,
     moiState,
+    setPoints,
+    setMoiState,
+    setLoginData,
+    setSignature,
+    setRewards,
+    setKramaIds,
+    setProof,
+    setKycNationality,
   } = useContext(ThemeContext);
   const [logoutModal, setLogoutModal] = useState(false);
+  const [copyAddress, setCopyAddress] = useState(false)
 
   useEffect(() => {
     if(loginData) {
@@ -45,17 +57,55 @@ export default function Header(props) {
     };
   });
 
+  const copyWalletAddress = (address) => {
+    const copied = copy(address)
+    setCopyAddress(copied)
+  }
+  
+  useEffect(() => {
+    if(copyAddress) {
+      const hide = setTimeout(() => {
+        setCopyAddress(false)
+      }, 500)
+      return () => {
+        clearTimeout(hide)
+      }
+    }
+    return undefined
+  }, [copyAddress, setCopyAddress, 500])
+
   return (
     <header ref={headerSection} className="px-5 lg:px-0 py-3 lg:py-5">
       <PopoverModal logoutModal={logoutModal} setLogoutModal={setLogoutModal}>
         <div className="flex flex-col mt-5 sm:mt-4 gap-6">
-          <div className="text-moi-black-100 px-6">
-            <p> User Name: </p>
-            <p> Wallet address: </p>
+          <div className="flex flex-col gap-y-4 text-moi-black-100 px-6 border border-moi-purple-500 py-4 mx-4 rounded-3xl shadow">
+            <div className="flex items-center gap-x-3">
+              <div><AccountIcon/></div>
+              <div>{moiState["isMoid"].userName}</div>  
+            </div>
+            <div className="flex items-center gap-x-3">
+              <div><WalletIcon/></div>
+              <div>{`${moiState["isMoid"].userid?.slice(0, 8)}...${moiState["isMoid"].userid?.slice(-6)}`}</div>
+              {!copyAddress ? 
+                <div onClick={() => copyWalletAddress(moiState["isMoid"].userid)}><CopyIcon/></div> :  
+                <CheckCircleIcon className="w-5 h-5 text-green-700"/>
+              }
+            </div>
           </div>
           <div
-            className="text-black flex justify-end cursor-pointer"
-            onClick={() => setLogoutModal(false)}
+            className="text-black flex justify-end cursor-pointer px-6"
+            onClick={() => {
+              handleLogin("")
+              setLoginData()
+              setSignature("")
+              setRewards(0)
+              setKramaIds([])
+              setProof([])
+              setKycNationality()
+              setPoints(INITAL_POINTS)
+              setMoiState(MOI_INITIAL_DATA)
+              setLogoutModal(false)
+            }}
           >
             <LogoutIcon />
           </div>

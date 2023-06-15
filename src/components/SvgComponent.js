@@ -296,6 +296,34 @@ const LogoutIcon = () => {
   );
 };
 
+const AccountIcon = () => {
+  return (
+    <svg className="rounded-full" x="0" y="0" width="24" height="24">
+    <rect x="0" y="0" width="24" height="24" transform="translate(2.5703766167656417 -0.9807713406753402) rotate(475.8 12 12)" fill="#F2CA02"></rect>
+    <rect x="0" y="0" width="24" height="24" transform="translate(-2.38067219645057 7.7049575535591455) rotate(182.8 12 12)" fill="#2343E1"></rect>
+    <rect x="0" y="0" width="24" height="24" transform="translate(-3.1181564787258234 -19.129235537297667) rotate(294.4 12 12)" fill="#F96C01"></rect>
+  </svg>
+  )
+}
+
+const WalletIcon = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+      <line x1="1" y1="10" x2="23" y2="10"></line>
+    </svg>
+  )
+}
+
+const CopyIcon = () => {
+  return ( 
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+  )
+}
+
 export {
   CheckMark,
   Humanize,
@@ -311,4 +339,7 @@ export {
   FacebookIcon,
   RightArrowIcon,
   LogoutIcon,
+  AccountIcon,
+  WalletIcon,
+  CopyIcon
 };
