@@ -78,7 +78,7 @@ export default function Header(props) {
     <header ref={headerSection} className="px-5 lg:px-0 py-3 lg:py-5">
       <PopoverModal logoutModal={logoutModal} setLogoutModal={setLogoutModal}>
         <div className="flex flex-col mt-5 sm:mt-4 gap-6">
-          <div className="flex flex-col gap-y-4 text-moi-black-100 px-6 border border-moi-purple-500 py-4 mx-4 rounded-3xl shadow">
+          <div className="flex flex-col gap-y-4 text-moi-black-100 px-6 border border-moi-dark py-4 mx-4 rounded-lg shadow">
             <div className="flex items-center gap-x-3">
               <div><AccountIcon/></div>
               <div>{moiState["isMoid"].userName}</div>  

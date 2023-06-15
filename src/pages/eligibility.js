@@ -9,6 +9,7 @@ import { getCid } from "../components/pinata";
 import { useRouter } from "next/router";
 import PopoverModal from "../components/PopoverModal";
 import ReactCanvasConfetti from "react-canvas-confetti";
+import { Loader } from '../components/SvgComponent'
 
 const contract = require("../components/contract.json");
 const { Network, Alchemy } = require("alchemy-sdk");
@@ -346,11 +347,7 @@ export default function Eligibility() {
         </PopoverModal>
         <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         {loading ? (
-          !isDarkMode ? (
-            <span className="w-20 h-20 rounded-full animate-spin border-4 border-solid border-t-transparent mr-2 border-moi-white-100"></span>
-          ) : (
-            <span className="w-20 h-20 rounded-full animate-spin border-4 border-solid border-t-transparent mr-2 border-moi-purple-600"></span>
-          )
+          <div><Loader fillColor={!isDarkMode ? "#F5F2FF" : "#4d2bb9"}/></div>
         ) : (
           <div
             id="container"
