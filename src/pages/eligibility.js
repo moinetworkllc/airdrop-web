@@ -71,7 +71,8 @@ export default function Eligibility() {
           totalPoints,
           rewards,
           amount,
-          kramaIds
+          kramaIds, 
+          checkedCitizen
         )
       );
       loginData.iome.wallet

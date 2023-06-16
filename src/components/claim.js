@@ -1,6 +1,5 @@
 
-export default function getData(moiState, loginData, points, totalPoints, rewards, amount, kramaIds) {
-
+export default function getData(moiState, loginData, points, totalPoints, rewards, amount, kramaIds, checkedCitizen) {
 // STEP 2: Upload the Claim data in JSON format and get the CID
 var details = {
     "payload": {
@@ -14,7 +13,8 @@ var details = {
           "kyc": {
             "phone": points.phone_no,
             "email": points.email,
-            "id": points.kyc
+            "id": points.kyc,
+            "USA Citizen": checkedCitizen
           }
         },
         "validator": {
