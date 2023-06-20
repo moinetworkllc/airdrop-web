@@ -83,6 +83,7 @@ export default function Eligibility() {
 
   function Claim() {
     setClaimModal(true);
+    moiState["kyc"] && setClaimTokens(true);
   }
   useEffect(() => {
     if (loginData && data) {
@@ -215,10 +216,10 @@ export default function Eligibility() {
           Claimed tokens
         </ButtonComponent> : 
         <div class="group flex relative">
-          <ButtonComponent data-tooltip-target="tooltip-default" onClick={Claim} variant="secondary" disabled={kycNationality === 'The United States of America'} className="my-8 disabled:cursor-not-allowed">
+          <ButtonComponent onClick={Claim} variant="secondary" disabled={kycNationality === 'The United States of America'} className="my-8 disabled:cursor-not-allowed">
             {kycNationality === 'The United States of America' ? 'Unable to claim tokens': 'Claim tokens'}
           </ButtonComponent>
-          <span class="group-hover:opacity-100 transition-opacity bg-moi-white-600 px-2 py-1 text-sm text-moi-dark bottom-[10px] rounded-md absolute left-[100px] -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">US citizen cannot claim</span>
+          {kycNationality === 'The United States of America' && <span class="group-hover:opacity-100 transition-opacity bg-moi-white-600 px-2 py-1 text-sm text-moi-dark bottom-[10px] rounded-md absolute left-[100px] -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">US citizen cannot claim</span>}
         </div>
       );
     } else {
@@ -305,7 +306,7 @@ export default function Eligibility() {
             </div>
           )}
         </PopoverModal>
-        <PopoverModal logoutModal={claimModal} setLogoutModal={setClaimModal}>
+        {!moiState["kyc"] && <PopoverModal logoutModal={claimModal} setLogoutModal={setClaimModal}>
           <div className="text-black px-4 py-4">
             <div className="flex items-center pb-6">
               <button
@@ -348,7 +349,7 @@ export default function Eligibility() {
               Confirm
             </ButtonComponent>
           </div>
-        </PopoverModal>
+        </PopoverModal>}
         <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         {loading ? (
           <div><Loader fillColor={!isDarkMode ? "#F5F2FF" : "#4d2bb9"}/></div>
