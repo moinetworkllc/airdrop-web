@@ -113,7 +113,7 @@ const Accordion = () => {
             <div
               key={index}
               onClick={() => handleSetIndex(index)}
-              className="flex justify-between items-center transition-all duration-500 cursor-pointer"
+              className="flex justify-between gap-x-2 items-center transition-all duration-500 cursor-pointer"
             >
               <div>
                 <div className="flex items-center py-4">

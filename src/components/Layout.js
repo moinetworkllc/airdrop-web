@@ -41,7 +41,6 @@ const getAllocationProof = async (userid) => {
     return txn
      
   } catch (error) {
-    console.error(error)
     return ([])
   }
 };
@@ -66,7 +65,7 @@ const makeKycRequest = async (userid) => {
 };
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading, setProof } = useContext(ThemeContext);
+  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading, setProof, setKycNationality } = useContext(ThemeContext);
 
   const getEligibility = async () => {
   const proof = await getAllocationProof(loginData.userid)
@@ -75,7 +74,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`)
     
     let data = await response.json();
-    data && setLoading(false)
     const avatarsCreated = data.interactions.data.filter(function (txn) {
       try {
         let namespace = loginData.iome.utils.mDecode(txn.namespace)
@@ -174,6 +172,7 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
 
 
   useEffect (() => {
+    setLoading(false)
     setPoints({
       moid: moiState["isMoid"] ? 1 : 0,
       phone_no: moiState["phone_no"] ? 2 : 0,
