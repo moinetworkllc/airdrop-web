@@ -50,8 +50,8 @@ const makeKycRequest = async (userid) => {
     'Content-Type': 'application/json',
   };
   const data = {
-    defAddr: userid,
-    nameSpace: 'validator',
+    "defAddr": userid,
+    "nameSpace": 'validator',
   };
 
   try {
@@ -59,7 +59,8 @@ const makeKycRequest = async (userid) => {
     return response.data
     
   } catch (error) {
-    console.error(error);
+    return false
+    //console.error(error);
     
   }
 };
@@ -70,7 +71,6 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
   const getEligibility = async () => {
   const proof = await getAllocationProof(loginData.userid)
   setProof(proof)
-
     let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`)
     
     let data = await response.json();
@@ -114,9 +114,15 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
       }
     })
 
-    const kyc = data.email.code == 200 ? true : false
-    const phone_no = data.phone_no.code == 200 ? true : false
-    const email = data.email.code == 200 ? true : false
+    let kyc = data.kyc.code == 200 ? true : false
+    let phone_no = data.phone_no.code == 200 ? true : false
+    if (phone_no){
+      phone_no = data.phone_no.data.result.givenAttributes.phone.verified
+    }
+    let email = data.email.code == 200 ? true : false
+    if (email){
+      email = data.email.data.result.givenAttributes.email.verified
+    }
     //const twitter = data.twitter ? data.twitter.data.level : 0
     const telegram = data.telegram ? data.telegram.data.level : 0
     const discord = data.discord ? data.discord.data.level : 0
@@ -149,7 +155,11 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
    })
    if (kyc) {
     let response = await makeKycRequest(loginData.userid)
+    console.log(response)
     response && setKycNationality(response.kycMethod.nationality)
+    if (!response) {
+      kyc = false
+    }
    }
     
     setMoiState((prevData) => ({

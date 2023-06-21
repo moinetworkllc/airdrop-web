@@ -14,7 +14,6 @@ var details = {
             "phone": points.phone_no,
             "email": points.email,
             "id": points.kyc,
-            "USA Citizen": checkedCitizen
           }
         },
         "validator": {
@@ -39,7 +38,14 @@ var details = {
       }
     },
   }
+  if (checkedCitizen) {
+    details.payload.details.wallet.kyc["Nationality"] = kycNationality
+  }
+  else {
+    details.payload.details.wallet.kyc["USA citizen"] = checkedCitizen
+  }
 var data = JSON.stringify(details)
+console.log(data)
    
 return data
 

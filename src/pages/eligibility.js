@@ -72,7 +72,8 @@ export default function Eligibility() {
           rewards,
           amount,
           kramaIds, 
-          checkedCitizen
+          checkedCitizen,
+          kycNationality
         )
       );
       loginData.iome.wallet
