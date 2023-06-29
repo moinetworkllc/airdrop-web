@@ -15,7 +15,8 @@ module.exports = {
         'card': 'inset 0 0 0 600px rgba(255,255,255,0.1)',
         '5xl': '0px 1px 6px 0px rgba(20, 10, 51, 0.07)',
         '6xl': '0px 2px 2px 0px rgba(20, 10, 51, 0.03)',
-        '7xl': '0px 1px 2px 0px rgba(20, 10, 51, 0.05)'
+        '7xl': '0px 1px 2px 0px rgba(20, 10, 51, 0.05)',
+        'card': '0 1px 2px rgba(20,10,51,.05), 0 2px 2px rgba(20,10,51,.03), 0 1px 6px rgba(20,10,51,.07)'
 
       },
       backdropOpacity: {
