@@ -47,7 +47,7 @@ const primaryFeatures = [
   },
 ];
 
-const StepForward = () => {
+const CardSlides = () => {
     const [activeCard, setActiveCard] = useState(0);
     const { isDarkMode } = useContext(ThemeContext);
 
@@ -101,4 +101,4 @@ const StepForward = () => {
   );
 };
 
-export default StepForward;
+export default CardSlides;

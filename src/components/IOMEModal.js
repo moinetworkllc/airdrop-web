@@ -5,7 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { useRouter } from 'next/router';
 
 
-export default function Modal({ setModalOpen, isModalOpen }) {
+export default function IOMEModal({ setModalOpen, isModalOpen }) {
   const { setLoginData, loginData, setMoiState } = useContext(ThemeContext);
   const router = useRouter();
 

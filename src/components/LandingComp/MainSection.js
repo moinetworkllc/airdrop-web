@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import ButtonComponent from "../ButtonComponent";
-import Modal from "../Modal";
+import IOMEModal from "../IOMEModal";
 import { ThemeContext, LoginContext } from "../../context/ThemeContext";
 import { classNames } from "../../utils/helpers";
 import Image from "next/image";
 import Link from "next/link";
 
-const HeroSection = () => {
+const MainSection = () => {
   const {
     isDarkMode,
     moiState,
@@ -25,7 +25,7 @@ const HeroSection = () => {
   return (
     <>
       <div className="grid grid-row-2 lg:grid-cols-2 gap-x-8">
-        <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
+        <IOMEModal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         <div className="flex flex-col justify-center">
           <p className={`inline-block font-bold text-2xl lg:text-[38px] 2xl:text-[48px] text-left py-2 2xl:leading-[56px] ${isDarkMode ? "text-moi-purple-600" : "text-moi-white-100"}`}>
             The world's first context-aware peer-to-peer protocol and blockchain
@@ -76,4 +76,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default MainSection;

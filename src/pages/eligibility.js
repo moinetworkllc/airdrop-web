@@ -3,7 +3,7 @@ import ButtonComponent from "../components/ButtonComponent";
 import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
-import Modal from "../components/Modal";
+import IOMEModal from "../components/IOMEModal";
 import { getData } from "../components/claim";
 import { getCid } from "../components/pinata";
 import { useRouter } from "next/router";
@@ -351,7 +351,7 @@ export default function Eligibility() {
             </ButtonComponent>
           </div>
         </PopoverModal>}
-        <Modal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
+        <IOMEModal setModalOpen={setModalOpen} isModalOpen={isModalOpen} />
         {loading ? (
           <div><Loader fillColor={!isDarkMode ? "#F5F2FF" : "#4d2bb9"}/></div>
         ) : (
