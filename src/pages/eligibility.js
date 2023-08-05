@@ -11,7 +11,7 @@ import PopoverModal from "../components/PopoverModal";
 import ReactCanvasConfetti from "react-canvas-confetti";
 import { Loader } from '../components/SvgComponent'
 
-const contract = require("../components/contract.json");
+const contract = require("../artifacts/contract.json");
 const { Network, Alchemy } = require("alchemy-sdk");
 const settings = {
   apiKey: process.env.NEXT_PUBLIC_API, // Replace with your Alchemy API Key.
@@ -116,7 +116,7 @@ export default function Eligibility() {
 
   useEffect(() => {
     if (cid) {
-      const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+      const address = "0x0Be68caD700DA3Cc1a9135ef5C50843940e4b886";
       const provider = new ethers.providers.JsonRpcProvider(
         process.env.NEXT_PUBLIC_SEPOLIA_URL
       );

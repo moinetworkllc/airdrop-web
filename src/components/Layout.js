@@ -4,7 +4,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
 import axios from 'axios';
-const contract = require("../components/contract.json");
+const contract = require("../artifacts/contract.json");
 require("dotenv").config();
 const { ethers } = require("ethers");
 
@@ -21,7 +21,7 @@ const getAllocationProof = async (userid) => {
   };
 
   try {
-    const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+    const address = "0x0Be68caD700DA3Cc1a9135ef5C50843940e4b886";
       const provider = new ethers.providers.JsonRpcProvider(
         process.env.NEXT_PUBLIC_SEPOLIA_URL
       );
