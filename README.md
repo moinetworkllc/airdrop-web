@@ -2,7 +2,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+1. git clone https://github.com/moinetworkllc/airdrop-web.git
+2. Add .env
+3. npm install
+5. Setup IOME-Widget local
+    1. Clone the IOME-Widget repo
+    2. npm install
+    3. sudo npm link
+    
+6. npm link iome-widget
+7. First, run the development server:
 
 ```bash
 npm run dev
