@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext, useCallback, useRef } from "react";
 import ButtonComponent from "../components/ButtonComponent";
-import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 import IOMEModal from "../components/IOMEModal";
