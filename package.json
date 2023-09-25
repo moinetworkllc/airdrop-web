@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "v1",
+    "@iome/react-widget": "^0.1.0-beta.1",
     "@styled-icons/heroicons-outline": "^10.47.0",
     "@types/node": "18.16.0",
     "@types/react": "18.2.0",

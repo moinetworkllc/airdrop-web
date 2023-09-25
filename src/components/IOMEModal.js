@@ -1,8 +1,10 @@
 import { Fragment, useState, Component, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import IOMe from "iome-widget";
+// import IOMe from "iome-widget";
 import { ThemeContext } from "../context/ThemeContext";
 import { useRouter } from 'next/router';
+import { IOMe, Connect, Utils } from "@iome/react-widget"
+let iomeObj = new IOMe("developerID", "AppSecret");
 
 
 export default function IOMEModal({ setModalOpen, isModalOpen }) {
@@ -49,9 +51,13 @@ export default function IOMEModal({ setModalOpen, isModalOpen }) {
                 <div>
                   <div className="mt-3 text-center sm:mt-5">
                     <div className="mt-2 !text-black">
-                      <IOMe
+                      <Connect
                         onSuccess={onSuccess}
+                        iome={iomeObj}
                       />
+                      {/* <IOMe
+                        onSuccess={onSuccess}
+                      /> */}
                     </div>
                   </div>
                 </div>
