@@ -131,7 +131,7 @@ export default function Eligibility() {
       (async () => {
         const txn = await moiContract.allocate(
           0x00,
-          [loginData.userid],
+          [loginData.user.userID],
           [amount],
           cid,
           {

@@ -69,9 +69,9 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
   const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading, setProof, setKycNationality } = useContext(ThemeContext);
 
   const getEligibility = async () => {
-  const proof = await getAllocationProof(loginData.userid)
+  const proof = await getAllocationProof(loginData.user.userID)
   setProof(proof)
-    let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`)
+    let response = await fetch(`/api/moi?userId=${loginData.user.userID}&userName=${loginData.userName}`)
     
     let data = await response.json();
     const avatarsCreated = data.interactions.data.filter(function (txn) {
@@ -154,7 +154,7 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     else return;
    })
    if (kyc) {
-    let response = await makeKycRequest(loginData.userid)
+    let response = await makeKycRequest(loginData.user.userID)
     console.log(response)
     response && setKycNationality(response.kycMethod.nationality)
     if (!response) {

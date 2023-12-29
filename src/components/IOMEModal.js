@@ -1,4 +1,4 @@
-import { Fragment, useState, Component, useContext } from "react";
+import { Fragment, useState, useEffect, Component, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 // import IOMe from "iome-widget";
 import { ThemeContext } from "../context/ThemeContext";
@@ -11,7 +11,21 @@ export default function IOMEModal({ setModalOpen, isModalOpen }) {
   const { setLoginData, loginData, setMoiState } = useContext(ThemeContext);
   const router = useRouter();
 
+  // Init
+useEffect(() => {
+	async function __initIome() {
+		try {
+			await iomeObj.InitDev();
+			await iomeObj.InitApp();
+		}catch(e) {
+			// handle error
+		}
+	}
+	__initIome();
+},[])
+
   const onSuccess = async(creds) => {
+    console.log("creds", creds);
     creds && router.push("/eligibility");
     setMoiState((prevData) => ({
       ...prevData,
