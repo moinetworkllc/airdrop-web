@@ -3,7 +3,7 @@ export default function getData(moiState, loginData, points, totalPoints, reward
 // STEP 2: Upload the Claim data in JSON format and get the CID
 var details = {
     "payload": {
-      "address": loginData.userid,
+      "address": loginData.user.userID,
       "total_tokens": amount,
       "total_points": totalPoints,
       "total_rewards": rewards,

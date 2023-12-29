@@ -1,13 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import ButtonComponent from "../ButtonComponent";
-import Image from "next/image";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
-import {
-  Humanize,
-  Context,
-  NativeAssetIcon,
-  GlobalTruthIcon,
-} from "../SvgComponent";
 import { ThemeContext } from "../../context/ThemeContext";
 const primaryFeatures = [
   {
