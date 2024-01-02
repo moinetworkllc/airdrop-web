@@ -215,11 +215,11 @@ export default function Eligibility() {
         proof.length ? <ButtonComponent variant="secondary" disabled={true} className="my-8 !cursor-not-allowed">
           Claimed tokens
         </ButtonComponent> : 
-        <div class="group flex relative">
+        <div className="group flex relative">
           <ButtonComponent onClick={Claim} variant="secondary" disabled={kycNationality === 'The United States of America'} className="my-8 disabled:cursor-not-allowed">
             {kycNationality === 'The United States of America' ? 'Unable to claim tokens': 'Claim tokens'}
           </ButtonComponent>
-          {kycNationality === 'The United States of America' && <span class="group-hover:opacity-100 transition-opacity bg-moi-white-600 px-2 py-1 text-sm text-moi-dark bottom-[10px] rounded-md absolute left-[100px] -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">US citizen cannot claim</span>}
+          {kycNationality === 'The United States of America' && <span className="group-hover:opacity-100 transition-opacity bg-moi-white-600 px-2 py-1 text-sm text-moi-dark bottom-[10px] rounded-md absolute left-[100px] -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">US citizen cannot claim</span>}
         </div>
       );
     } else {

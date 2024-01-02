@@ -8,7 +8,7 @@ let iomeObj = new IOMe("developerID", "AppSecret");
 
 
 export default function IOMEModal({ setModalOpen, isModalOpen }) {
-  const { setLoginData, loginData, setMoiState } = useContext(ThemeContext);
+  const { setLoginData, loginData, setMoiState, authToken, setAuthToken } = useContext(ThemeContext);
   const router = useRouter();
 
   // Init
@@ -25,7 +25,9 @@ useEffect(() => {
 },[])
 
   const onSuccess = async(creds) => {
-    console.log("creds", creds);
+    const currentDate = new Date().getTime()
+    const token = await iomeObj.user.getAuthToken("SESSION", currentDate.toString())
+    setAuthToken(token)
     creds && router.push("/eligibility");
     setMoiState((prevData) => ({
       ...prevData,

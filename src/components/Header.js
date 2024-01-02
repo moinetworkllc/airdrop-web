@@ -141,7 +141,6 @@ export default function Header(props) {
 
             <div className="flex items-center justify-end ml-4 lg:flex-1">
               <div>
-                {console.log("moiState", moiState["isMoid"].user)}
                 {!moiState["isMoid"].user?.userID ? (
                   <ButtonComponent
                     variant="primary"
