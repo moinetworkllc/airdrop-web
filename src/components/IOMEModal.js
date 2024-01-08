@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ThemeContext } from "../context/ThemeContext";
 import { useRouter } from 'next/router';
 import { IOMe, Connect, Utils } from "@iome/react-widget"
-let iomeObj = new IOMe("developerID", "AppSecret");
+let iomeObj = new IOMe(process.env.NEXT_PUBLIC_DEVELOPERID, process.env.NEXT_PUBLIC_APPSECRET);
 
 
 export default function IOMEModal({ setModalOpen, isModalOpen }) {
