@@ -16,6 +16,7 @@ const ThemeProvider = ({ children }) => {
   const [proof, setProof] = useState([])
   const [moiState, setMoiState] = useState(MOI_INITIAL_DATA);
   const [points, setPoints] = useState(INITAL_POINTS);
+  const [authToken, setAuthToken] = useState()
 
   const handleLogin = (id) => {
     setLoginId(id);
@@ -51,7 +52,9 @@ const ThemeProvider = ({ children }) => {
         setKycNationality,
         kycNationality,
         proof,
-        setProof
+        setProof,
+        setAuthToken,
+        authToken
       }}
     >
       {children}

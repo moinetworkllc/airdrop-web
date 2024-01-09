@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext, useCallback, useRef } from "react";
 import ButtonComponent from "../components/ButtonComponent";
-import { CheckMark } from "../components/SvgComponent";
 import { ThemeContext } from "../context/ThemeContext";
 import Accordion from "../components/Accordion";
 import IOMEModal from "../components/IOMEModal";
@@ -11,7 +10,7 @@ import PopoverModal from "../components/PopoverModal";
 import ReactCanvasConfetti from "react-canvas-confetti";
 import { Loader } from '../components/SvgComponent'
 
-const contract = require("../components/contract.json");
+const contract = require("../artifacts/contract.json");
 const { Network, Alchemy } = require("alchemy-sdk");
 const settings = {
   apiKey: process.env.NEXT_PUBLIC_API, // Replace with your Alchemy API Key.
@@ -116,7 +115,7 @@ export default function Eligibility() {
 
   useEffect(() => {
     if (cid) {
-      const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+      const address = "0x0Be68caD700DA3Cc1a9135ef5C50843940e4b886";
       const provider = new ethers.providers.JsonRpcProvider(
         process.env.NEXT_PUBLIC_SEPOLIA_URL
       );
@@ -132,7 +131,7 @@ export default function Eligibility() {
       (async () => {
         const txn = await moiContract.allocate(
           0x00,
-          [loginData.userid],
+          [loginData.user.userID],
           [amount],
           cid,
           {
@@ -216,11 +215,11 @@ export default function Eligibility() {
         proof.length ? <ButtonComponent variant="secondary" disabled={true} className="my-8 !cursor-not-allowed">
           Claimed tokens
         </ButtonComponent> : 
-        <div class="group flex relative">
+        <div className="group flex relative">
           <ButtonComponent onClick={Claim} variant="secondary" disabled={kycNationality === 'The United States of America'} className="my-8 disabled:cursor-not-allowed">
             {kycNationality === 'The United States of America' ? 'Unable to claim tokens': 'Claim tokens'}
           </ButtonComponent>
-          {kycNationality === 'The United States of America' && <span class="group-hover:opacity-100 transition-opacity bg-moi-white-600 px-2 py-1 text-sm text-moi-dark bottom-[10px] rounded-md absolute left-[100px] -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">US citizen cannot claim</span>}
+          {kycNationality === 'The United States of America' && <span className="group-hover:opacity-100 transition-opacity bg-moi-white-600 px-2 py-1 text-sm text-moi-dark bottom-[10px] rounded-md absolute left-[100px] -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">US citizen cannot claim</span>}
         </div>
       );
     } else {

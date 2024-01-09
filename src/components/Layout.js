@@ -4,7 +4,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import Header from "./Header";
 import Footer from "./Footer";
 import axios from 'axios';
-const contract = require("../components/contract.json");
+const contract = require("../artifacts/contract.json");
 require("dotenv").config();
 const { ethers } = require("ethers");
 
@@ -21,7 +21,7 @@ const getAllocationProof = async (userid) => {
   };
 
   try {
-    const address = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+    const address = "0x0Be68caD700DA3Cc1a9135ef5C50843940e4b886";
       const provider = new ethers.providers.JsonRpcProvider(
         process.env.NEXT_PUBLIC_SEPOLIA_URL
       );
@@ -66,12 +66,13 @@ const makeKycRequest = async (userid) => {
 };
 
 export default React.forwardRef(function Layout({ children, data }, ref) {
-  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading, setProof, setKycNationality } = useContext(ThemeContext);
+  const { setMoiState, loginData, loginId, isDarkMode, setPoints, moiState, setRewards, rewards, kramaIds, setKramaIds, setLoading, setProof, setKycNationality, authToken } = useContext(ThemeContext);
 
   const getEligibility = async () => {
-  const proof = await getAllocationProof(loginData.userid)
+  const proof = await getAllocationProof(loginData.user.userID)
+  
   setProof(proof)
-    let response = await fetch(`/api/moi?userId=${loginData.userid}&userName=${loginData.userName}`)
+    let response = await fetch(`/api/moi?userId=${loginData.user.userID}&userName=${loginData.userName}&token=${authToken.datToken}`)
     
     let data = await response.json();
     const avatarsCreated = data.interactions.data.filter(function (txn) {
@@ -154,7 +155,7 @@ export default React.forwardRef(function Layout({ children, data }, ref) {
     else return;
    })
    if (kyc) {
-    let response = await makeKycRequest(loginData.userid)
+    let response = await makeKycRequest(loginData.user.userID)
     console.log(response)
     response && setKycNationality(response.kycMethod.nationality)
     if (!response) {

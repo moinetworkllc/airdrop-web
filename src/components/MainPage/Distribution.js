@@ -1,7 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import ButtonComponent from "../ButtonComponent";
-import Image from "next/image";
-import Link from "next/link";
+import React, { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 
 const Distribution = () => {

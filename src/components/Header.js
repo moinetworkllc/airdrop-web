@@ -85,9 +85,9 @@ export default function Header(props) {
             </div>
             <div className="flex items-center gap-x-3">
               <div><WalletIcon/></div>
-              <div>{`${moiState["isMoid"].userid?.slice(0, 8)}...${moiState["isMoid"].userid?.slice(-6)}`}</div>
+              <div>{`${moiState["isMoid"].user?.userID?.slice(0, 8)}...${moiState["isMoid"].userID?.slice(-6)}`}</div>
               {!copyAddress ? 
-                <div onClick={() => copyWalletAddress(moiState["isMoid"].userid)}><CopyIcon/></div> :  
+                <div onClick={() => copyWalletAddress(moiState["isMoid"].userID)}><CopyIcon/></div> :  
                 <CheckCircleIcon className="w-5 h-5 text-green-700"/>
               }
             </div>
@@ -141,7 +141,7 @@ export default function Header(props) {
 
             <div className="flex items-center justify-end ml-4 lg:flex-1">
               <div>
-                {!moiState["isMoid"].userid ? (
+                {!moiState["isMoid"].user?.userID ? (
                   <ButtonComponent
                     variant="primary"
                     className="mx-4 px-2 py-2 lg:px-8 lg:py-2 text-sm lg:text-lg"
